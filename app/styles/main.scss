@@ -8,10 +8,12 @@ html, body {
   margin: 20px;
 }
 
+* {
+    font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+}
+
 body {
     background: #fafafa;
-    font-family: "Titillium Web", Helvetica, Arial, sans-serif;
-    color: #333;
 }
 
 
@@ -19,7 +21,7 @@ body {
     font-size: 60px;
     letter-spacing: -1px;
 }
-li a  {
+div > ul > li > a  {
   display:block;
   text-decoration:none;
   padding:5px 10px;
@@ -34,7 +36,7 @@ li a  {
   font-weight: bold;
 }
 
-li{
+div > ul > li{
   display:inline-block;
   text-align:center;
   -webkit-transform: skew(-20deg);
@@ -66,7 +68,7 @@ ul{
 }
 
 
-.child-skew input {
+.child-skew input, .parent-skew {
   background: transparent;
   border: 0;
   cursor: pointer;
@@ -83,7 +85,7 @@ ul{
 }
 
 
-.fithashtag{
+.fithashtag {
     background-color: red;
     -webkit-transition: background-color 200ms linear;
     -moz-transition: background-color 200ms linear;
@@ -92,3 +94,89 @@ ul{
     transition: background-color 200ms linear;
 }
 
+nav {
+  background: transparent;
+  height:40px;
+  margin: auto; 
+  width: 60%;
+}
+
+
+nav ul {
+  font-family: Arial, Verdana;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  position: relative;
+  float:left;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  position:relative;
+  width: 100px;
+}
+
+
+
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  background: #fdca00 !important;
+  font-size: 90%;
+  white-space: nowrap;
+  height:30px; /* Width and height of top-level nav items */
+  width:90px;
+  text-align:center;
+  transform: skew(-10deg);
+  -o-transform: skew(-10deg);
+  -moz-transform: skew(-10deg);
+  -webkit-transform: skew(-10deg);
+  color: black;
+}
+
+nav ul li a span {
+    display: inline-block;
+    transform: skew(10deg);
+    -o-transform: skew(10deg);
+    -moz-transform: skew(10deg);
+    -webkit-transform: skew(10deg);
+    color: black;
+    line-height: 5px;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+  background: #0d0e10 !important;
+}
+
+nav li:hover ul {
+  display: block;
+  position: absolute;
+  height:30px;
+  text-decoration: none;
+}
+
+nav li:hover li {
+  float: none;
+  font-size: 11px;
+
+}
+
+nav li:hover a {
+  background: #3A464F;
+  height:30px; /* Height of lower-level nav items is shorter than main level */
+  color: #fdca00;
+  text-decoration: none;
+}
+
+nav li:hover li a:hover {
+  background: #95A9B1;
+}
+
+nav ul li ul li a {
+    text-align:left; /* Top-level items are centered, but nested list items are left-aligned */
+}
