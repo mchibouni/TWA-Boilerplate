@@ -1,10 +1,14 @@
 <div class="hero-unit" ng-controller="TWASubmitCtrl">
 	<label for="submission-fill">Tapez l'adresse URL de votre Candidat</label>
-	<div class="reverse-skew">
-		<input class= "elem-fill-skew" type="text" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()"/>
+	<div class="child-skew">
+		<input id="fillform" type="text" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()"/>
 	</div>
 	<ul ng-repeat="twaElem in twaHashTags">
-		<input type="checkbox" ng-model="tooltip.checked" bs-tooltip="tooltip.title"/>
-		<li><a href="#">{{twaElem}}</a></li>
+		<li ng-class="{fithashtag: twaHashTags[$index].state}"><a href="#">{{twaElem.name}}</a></li>
 	</ul>
 </div>
+
+
+
+
+
