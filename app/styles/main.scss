@@ -1,0 +1,60 @@
+$iconSpritePath: "../images/glyphicons-halflings.png";
+$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+
+@import "bootstrap-sass/lib/bootstrap";
+
+/* Put your CSS here */
+html, body {
+  margin: 20px;
+}
+
+body {
+    background: #fafafa;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 30px;
+    background-color: #eee;
+    border-radius: 6px;
+    padding: 60px;
+}
+
+.hero-unit h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+li a {
+  display:block;
+  text-decoration:none;
+  padding:5px 10px;
+  font-size:15px;
+  color:#000;
+  -webkit-transform: skew(20deg) !important;
+  -moz-transform: skew(20deg) !important;
+  -ms-transform: skew(20deg) !important;
+  -o-transform: skew(20deg) !important;
+  transform: skew(20deg) !important; 
+  color: white; 
+}
+
+li {
+  display:inline-block;
+  text-align:center;
+  -webkit-transform: skew(-20deg);
+  -moz-transform: skew(-20deg);
+  -ms-transform: skew(-20deg);
+  -o-transform: skew(-20deg);
+  transform: skew(-20deg); 
+  background-color: red;
+}
+
+ul{
+    list-style-type: none;
+}
