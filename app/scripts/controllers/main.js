@@ -1,14 +1,53 @@
 'use strict';
 
-angular.module('twaAutocompletionApp')
-.controller('MainCtrl', function ($scope) {
-  $scope.awesomeThings = [
-  'HTML5 Boilerplate',
-  'AngularJS',
-  'Karma'
-  ];
-})
+var app = angular.module('twaAutocompletionApp')
+.service('navMenuRawData', [function () {
+  this.navHash = function(){
+    return [
+    {  name:"HOME", state : true },
+    {  name:"ABOUT", state : false },
+    {  name:"MEDIA", state : false },
+    {  name:"JURY", state : false },
+    {  name:"CATEGORIES", state : false },
+    {  name:"CONTACT", state : false },
+    ];
+  }
+}])
+.controller('MainCtrl', function ($scope, $route, $routeParams, $location, navMenuRawData,$resource) {
+
+  $scope.$route = $route;
+  $scope.$location = $location;
+  $scope.$routeParams = $routeParams;
+  $scope.navHash = navMenuRawData.navHash();
+  console.log($scope.navHash);
+  $scope.lowercase = angular.lowercase;
+  $scope.changeView = function(view){
+            $location.path(view); // path not hash
+          };
+          $scope.getNextViewByName = function($scope){
+
+            var navHash = this.navHash;
+            var currentIdx;
+            angular.forEach(navHash,function(v,k){
+              console.log(v);
+              if (v.state === true) {
+                currentIdx = k ; 
+                return;
+              }
+            });
+            console.log(currentIdx);
+            navHash[ currentIdx % navHash.length].state = false ;     
+            navHash[(currentIdx + 1) % navHash.length].state = true ; 
+            console.log(navHash[(currentIdx + 1) % navHash.length].name);
+            return angular.lowercase(navHash[(currentIdx + 1) % navHash.length].name);
+          }
+          $scope.getPrevViewByName = function(){
+            return angular.lowercase($scope.navHash[parseInt(angular.element(".parentnav-active")
+              .parent().attr("data-index")) - 1 % $scope.navHash.length].name);
+          }
+        })
 .controller('TWASubmitCtrl', ['$scope', function ($scope) {
+  console.log("DEBUG INFO");
   $scope.fitHashTag = false; 
   $scope.keyword = "test";
   $scope.twaHashTags = [
@@ -47,18 +86,48 @@ angular.module('twaAutocompletionApp')
   }
 
 }])
-.controller('CarouselDemoCtrl', ['$scope', function ($scope) {
-  $scope.myInterval = 5000;
-  var slides = $scope.slides = [];
-  $scope.addSlide = function() {
-    var newWidth = 200 + ((slides.length + (25 * slides.length)) % 150);
-    slides.push({
-      image: 'http://placekitten.com/' + newWidth + '/200',
-      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+.controller('AboutCtrl', ['$scope', function ($scope) {
+
+}]);
+
+
+var ModalCtrl = function ($scope, $modal, $log) {
+
+  $scope.items = ['item1', 'item2', 'item3'];
+
+  $scope.open = function () {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'myModalContent.html',
+      controller: ModalInstanceCtrl,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
     });
   };
-  for (var i=0; i<4; i++) {
-    $scope.addSlide();
-  }
-}]);
+};
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
+

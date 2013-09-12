@@ -9,17 +9,26 @@ html, body {
 }
 
 * {
-    font-family: "Titillium Web", Helvetica, Arial, sans-serif;
+  font-family: "Titillium Web", Helvetica, Arial, sans-serif;
 }
 
 body {
-    background: #fafafa;
+  background: #fafafa;
 }
 
+footer {
+  position: fixed;
+  bottom: 0%;
+  right: 10%;
+}
+
+footer > div {
+  display: inline-block;
+}
 
 .hero-unit h1 {
-    font-size: 60px;
-    letter-spacing: -1px;
+  font-size: 60px;
+  letter-spacing: -1px;
 }
 div > ul > li > a  {
   display:block;
@@ -51,7 +60,7 @@ div > ul > li{
 }
 
 ul{
-    list-style-type: none;
+  list-style-type: none;
 }
 
 
@@ -86,12 +95,12 @@ ul{
 
 
 .fithashtag {
-    background-color: red;
-    -webkit-transition: background-color 200ms linear;
-    -moz-transition: background-color 200ms linear;
-    -o-transition: background-color 200ms linear;
-    -ms-transition: background-color 200ms linear;
-    transition: background-color 200ms linear;
+  background-color: red;
+  -webkit-transition: background-color 200ms linear;
+  -moz-transition: background-color 200ms linear;
+  -o-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
 }
 
 nav {
@@ -139,18 +148,22 @@ nav ul li a {
 }
 
 nav ul li a span {
-    display: inline-block;
-    transform: skew(10deg);
-    -o-transform: skew(10deg);
-    -moz-transform: skew(10deg);
-    -webkit-transform: skew(10deg);
-    color: black;
-    line-height: 5px;
-    font-weight: bold;
+  display: inline-block;
+  transform: skew(10deg);
+  -o-transform: skew(10deg);
+  -moz-transform: skew(10deg);
+  -webkit-transform: skew(10deg);
+  color: black;
+  line-height: 5px;
+  font-weight: bold;
 }
 
-nav ul li a:hover {
+nav ul li a:hover, .parentnav-active {
   background: #0d0e10 !important;
+}
+
+.childnav-active {
+  color: #fdca00;
 }
 
 nav li:hover ul {
@@ -178,5 +191,65 @@ nav li:hover li a:hover {
 }
 
 nav ul li ul li a {
-    text-align:left; /* Top-level items are centered, but nested list items are left-aligned */
+  text-align:left; /* Top-level items are centered, but nested list items are left-aligned */
+}
+
+
+.example-leave-setup, .example-enter-setup {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  -ms-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+}
+
+.example-animate-container {
+  position:relative;
+}
+
+.example-animate-container > * {
+  display:block;
+  width:500px;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding:10px;
+}
+
+.example-enter-setup {
+  left:25%;
+}
+.example-enter-setup.example-enter-start {
+  left:0;
+}
+
+.example-leave-setup { }
+.example-leave-setup.example-leave-start {
+  left:-100%;
+}
+
+.twa-next {
+  position : fixed;
+  top: 50%;
+  right: 5%;
+}
+
+.twa-prev {
+  position: fixed ; 
+  top: 50%;
+  left: 5%;
+}
+
+#share-area {
+  margin: auto; 
+  position: fixed;
+  top: 60%;
+}
+
+#step-area {
+  position: fixed;
+  top: 70%;
+  left: 30%;
 }
