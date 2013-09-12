@@ -15,6 +15,10 @@ angular.module('twaAutocompletionApp', ['ngResource','ui.bootstrap'])
     redirectTo: '/'
   });
 })
+.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }])
 .run(function($rootScope, $location, $anchorScroll, $routeParams) {
   $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
     $location.hash($routeParams.scrollTo);

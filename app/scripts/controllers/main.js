@@ -13,13 +13,27 @@ var app = angular.module('twaAutocompletionApp')
     ];
   }
 }])
-.controller('MainCtrl', function ($scope, $route, $routeParams, $location, navMenuRawData,$resource) {
-
+.factory('twaRestAPI', ['$resource', function($resource)
+{
+  return $resource('http://localhost\\:3000/wines',{
+    query: {
+              method:'GET',          
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              isArray:true,
+          }
+        });
+}])
+.controller('MainCtrl', function ($scope, $route, $routeParams, $location, navMenuRawData,twaRestAPI) {
+  twaRestAPI.query(null,function(response){
+    console.log(response);
+  });
   $scope.$route = $route;
   $scope.$location = $location;
   $scope.$routeParams = $routeParams;
   $scope.navHash = navMenuRawData.navHash();
-  console.log($scope.navHash);
   $scope.lowercase = angular.lowercase;
   $scope.changeView = function(view){
             $location.path(view); // path not hash
