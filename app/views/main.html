@@ -7,7 +7,7 @@
 		<input id="fillform" type="text" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()"/>
 	</div>
 	<ul ng-repeat="twaElem in twaHashTags">
-		<li ng-class="{fithashtag: twaHashTags[$index].state}"><a href="#">{{twaElem.name}}</a></li>
+		<li class="hash-elements" ng-class="{fithashtag: twaHashTags[$index].state}"><a href="#" class="only-here">{{twaElem.name}}</a></li>
 	</ul>
 </div>
 
@@ -16,6 +16,7 @@
 	<ul>
 		<li>Share</li>
 		<li>Tweet</li>
+		<li><a href="#"><span>Send</span></a></li>
 	</ul>
 </div>
 

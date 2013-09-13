@@ -13,18 +13,43 @@ var app = angular.module('twaAutocompletionApp')
     ];
   }
 }])
+.service('twaHashTagService',[function(){
+  this.getHashList = function() {
+    return [
+    {name:'#musique',state:false},
+    {name:'#facebook',state:false},
+    {name:'#twitter',state:false} , 
+    {name:'#instragram',state:false},
+    {name:'#foursquare',state:false},
+    {name:'#dessin',state:false},
+    {name:'#soundcloud',state:false},
+    {name:'#blog',state:false},
+    {name:'#siteweb',state:false},
+    {name:'#satire',state:false},
+    {name:'#sport',state:false},
+    {name:'#sportphoto',state:false},
+    {name:'#video',state:false},
+    {name:'#rédaction',state:false},
+    {name:'#humour',state:false},
+    {name:'#mode',state:false},
+    {name:'#wtf',state:false},
+    {name:'#même',state:false},
+    {name:'#citoyen',state:false}
+    ];
+  }
+}])
 .factory('twaRestAPI', ['$resource', function($resource)
 {
   return $resource('http://localhost\\:3000/wines',{
     query: {
-              method:'GET',          
-              headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-              },
-              isArray:true,
-          }
-        });
+      method:'GET',          
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      isArray:true,
+    }
+  });
 }])
 .controller('MainCtrl', function ($scope, $route, $routeParams, $location, navMenuRawData,twaRestAPI) {
   twaRestAPI.query(null,function(response){
@@ -35,9 +60,14 @@ var app = angular.module('twaAutocompletionApp')
   $scope.$routeParams = $routeParams;
   $scope.navHash = navMenuRawData.navHash();
   $scope.lowercase = angular.lowercase;
+
   $scope.changeView = function(view){
             $location.path(view); // path not hash
           };
+
+          $scope.getCurrentView = function($location){
+            return $location.path(); 
+          }
           $scope.getNextViewByName = function($scope){
 
             var navHash = this.navHash;
@@ -55,36 +85,34 @@ var app = angular.module('twaAutocompletionApp')
             console.log(navHash[(currentIdx + 1) % navHash.length].name);
             return angular.lowercase(navHash[(currentIdx + 1) % navHash.length].name);
           }
-          $scope.getPrevViewByName = function(){
-            return angular.lowercase($scope.navHash[parseInt(angular.element(".parentnav-active")
-              .parent().attr("data-index")) - 1 % $scope.navHash.length].name);
-          }
-        })
-.controller('TWASubmitCtrl', ['$scope', function ($scope) {
+          $scope.getPrevViewByName = function($scope){
+           var navHash = this.navHash;
+           var currentIdx;
+           angular.forEach(navHash,function(v,k){
+            console.log(v);
+            if (v.state === true) {
+              currentIdx = k ; 
+              return;
+            }
+          });
+           console.log(currentIdx);
+           if (currentIdx === 0) return ; 
+           navHash[ currentIdx % navHash.length].state = false ;     
+           navHash[(currentIdx - 1) % navHash.length].state = true ; 
+           console.log(navHash[(currentIdx + 1) % navHash.length].name);
+           return angular.lowercase(navHash[(currentIdx - 1) % navHash.length].name);
+         }
+       })
+.controller('TWASubmitCtrl', ['$scope', 'twaHashTagService', function ($scope,twaHashTagService) {
   console.log("DEBUG INFO");
   $scope.fitHashTag = false; 
   $scope.keyword = "test";
-  $scope.twaHashTags = [
-  {name:'#musique',state:false},
-  {name:'#facebook',state:false},
-  {name:'#twitter',state:false} , 
-  {name:'#instragram',state:false},
-  {name:'#foursquare',state:false},
-  {name:'#dessin',state:false},
-  {name:'#soundcloud',state:false},
-  {name:'#blog',state:false},
-  {name:'#siteweb',state:false},
-  {name:'#satire',state:false},
-  {name:'#sport',state:false},
-  {name:'#sportphoto',state:false},
-  {name:'#video',state:false},
-  {name:'#rédaction',state:false},
-  {name:'#humour',state:false},
-  {name:'#mode',state:false},
-  {name:'#wtf',state:false},
-  {name:'#même',state:false},
-  {name:'#citoyen',state:false}
-  ];
+
+
+  // Hashtags are hence a Singelton, for general purpose queries ; 
+
+  console.log(twaHashTagService.getHashList());
+  $scope.twaHashTags = twaHashTagService.getHashList();
   $scope.notify = function (){
     console.log("You typed : " + $scope.keyword);
     angular.forEach($scope.twaHashTags, function(value, key){
@@ -107,7 +135,7 @@ var app = angular.module('twaAutocompletionApp')
 
 var ModalCtrl = function ($scope, $modal, $log) {
 
-  $scope.items = ['item1', 'item2', 'item3'];
+  $scope.items = ['Lorem', 'Ipsum', 'Dolor','Sit','Amet','Who','Gives','A', 'Fuck'];
 
   $scope.open = function () {
 
