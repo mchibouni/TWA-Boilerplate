@@ -51,23 +51,56 @@ var app = angular.module('twaAutocompletionApp')
     }
   });
 }])
-.controller('MainCtrl', function ($scope, $route, $routeParams, $location, navMenuRawData,twaRestAPI) {
+.controller('ContactCtrl', function ($scope) {
+  $scope.timerRunning = true;
+
+  $scope.startTimer = function (){
+    $scope.$broadcast('timer-start');
+    $scope.timerRunning = true;
+  };
+
+  $scope.stopTimer = function (){
+    $scope.$broadcast('timer-stop');
+    $scope.timerRunning = false;
+  };
+})
+.controller('MainCtrl', function ($scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, stellar) {
+
   twaRestAPI.query(null,function(response){
     console.log(response);
   });
+  stellar.against(window);
   $scope.$route = $route;
   $scope.$location = $location;
   $scope.$routeParams = $routeParams;
   $scope.navHash = navMenuRawData.navHash();
   $scope.lowercase = angular.lowercase;
+  var blockUI;
+
+  if (!$cookies.firstLogin){
+    $scope.invokeNag = !function() {
+      blockUI = $blockUI.createBlockUI({
+        innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
+      });
+      blockUI.blockUI();
+      angular.element(document).bind('click', function() {
+        blockUI.unblockUI();
+        console.log("Success callback - unblocking");
+      });
+    }();
+    $cookies.firstLogin = "true";  
+  }
+
+  $scope.dispatchNag = function () {
+    blockUI.unblockUI();
+    console.log('Dispatched Nag Screen');
+  }
 
   $scope.changeView = function(view){
             $location.path(view); // path not hash
           };
+          $scope.currentView = ($location.path() === "/") ? "home" : $location.path().replace('/', '');
 
-          $scope.getCurrentView = function($location){
-            return $location.path(); 
-          }
           $scope.getNextViewByName = function($scope){
 
             var navHash = this.navHash;
@@ -111,7 +144,7 @@ var app = angular.module('twaAutocompletionApp')
 
   // Hashtags are hence a Singelton, for general purpose queries ; 
 
-  console.log(twaHashTagService.getHashList());
+
   $scope.twaHashTags = twaHashTagService.getHashList();
   $scope.notify = function (){
     console.log("You typed : " + $scope.keyword);
@@ -130,12 +163,15 @@ var app = angular.module('twaAutocompletionApp')
 }])
 .controller('AboutCtrl', ['$scope', function ($scope) {
 
-}]);
+}])
 
+.controller('MediaCtrl', ['$scope', function ($scope) {
 
-var ModalCtrl = function ($scope, $modal, $log) {
+}])
+var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
 
   $scope.items = ['Lorem', 'Ipsum', 'Dolor','Sit','Amet','Who','Gives','A', 'Fuck'];
+
 
   $scope.open = function () {
 
@@ -157,8 +193,9 @@ var ModalCtrl = function ($scope, $modal, $log) {
   };
 };
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, items) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, items, twaHashTagService) {
 
+  $scope.hashTags = twaHashTagService.getHashList(); 
   $scope.items = items;
   $scope.selected = {
     item: $scope.items[0]

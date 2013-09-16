@@ -26,7 +26,7 @@
       </ul>
     </nav>
 
-    <span class="twa-next about-next" ng-click="changeView(getNextViewByName())"></span>
+    <span class="twa-next about-next" ng-class="{{currentView}}-next" ng-click="changeView(getNextViewByName())"></span>
     <span class="twa-prev about-prev" ng-click="changeView(getPrevViewByName())"></span>
 
 
@@ -73,8 +73,15 @@
                 <hr>
               </li>
             </ul>
-            <div class="grep-zone"></div>
-            Selected: <b>{{ selected.item }}</b>
+            <div ui-jq="jScrollPane" ui-options="{showArrows: true,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true}" class="scroll-pane grep-zone">
+              <span>Trier par #</span>
+              <ul>
+                <li ng-repeat="hashTag in hashTags">
+                  <span class="hashtag-grep-entry">{{hashTag.name}}</span>
+                </li>              
+              </ul>
+            </div>
+<!--            Selected: <b>{{ selected.item }}</b> -->
           </div>
           <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>
@@ -88,10 +95,10 @@
 
 
       <footer>
-        <div>FB</div>
-        <div>TW</div>
-        <div>LI</div>
-        <div>ML</div>
+        <div><a href="fb">_</a></div>
+        <div><a href="tw">_</a></div>
+        <div><a href="in">_</a></div>
+        <div><a href="ml">_</a></div>
       </footer>
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -106,9 +113,15 @@
      </script>
 
      <script src="bower_components/jquery/jquery.js"></script>
+     <script src="bower_components/jscrollpane/script/jquery.jscrollpane.min.js"></script>
+     <script src="bower_components/jscrollpane/script/jquery.mousewheel.js"></script>
      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.61.0-2013.06.06/jquery.blockUI.min.js"></script>
+     <script src="bower_components/jquery.stellar/jquery.stellar.min.js"></script>
 
      <!-- build:js scripts/plugins.js -->
+     <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+     <script src="bower_components/angular-timer/release/angular-timer.min.js"></script>
      <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
      <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
      <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
@@ -136,6 +149,8 @@
 
      <!-- build:js({.tmp,app}) scripts/scripts.js -->
      <script src="scripts/app.js"></script>
+     <script src="scripts/blockui.directives.js"></script>
+     <script src="scripts/stellar.directives.js"></script>
      <script src="scripts/controllers/main.js"></script>
      <script src="scripts/controllers/services.js"></script> 
      <script src="scripts/gf-include.js"></script>

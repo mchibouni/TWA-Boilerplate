@@ -13,17 +13,31 @@ html, body {
 }
 
 body {
-  background: #fafafa;
+  //background: #fafafa;
+  background-color : #e42610;
 }
 
 footer {
   position: fixed;
+  width: 130px;
+  height: 26px;
   bottom: 0%;
   right: 10%;
+  background-image: url("/images/share-sprite.png");
+  background-repeat: no-repeat;
 }
+
+
 
 footer > div {
   display: inline-block;
+  width: 30px;
+  cursor: pointer; 
+}
+
+footer > div > a {
+  text-indent:-9999px; 
+  color: transparent;
 }
 
 .hero-unit h1 {
@@ -247,7 +261,7 @@ $jury-next:"/images/jury-next.png";
 $cat-prev:"/images/cat-prev.png";
 $cat-next:"/images/cat-next.png"; 
 
-.home-gen {
+.home-prev,.home-next {
   background-image: url($home-gen);  
   width: 180px;
   height: 49px;
@@ -279,17 +293,24 @@ $cat-next:"/images/cat-next.png";
 }
 
 .media-prev {
-  background-image: url();  
+  background-image: url($media-prev);  
 }
 
 .media-next {
-  background-image: url();  
+  background-image: url($media-next);  
 }
 
+.contact-prev {
+
+}
+
+.contact-next {
+
+}
 .main-btn {
   background-repeat: no-repeat;
   display: inline-block;
-  width: 90px;
+  width: 92px;
   height: 90px;
 }
 
@@ -347,10 +368,11 @@ div.modal-entry-metadata > span {
 }
 
 .grep-zone { 
-    display: inline-block;
-    height: 300px;
-    width: 34%;
-    border-left: 1px solid #eeeeee; 
+  display: inline-block;
+  height: 100px;
+  width: 30%;
+  border-left: 1px solid #eeeeee; 
+  overflow: auto;
 }
 
 #modal-result-filter {
@@ -361,4 +383,77 @@ ul.result-iterator {
   width: 65%;
   display: inline-block;
   float: left;
+}
+
+div.grep-zone > span {
+  color: red;  
+  font-weight: bold; 
+  text-align: center; 
+  margin-left: 15px;
+}
+
+.hashtag-grep-entry {
+  color: #9e9e9e;
+  margin-left: 15px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+#contact-form-container > div > * { 
+  margin: auto;
+  display: block;
+  box-shadow: none;
+  border: none;
+  background: none;
+}
+
+#contact-form-body {
+  background-image: url("/images/contact-form.png");
+  background-repeat: no-repeat;
+}
+
+#timer-container {
+  color: white; 
+  position: absolute; 
+  right: 0%;
+  top: 60%;
+  line-height: 30px;
+}
+
+timer {
+  color: white;
+  font-size: 200%;
+}
+
+.timer-meta { 
+    font-size: 50%;
+    font-weight: normal;
+}
+
+#contact-label { 
+  color: white;
+  font-weight: bold;
+  background: url("/images/contact-label.png") no-repeat;
+}
+
+.nag-primary {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: yellow; 
+}
+
+.nag-first {
+  top: 60%;
+  left: 30%;
+}
+
+.nag-second {
+  top: 60%;
+  left: 70%;
+}
+
+.nag-last {
+  top: 30;
+  left: 50%;
 }
