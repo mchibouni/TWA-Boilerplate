@@ -77,17 +77,18 @@ var app = angular.module('twaAutocompletionApp')
   $scope.lowercase = angular.lowercase;
   var blockUI;
 
+  $scope.invokeNag = function() {
+    blockUI = $blockUI.createBlockUI({
+      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
+    });
+    blockUI.blockUI();
+    angular.element(document).bind('click', function() {
+      blockUI.unblockUI();
+      console.log("Success callback - unblocking");
+    });
+  };
   if (!$cookies.firstLogin){
-    $scope.invokeNag = !function() {
-      blockUI = $blockUI.createBlockUI({
-        innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
-      });
-      blockUI.blockUI();
-      angular.element(document).bind('click', function() {
-        blockUI.unblockUI();
-        console.log("Success callback - unblocking");
-      });
-    }();
+    invokeNag();
     $cookies.firstLogin = "true";  
   }
 

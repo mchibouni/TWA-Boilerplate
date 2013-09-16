@@ -24,6 +24,7 @@
       <ul ng-repeat="menuElem in navHash">
         <li data-index ="{{$index}}"><a ng-class="{'parentnav-active' : navHash[$index].state}" href="#{{lowercase(menuElem.name)}}"><span ng-class="{'childnav-active': navHash[$index].state}">{{(menuElem.name)}}</span></a></li>
       </ul>
+      <div id="nag-invoke" ng-click='invokeNag()'/>
     </nav>
 
     <span class="twa-next about-next" ng-class="{{currentView}}-next" ng-click="changeView(getNextViewByName())"></span>
@@ -40,7 +41,7 @@
       <![endif]-->
 
       <!-- Add your site or application content here -->
-      <div class="container example-animate-container" ng-view ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}"></div>
+      <div class="main-container" ng-view ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}"></div>
     </div>
 
     <div id="step-area" ng-controller="ModalCtrl">

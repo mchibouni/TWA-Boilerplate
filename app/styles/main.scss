@@ -14,7 +14,8 @@ html, body {
 
 body {
   //background: #fafafa;
-  background-color : #e42610;
+  background-image: url("http://www.tunisianawebawards.com/img/bg_body.png");
+  background-repeat: repeat;
 }
 
 footer {
@@ -27,7 +28,10 @@ footer {
   background-repeat: no-repeat;
 }
 
-
+.main-container {
+  margin: auto;
+  width: 70%;
+}
 
 footer > div {
   display: inline-block;
@@ -144,7 +148,14 @@ nav ul li {
   width: 100px;
 }
 
-
+nav {
+  background-color: #fdca00;
+  transform: skew(-10deg);
+  -o-transform: skew(-10deg);
+  -moz-transform: skew(-10deg);
+  -webkit-transform: skew(-10deg);
+  height: 30px;
+}
 
 nav ul li a {
   display: block;
@@ -426,8 +437,8 @@ timer {
 }
 
 .timer-meta { 
-    font-size: 50%;
-    font-weight: normal;
+  font-size: 50%;
+  font-weight: normal;
 }
 
 #contact-label { 
@@ -456,4 +467,23 @@ timer {
 .nag-last {
   top: 30;
   left: 50%;
+}
+
+#nag-invoke {
+  background: url("/images/nag-invoke.png") no-repeat;
+  width: 40px;
+  height: 40px;
+  float: left;
+  cursor: pointer; 
+}
+
+.parallax-hack { 
+  background-position: 150% 50%;
+  background-image: url('http://www.tunisianawebawards.com/img/bg_body.png');
+  background-repeat: no-repeat;
+  -webkit-transition: all ease 0.2s;
+  -moz-transition: all ease 0.2s;
+  -o-transition: all ease 0.2s;
+  -ms-transition: all ease 0.2s;
+  transition: all ease 0.2s;
 }
