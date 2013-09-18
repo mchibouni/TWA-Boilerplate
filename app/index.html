@@ -14,11 +14,10 @@
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" src="bower_components/angular-ui/build/angular-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/jscrollpane/style/jquery.jscrollpane.css">
   <!-- endbuild -->
 </head>
 <body ng-app="twaAutocompletionApp">
-
   <div id="wrapper" ng-controller="MainCtrl">
     <nav>
       <ul ng-repeat="menuElem in navHash">
@@ -27,8 +26,10 @@
       <div id="nag-invoke" ng-click='invokeNag()'/>
     </nav>
 
-    <span class="twa-next about-next" ng-class="{{currentView}}-next" ng-click="changeView(getNextViewByName())"></span>
-    <span class="twa-prev about-prev" ng-click="changeView(getPrevViewByName())"></span>
+    <span class="twa-next" ng-class="{{currentView}}-next" ng-click="changeView(getNextViewByName())">{{location.path() === '/' ? "Home" : location.path().replace('/','')}}</span>
+    <span class="twa-prev" ng-click="changeView(getPrevViewByName())"></span>
+    <div id="main-logo"></div>
+
 
 
     <!--[if lt IE 7]>
@@ -66,7 +67,7 @@
               <li class="result-entry" ng-repeat="item in items">
                 <div class="modal-result-circular-image"></div>
                 <div class="modal-entry-metadata">
-                  <span class="modal-result-name" ng-click="selected.item = item">{{ item }}</span>
+                  <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
                   <span class="entry-submission-count">(250 Soumissions)</span>
                   <button>J'ai soumis</button>
                   <button>Profil</button>
@@ -74,15 +75,15 @@
                 <hr>
               </li>
             </ul>
-            <div ui-jq="jScrollPane" ui-options="{showArrows: true,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true}" class="scroll-pane grep-zone">
-              <span>Trier par #</span>
+            <div ui-jq="jScrollPane" ui-options="{showArrows: false,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true, mouseWheelSpeed: 100}" class="scroll-pane grep-zone">
+              <span class="red-content">Trier par #</span>
               <ul>
                 <li ng-repeat="hashTag in hashTags">
                   <span class="hashtag-grep-entry">{{hashTag.name}}</span>
                 </li>              
               </ul>
             </div>
-<!--            Selected: <b>{{ selected.item }}</b> -->
+            <!--            Selected: <b>{{ selected.item }}</b> -->
           </div>
           <div class="modal-footer">
             <button class="btn btn-primary" ng-click="ok()">OK</button>
@@ -94,7 +95,9 @@
 
 
 
-
+      <div class="logo-footer">
+        <span class="footer-slogan">Encourage Personal Creativity</span>
+      </div>
       <footer>
         <div><a href="fb">_</a></div>
         <div><a href="tw">_</a></div>

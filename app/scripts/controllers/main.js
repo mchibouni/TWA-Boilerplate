@@ -26,8 +26,15 @@ var app = angular.module('twaAutocompletionApp')
     {name:'#blog',state:false},
     {name:'#siteweb',state:false},
     {name:'#satire',state:false},
+
+    ];
+  }
+}])
+.service('twaCategoryService', [function () {
+  this.getCategoryList = function () {
+    return [
     {name:'#sport',state:false},
-    {name:'#sportphoto',state:false},
+    {name:'#photo',state:false},
     {name:'#video',state:false},
     {name:'#rédaction',state:false},
     {name:'#humour',state:false},
@@ -35,7 +42,7 @@ var app = angular.module('twaAutocompletionApp')
     {name:'#wtf',state:false},
     {name:'#même',state:false},
     {name:'#citoyen',state:false}
-    ];
+    ]
   }
 }])
 .factory('twaRestAPI', ['$resource', function($resource)
@@ -64,7 +71,8 @@ var app = angular.module('twaAutocompletionApp')
     $scope.timerRunning = false;
   };
 })
-.controller('MainCtrl', function ($scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, stellar) {
+.controller('MainCtrl', function ($scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService, stellar) {
+
 
   twaRestAPI.query(null,function(response){
     console.log(response);
@@ -73,7 +81,12 @@ var app = angular.module('twaAutocompletionApp')
   $scope.$route = $route;
   $scope.$location = $location;
   $scope.$routeParams = $routeParams;
+
+
   $scope.navHash = navMenuRawData.navHash();
+  $scope.navCategoryList = twaCategoryService.getCategoryList();
+
+
   $scope.lowercase = angular.lowercase;
   var blockUI;
 
@@ -88,7 +101,7 @@ var app = angular.module('twaAutocompletionApp')
     });
   };
   if (!$cookies.firstLogin){
-    invokeNag();
+    $scope.invokeNag();
     $cookies.firstLogin = "true";  
   }
 
@@ -100,7 +113,8 @@ var app = angular.module('twaAutocompletionApp')
   $scope.changeView = function(view){
             $location.path(view); // path not hash
           };
-          $scope.currentView = ($location.path() === "/") ? "home" : $location.path().replace('/', '');
+          $scope.currentView = ($location.path() === "/") ? "home" : $location.path();
+
 
           $scope.getNextViewByName = function($scope){
 
@@ -171,8 +185,26 @@ var app = angular.module('twaAutocompletionApp')
 }])
 var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
 
-  $scope.items = ['Lorem', 'Ipsum', 'Dolor','Sit','Amet','Who','Gives','A', 'Fuck'];
 
+
+  $scope.openGallery = function () {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'gallery.html',
+      controller: ModalInstanceCtrl,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 
   $scope.open = function () {
 
@@ -194,10 +226,14 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
   };
 };
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, items, twaHashTagService) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, items, twaHashTagService, twaRestAPI) {
+
+
 
   $scope.hashTags = twaHashTagService.getHashList(); 
-  $scope.items = items;
+  $scope.items = twaRestAPI.query(null,function(response){
+    console.log(response);
+  });
   $scope.selected = {
     item: $scope.items[0]
   };

@@ -2,20 +2,27 @@
 
 
 <div ng-controller="TWASubmitCtrl">
-	<label for="submission-fill">Tapez l'adresse URL de votre Candidat</label>
-	<div class="child-skew">
-		<input id="fillform" type="text" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()"/>
+	<label class="prompt" for="submission-fill">Tapez l'adresse URL de votre Candidat</label>
+	<label  class="meta-prompt">example: www.facebook.com/flenbenfoulen</label>
+	<div id="fillform-container" class="child-skew red">
+		<input  id="fillform"  class="unskew-text" type="text" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()"/>
 	</div>
 	<ul ng-repeat="twaElem in twaHashTags">
 		<li class="hash-elements" ng-class="{fithashtag: twaHashTags[$index].state}"><a href="#" class="only-here">{{twaElem.name}}</a></li>
 	</ul>
+	<ul ng-repeat="twaElem in navCategoryList">
+		<li class="hash-elements" ng-class="{fithashtag: twaHashTags[$index].state}"><a href="#" class="only-here grayed">{{twaElem.name}}</a></li>
+	</ul>
+	<span id="hash-icon">sdf</span>
+
 </div>
+
 
 
 <div id="share-area">
 	<ul>
-		<li popover="Lorem Ipsum Dolor" popover-trigger="mouseenter">Share</li>
-		<li popover="Lorem Ipsum Dolor" popover-trigger="mouseenter">Tweet</li>
+		<li class="share-fb" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
+		<li class="share-tw" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
 	</ul>
 </div>
 

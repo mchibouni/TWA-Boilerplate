@@ -12,10 +12,32 @@ html, body {
   font-family: "Titillium Web", Helvetica, Arial, sans-serif;
 }
 
+@-webkit-keyframes slide
+{
+  0%   {background-position: 0 0;}
+  100% {background-position: 100px 0;}
+}
+
+@-moz-keyframes slide
+{
+  0%   {background-position: 0 0;}
+  100% {background-position: 100px 0;}
+}
+
+@keyframes slide
+{
+  0%   {background-position: 0 0;}
+  100% {background-position: 100px 0;}
+}
+
 body {
   //background: #fafafa;
+
   background-image: url("http://www.tunisianawebawards.com/img/bg_body.png");
   background-repeat: repeat;
+  -webkit-animation: slide 10s linear infinite;
+  -moz-animation: slide 10s linear;
+  animation: slide 10s linear infinite;
 }
 
 footer {
@@ -28,9 +50,22 @@ footer {
   background-repeat: no-repeat;
 }
 
+label.prompt {
+  text-align: center; 
+  font-weight: bold;
+}
+
+label.meta-prompt {
+  text-align: center;
+}
+
 .main-container {
+  position: absolute;
+  top: 20%;
+  left: 27%;
   margin: auto;
-  width: 70%;
+  width: 45%;
+  max-height: 20%;
 }
 
 footer > div {
@@ -89,10 +124,10 @@ ul{
   border-color: #ddd #ccc #bbb;
   overflow: hidden;
   
-  -webkit-transform: skewX(-20deg);
-  -moz-transform: skewX(-20deg);
-  -o-transform: skewX(-20deg);
-  transform: skewX(-20deg);
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
 }
 
 
@@ -105,11 +140,14 @@ ul{
   margin: 0;
   padding: 4px 0;
   width: 100%;
+  color: white;
+  text-indent: 10px;
+}
 
-  -webkit-transform: skewX(20deg);
-  -moz-transform: skewX(20deg);
-  -o-transform: skewX(20deg);
-  transform: skewX(20deg);
+
+#fillform-container {
+  margin-top: 30px;
+  margin-bottom: 30px; 
 }
 
 
@@ -227,6 +265,15 @@ nav ul li ul li a {
   right: 5%;
   width: 180px;
   height: 49px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 45px;
+  font-size: 200%;
+  cursor: pointer;
+  background-image: url("/images/nav-next.png");
+  background-repeat: no-repeat;
+  text-indent: -35px;
+  text-transform:capitalize;
 }
 
 .twa-prev {
@@ -235,12 +282,27 @@ nav ul li ul li a {
   left: 5%;
   width: 180px;
   height: 49px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 45px;
+  font-size: 200%;
+  cursor: pointer;
+  background-image: url("/images/nav-prev.png");
+  background-repeat: no-repeat;
+  text-indent: -35px;
+  text-transform:capitalize;
 }
 
 #share-area {
   margin: auto; 
   position: fixed;
   top: 60%;
+  left: 38%;
+}
+
+
+#share-area > ul > li {
+  display: inline-block;
 }
 
 #step-area {
@@ -250,8 +312,8 @@ nav ul li ul li a {
 }
 
 .animate-enter {
-  -webkit-transition: 1s linear all; /* Chrome */
-  transition: 1s linear all;
+  -webkit-transition: 0.5s linear all; /* Chrome */
+  transition: 0.5s linear all;
   opacity: 0;
 }
 
@@ -272,52 +334,6 @@ $jury-next:"/images/jury-next.png";
 $cat-prev:"/images/cat-prev.png";
 $cat-next:"/images/cat-next.png"; 
 
-.home-prev,.home-next {
-  background-image: url($home-gen);  
-  width: 180px;
-  height: 49px;
-  cursor: pointer; 
-}
-
-.about-prev {
-  background-image: url($about-prev);  
-}
-
-.about-next {
-  background-image: url($about-next);  
-}
-
-.cat-prev {
-  background-image: url($cat-prev);
-}
-
-.cat-next {
-  background-image: url($cat-next);
-}
-
-.jury-prev {
-  background-image: url($jury-prev);  
-}
-
-.jury-next { 
-  background-image: url($jury-next);  
-}
-
-.media-prev {
-  background-image: url($media-prev);  
-}
-
-.media-next {
-  background-image: url($media-next);  
-}
-
-.contact-prev {
-
-}
-
-.contact-next {
-
-}
 .main-btn {
   background-repeat: no-repeat;
   display: inline-block;
@@ -339,6 +355,7 @@ $cat-next:"/images/cat-next.png";
 
 .seperator {
   background-image: url("/images/seperator.png");
+  vertical-align: middle;
 }
 
 .modal-result-descriptor {
@@ -380,7 +397,7 @@ div.modal-entry-metadata > span {
 
 .grep-zone { 
   display: inline-block;
-  height: 100px;
+  height: 90%;
   width: 30%;
   border-left: 1px solid #eeeeee; 
   overflow: auto;
@@ -455,18 +472,27 @@ timer {
 }
 
 .nag-first {
+  width: 247px;
+  height: 104px;
   top: 60%;
   left: 30%;
+  background: url("/images/help-add.png") no-repeat;
 }
 
 .nag-second {
+  width: 311px;
+  height: 111px;
   top: 60%;
   left: 70%;
+  background: url("/images/help-share.png") no-repeat;
 }
 
 .nag-last {
+  width: 287px;
+  height: 104px;
   top: 30;
   left: 50%;
+  background: url("/images/help-choice.png") no-repeat;
 }
 
 #nag-invoke {
@@ -486,4 +512,121 @@ timer {
   -o-transition: all ease 0.2s;
   -ms-transition: all ease 0.2s;
   transition: all ease 0.2s;
+}
+
+#hash-icon {
+  background-repeat: no-repeat;
+  background-image: url("/images/hash-suggest.png");
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+#hash-suggest {
+  display: block;
+}
+.media-list-override {
+  display: block;
+  width: 500px;
+}
+.media-list-override > li {
+  width: 100px;
+  height: 60px;
+  position: relative; 
+  list-style-type: none;  
+  display: inline-block;
+  margin-bottom: 8px;
+  margin-right: 8px;
+}
+
+.pic-first-row {
+  margin-left: 39px; 
+}
+
+.video-first-row {
+  margin-right: 39px;
+  margin-left: none !important; 
+}
+
+#pic-list {
+  display: inline-block;
+  background-image: url("/images/photo-list.png");
+  width: 97px;
+  height: 126px;
+  margin-right: 20px;
+  position: absolute;
+  left: 50%;
+  top: 0; 
+}
+
+#video-list {
+  display: inline-block;
+  background-image: url("/images/photo-list.png");
+  width: 97px;
+  height: 126px;
+  position: absolute;
+  left:0;
+  top:110%;
+}
+
+.logo-footer {
+  background-image: url("/images/logo-footer.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 20%;
+  height: 23px;
+}
+
+.footer-slogan {
+  display: inline-block;
+  margin-left: 55px;
+  font-weight: bold;
+}
+
+.share-fb {
+  background: url("/images/share-fb.png") no-repeat;
+  width: 138px;
+  height: 26px;
+  cursor: pointer; 
+}
+
+.share-tw {
+  background: url("/images/share-tw.png") no-repeat;
+  width: 138px;
+  height: 26px;
+  cursor: pointer;
+}
+
+#main-logo {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  background: url("/images/main-logo.png") no-repeat;
+  width: 143px;
+  height: 125px;
+}
+
+.red {
+  background-color: #fd411a;
+}
+
+.unskew-text {
+  color: white;
+  -webkit-transform: skewX(30deg);
+  -moz-transform: skewX(30deg);
+  -ms-transform: skewX(30deg);
+  -o-transform: skewX(30deg);
+  transform: skewX(30deg); 
+}
+
+.grayed {
+  background: url("/images/hash-cat.png") no-repeat;
+}
+
+.red-content { 
+  color: #fd411a;
+  font-weight: bold;
+  margin-left: 15px;
 }
