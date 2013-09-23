@@ -2,50 +2,57 @@ $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
 @import "bootstrap-sass/lib/bootstrap";
-@import url("http://fonts.googleapis.com/css?family=Titillium+Web");
+//@import url("http://fonts.googleapis.com/css?family=Titillium+Web");
 /* Put your CSS here */
 html, body {
   margin: 20px;
 }
 
-* {
+* , input {
   font-family: "Titillium Web", Helvetica, Arial, sans-serif;
 }
 
 @-webkit-keyframes slide
 {
-  0%   {background-position: 0 0;}
-  100% {background-position: 100px 0;}
+  100%   {background-position:-255px 0;}
+  0% {background-position: 500px 0;}
 }
 
 @-moz-keyframes slide
 {
   0%   {background-position: 0 0;}
-  100% {background-position: 100px 0;}
+  100% {background-position: -255px 0;}
 }
 
 @keyframes slide
 {
-  0%   {background-position: 0 0;}
-  100% {background-position: 100px 0;}
+  100% {background-position: -255px 0;}
+  0%   {background-position: 500px 0;}
 }
 
 body {
+  height: 100%;
   //background: #fafafa;
 
-  background-image: url("http://www.tunisianawebawards.com/img/bg_body.png");
-  background-repeat: repeat;
-  -webkit-animation: slide 10s linear infinite;
-  -moz-animation: slide 10s linear;
-  animation: slide 10s linear infinite;
+  //background-image: url("http://www.tunisianawebawards.com/img/bg_body.png");
+  //background-image: url("/images/bg-motive.png");
 }
+
+#tr-header-1 div:hover  {
+  -webkit-transition: all 2300ms;
+  -moz-transition: all 2300ms;
+  right: 0px;
+  width: 80px;
+  opacity: 0;
+}
+
 
 footer {
   position: fixed;
   width: 130px;
   height: 26px;
-  bottom: 0%;
-  right: 10%;
+  bottom: 2%;
+  right: 2%;
   background-image: url("/images/share-sprite.png");
   background-repeat: no-repeat;
 }
@@ -89,27 +96,22 @@ div > ul > li > a.only-here  {
   padding:5px 10px;
   font-size:15px;
   color:#000;
-  -webkit-transform: skew(20deg) !important;
-  -moz-transform: skew(20deg) !important;
-  -ms-transform: skew(20deg) !important;
-  -o-transform: skew(20deg) !important;
-  transform: skew(20deg) !important; 
   color: white; 
   font-weight: bold;
 }
 
+
+.nav-element:active {
+  color: pink ;
+}
+
 div > ul > li.hash-elements{
-  display:inline-block;
-  text-align:center;
-  -webkit-transform: skew(-20deg);
-  -moz-transform: skew(-20deg);
-  -ms-transform: skew(-20deg);
-  -o-transform: skew(-20deg);
-  transform: skew(-20deg); 
-  background-color: #636363;
+  display: inline-block;
+  text-align: center;
   float: left;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin-right: -11px;
+  margin-bottom: 0px;
+  width: 127px;
 }
 
 ul{
@@ -144,6 +146,15 @@ ul{
   text-indent: 10px;
 }
 
+.full {
+  width: 100% !important;
+  height: 100% !important;
+}
+#fillform {
+  height: 30px;
+  border: none;
+  border-radius: none !important; 
+}
 
 #fillform-container {
   margin-top: 30px;
@@ -161,10 +172,10 @@ ul{
 }
 
 nav {
-  background: transparent;
-  height:40px;
-  margin: auto; 
-  width: 60%;
+//  background: url("/images/nav.png");
+height:40px;
+margin: auto; 
+width: 60%;
 }
 
 
@@ -224,6 +235,11 @@ nav ul li a span {
 
 nav ul li a:hover, .parentnav-active {
   background: #0d0e10 !important;
+  color: #fdca00;
+}
+
+nav ul li a span:hover {
+  color: #fdca00;
 }
 
 .childnav-active {
@@ -261,7 +277,7 @@ nav ul li ul li a {
 
 .twa-next {
   position : fixed;
-  top: 50%;
+  top: 38%;
   right: 5%;
   width: 180px;
   height: 49px;
@@ -274,11 +290,12 @@ nav ul li ul li a {
   background-repeat: no-repeat;
   text-indent: -35px;
   text-transform:capitalize;
+  z-index: 9999;
 }
 
 .twa-prev {
   position: fixed ; 
-  top: 50%;
+  top: 38%;
   left: 5%;
   width: 180px;
   height: 49px;
@@ -291,12 +308,13 @@ nav ul li ul li a {
   background-repeat: no-repeat;
   text-indent: -35px;
   text-transform:capitalize;
+  z-index: 9999;
 }
 
 #share-area {
   margin: auto; 
   position: fixed;
-  top: 60%;
+  top: 70%;
   left: 38%;
 }
 
@@ -307,7 +325,7 @@ nav ul li ul li a {
 
 #step-area {
   position: fixed;
-  top: 70%;
+  top: 78%;
   left: 30%;
 }
 
@@ -442,8 +460,8 @@ div.grep-zone > span {
 
 #timer-container {
   color: white; 
-  position: absolute; 
-  right: 0%;
+  position: fixed; 
+  right: 5%;
   top: 60%;
   line-height: 30px;
 }
@@ -518,8 +536,11 @@ timer {
   background-repeat: no-repeat;
   background-image: url("/images/hash-suggest.png");
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 25%;
+  height: 25px;
+  text-indent: 30px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #hash-suggest {
@@ -573,8 +594,8 @@ timer {
   background-image: url("/images/logo-footer.png");
   background-repeat: no-repeat;
   position: absolute;
-  bottom: 0%;
-  left: 0%;
+  bottom: 2%;
+  left: 2%;
   width: 20%;
   height: 23px;
 }
@@ -597,6 +618,13 @@ timer {
   width: 138px;
   height: 26px;
   cursor: pointer;
+}
+
+li.share-tw > a {
+  text-indent: -9999em ; 
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 
 #main-logo {
@@ -625,8 +653,390 @@ timer {
   background: url("/images/hash-cat.png") no-repeat;
 }
 
+.raw {
+  background: url("/images/hash-raw.png") no-repeat;
+}
+
 .red-content { 
   color: #fd411a;
   font-weight: bold;
   margin-left: 15px;
+}
+
+.btn-profile { 
+  background-color: hsl(0, 7%, 20%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#726363", endColorstr="#362f2f"); background-image: -khtml-gradient(linear, left top, left bottom, from(#726363), to(#362f2f)); background-image: -moz-linear-gradient(top, #726363, #362f2f); background-image: -ms-linear-gradient(top, #726363, #362f2f); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #726363), color-stop(100%, #362f2f)); background-image: -webkit-linear-gradient(top, #726363, #362f2f); background-image: -o-linear-gradient(top, #726363, #362f2f); background-image: linear-gradient(#726363, #362f2f); border-color: #362f2f #362f2f hsl(0, 7%, 14.5%); color: #fff !important; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.36); -webkit-font-smoothing: antialiased; 
+}
+
+.btn-submit-success {
+ background-color: hsl(56, 91%, 36%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f3e515", endColorstr="#afa408"); background-image: -khtml-gradient(linear, left top, left bottom, from(#f3e515), to(#afa408)); background-image: -moz-linear-gradient(top, #f3e515, #afa408); background-image: -ms-linear-gradient(top, #f3e515, #afa408); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3e515), color-stop(100%, #afa408)); background-image: -webkit-linear-gradient(top, #f3e515, #afa408); background-image: -o-linear-gradient(top, #f3e515, #afa408); background-image: linear-gradient(#f3e515, #afa408); border-color: #afa408 #afa408 hsl(56, 91%, 32%); color: #fff !important; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.26); -webkit-font-smoothing: antialiased; 
+}
+
+.btn-submit { 
+  background-color: hsl(0, 78%, 35%) !important; background-repeat: repeat-x; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e53232", endColorstr="#9e1313"); background-image: -khtml-gradient(linear, left top, left bottom, from(#e53232), to(#9e1313)); background-image: -moz-linear-gradient(top, #e53232, #9e1313); background-image: -ms-linear-gradient(top, #e53232, #9e1313); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e53232), color-stop(100%, #9e1313)); background-image: -webkit-linear-gradient(top, #e53232, #9e1313); background-image: -o-linear-gradient(top, #e53232, #9e1313); background-image: linear-gradient(#e53232, #9e1313); border-color: #9e1313 #9e1313 hsl(0, 78%, 30%); color: #fff !important; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33); -webkit-font-smoothing: antialiased; 
+}
+
+div.modal-entry-metadata > button {
+  font-weight: bold; 
+}
+
+div.modal-entry-metadata > button > i {
+  margin-left: 5px; 
+}
+
+.twa-modal {
+  width: 70%;
+  left: 35%;
+  height: 80%;
+  overflow: auto;
+}
+
+.twa-gallery-modal {
+  width: 60%;
+  left: 35%;
+  height: 70%;
+  overflow: auto;
+  margin: auto;
+}
+
+.twa-hashtag-input {
+  width: 30%;
+  height: 30%;
+  margin: auto;
+}
+
+.jury-img {
+  background: url("/images/soumiss.png") no-repeat;
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.jury-meta {
+  display: block;
+  height: 25%;
+  line-height: 15px;
+  font-weight: bold;
+  background-image: url("/images/jury-name.png");
+  background-repeat: no-repeat;
+  text-align: center;
+  background-position: center;
+  background-size: 100% 150%;
+  width: 70%;
+}
+
+.white {
+  color: white;
+  background-image: url("/images/jury-label.png");
+  background-repeat: no-repeat;  
+  background-position: center;
+  width: 100%;
+}
+
+.black {
+  margin-left: 33%;
+}
+
+.jury-meta-container {
+  float:left ; 
+  height: 100%;
+  width: 50%;
+  vertical-align: middle;
+}
+
+li.jury-elem {
+  width: 240px;
+}
+
+.jury-centered {
+  text-align: center;
+  color: red;
+  font-size: 120%;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.about-logo {
+  background-image: url("/images/about-logo.png");
+  width: 271px;
+  height: 126px;
+  margin: auto;
+}
+
+.center {
+  margin: auto;
+  text-align: center;
+}
+
+.about-label {
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.about-meta {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: url("/images/generic-trapezoid.png") no-repeat;
+  width: 231px;
+  height: 20px;
+  font-weight: bold;
+}
+
+li.about-li {
+  display: inline-block;
+}
+
+.about-link-container {
+  color: white;
+  font-weight: bold;
+}
+
+.about-li:hover {
+  color: yellow;
+  cursor: pointer;
+}
+
+p.about-last {
+  text-align: center;
+}
+
+#jury-container {
+  width: 74%;
+  margin: auto;
+}
+
+.jury-sep {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.contact-submit {
+  background: url("/images/contact-submit.png") no-repeat;
+  content: none;
+  width: 177px;
+  height:46px;
+  cursor: pointer;
+  position: absolute;
+  right: 0%;
+}
+
+#contact-message {
+  background: url("/images/contact-message.png") no-repeat !important;
+  width: 619px;
+  height: 107px;
+  text-indent: 50px;
+}
+
+#tr-header-1 {
+  background: url("/images/tr-header-4.png") no-repeat;
+  height: 429px;
+  width: 303px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-position-x: 95%;
+}
+
+#tr-header-2 {
+  background: url("/images/tr-header-2.png") no-repeat;
+  height: 369px;
+  width: 369px;
+  position: fixed;
+  top: 15%;
+  left: 0;
+  opacity: 0.5;
+  z-index: -2;
+}
+
+#tr-header-3 {
+  background: url("/images/tr-header-3.png") no-repeat;
+  width: 271px;
+  height: 386px;
+  position: fixed;
+  top: 0;
+  right: 5%;
+}
+
+#tr-header-4 {
+  background: url("/images/tr-header-4.png") no-repeat;
+  background-position-x: -22%;
+  height: 429px;
+  width: 303px;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+#tr-header-4 div:hover {
+  -webkit-animation: rotating 0.7s linear;
+
+}
+
+.glow-effect {
+  color:#fff;
+  background-position:0 0, 0 0;
+  -webkit-transition-duration:0.5s;
+  -moz-transition-duration:0.5s;
+  transition-duration:0.5s;
+}
+
+
+.rotate-motive {
+  -webkit-animation: rotating 0.7s linear;
+}
+
+@-webkit-keyframes rotating {
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(180deg);
+  }
+}
+
+#partial-motive {
+  background-image: url("/images/bg-motive.png");
+  position: fixed;
+  right: 0; 
+  top: 0;
+  height: 100%;
+  width: 37.5%;
+}
+
+.overlay {
+  background: url('/images/bg-motive.png') no-repeat -255px center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  animation: slide 0.3s linear 0s; 
+}
+
+.about-text {
+  color: white; 
+  font-weight: bold;
+}
+
+#tr-footer-1 {
+  width: 162px;
+  height: 169px;
+  position: fixed;
+  bottom: 0 ;
+  left: 0 ;
+  background: url('/images/tr-footer-1.png')
+}
+
+#tr-red-1 {
+  position: fixed;
+  bottom: 3% ;
+  left: 5%;
+  width: 109px;
+  height: 113px;
+  background: url('/images/tr-red-1.png');
+  z-index: -1;
+}
+
+#tr-footer-2 {
+  position: fixed; 
+  bottom: 0 ;
+  width: 528px;
+  height: 125px;
+  left: 31.5%;
+  background: url('/images/tr-footer-2.png');  
+}
+
+#tr-footer-3 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: url('/images/tr-footer-3.png');  
+  width: 446px;
+  height: 341px;
+}
+
+#tr-footer-4 {
+  position: fixed;
+  bottom: 0;
+  right: 28%;
+  background: url('/images/tr-footer-4.png') no-repeat;  
+  width: 221px;
+  height: 179px;
+}
+
+#tr-footer-5 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: url('/images/tr-footer-5.png') no-repeat;  
+  width: 230px;
+  height: 164px;
+}
+
+.img-preview {
+  max-height:100%; 
+  max-width:100%;
+}
+
+.choice-container {
+  width: 100%;
+  height: 60px;
+}
+
+.odd-translated {
+  position: relative; 
+  right: 50px;
+}
+
+#tr-plax-green {
+  position: fixed; 
+  width: 90px;
+  height: 90px;
+  top: 5%;
+  right: 10%;
+  background: url("/images/tr-plax-green.png") no-repeat;
+}
+
+#tr-plax-red {
+  position: fixed; 
+  width: 190px;
+  height: 215px;
+  bottom: 5%;
+  left: 10%;
+  background: url("/images/tr-plax-red.png") no-repeat;
+}
+
+#tr-black-header {
+  position: fixed; 
+  width: 51px;
+  height: 62px;
+  top: 5%;
+  right: 17.5%;
+  background: url("/images/tr-black-header.png") no-repeat;  
+}
+
+#tr-middle-1 {
+  background: url("/images/tr-middle-1.png") no-repeat;  
+  position: fixed;
+  width: 133px;
+  height: 133px;
+  right: 20%;
+  top: 30%; 
+}
+
+@-webkit-keyframes rotateThis {
+  0% { position:fixed; -webkit-transform:rotate3d(1,1,0,0deg); }
+  10% {  opacity: 0.8; position:fixed;-webkit-transform: rotate3d(1,1,0,0deg); }
+  40% {  position:fixed; opacity: 0.4; }
+  60% {  position:fixed; opacity: 0.6; }
+  100% { position:fixed;-webkit-transform: rotate3d(1,1,0,360deg); opacity: 0.8 }
+}
+
+#tr-header-2:hover, #tr-middle-1:hover, #tr-footer-4:hover, #tr-footer-5:hover {
+  -webkit-animation-name: rotateThis;
+  -webkit-animation-duration:0.5s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function:ease-in-out;
+  position: fixed;
 }

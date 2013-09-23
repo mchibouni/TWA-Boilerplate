@@ -1,0 +1,24 @@
+<div ng-controller="PartyCtrl">
+	<div class="jury-centered ">Présentée par : </div>
+	<ul class="media-list-override">
+		<li class="jury-elem" ng-repeat="pres in presCollection">	
+			<div class="jury-meta-container">	
+				<span class="jury-meta black">{{pres.name}}</span>
+				<span class="jury-meta white">{{pres.meta}}</span>
+			</div>
+			<div class="jury-img"/>
+		</li>
+	</ul>
+
+	<div class="jury-centered">Animée par : </div>
+
+	<ul class="media-list-override">
+		<li class="jury-elem" ng-repeat="jury in juryCollection">	
+			<div class="jury-meta-container">	
+				<span class="jury-meta black">{{jury.name}}</span>
+				<span class="jury-meta white">{{jury.meta}}</span>
+			</div>
+			<div class="jury-img"/>
+		</li>
+	</ul>
+</div>

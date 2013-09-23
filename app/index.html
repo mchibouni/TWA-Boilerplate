@@ -17,19 +17,20 @@
   <link rel="stylesheet" type="text/css" href="bower_components/jscrollpane/style/jquery.jscrollpane.css">
   <!-- endbuild -->
 </head>
-<body ng-app="twaAutocompletionApp">
-  <div id="wrapper" ng-controller="MainCtrl">
+<body ng-app="twaAutocompletionApp" ng-controller="MainCtrl" ng-class="{'overlay': viewIndex % 2 === 0}">
+  <div id="wrapper" >
     <nav>
       <ul ng-repeat="menuElem in navHash">
-        <li data-index ="{{$index}}"><a ng-class="{'parentnav-active' : navHash[$index].state}" href="#{{lowercase(menuElem.name)}}"><span ng-class="{'childnav-active': navHash[$index].state}">{{(menuElem.name)}}</span></a></li>
+        <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="changeView(lowercase(menuElem.name))"><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
       <div id="nag-invoke" ng-click='invokeNag()'/>
     </nav>
 
-    <span class="twa-next" ng-class="{{currentView}}-next" ng-click="changeView(getNextViewByName())">{{location.path() === '/' ? "Home" : location.path().replace('/','')}}</span>
-    <span class="twa-prev" ng-click="changeView(getPrevViewByName())"></span>
+    <span ng-cloak ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),1)">{{routeList[viewIndex % routeList.length]}}</span>
+    <span ng-cloak ng-class="{'twa-prev' : viewIndex !== 1 }" ng-click="deferTransition(getPrevViewByName(),0)">{{routeList[viewIndex - 2  % routeList.length]}}</span>
     <div id="main-logo"></div>
 
+    
 
 
     <!--[if lt IE 7]>
@@ -52,6 +53,7 @@
       <a href=""><span class="seperator main-btn"></span></a>
       <a href=""><span class="party main-btn"></span></a>
 
+
       <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
           <h3>La liste des soumissions</h3>
@@ -62,15 +64,15 @@
             <input type="text" placeholder="Recherche par personne" id="modal-result-filter"></input>
           </div>
           <hr>
-          <div class="modal-body">
+          <div ui-jq="jScrollPane" ui-options="{showArrows: false,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true, mouseWheelSpeed: 100}" class="modal-body scroll-pane">
             <ul class="result-iterator">
               <li class="result-entry" ng-repeat="item in items">
                 <div class="modal-result-circular-image"></div>
                 <div class="modal-entry-metadata">
                   <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
                   <span class="entry-submission-count">(250 Soumissions)</span>
-                  <button>J'ai soumis</button>
-                  <button>Profil</button>
+                  <button class="btn btn-submit">J'ai soumis<i class="icon-plus-sign icon-white"></i></button>
+                  <button class="btn btn-profile">Profil<i class="icon-user icon-white"></i></button>
                 </div>
                 <hr>
               </li>
@@ -115,11 +117,13 @@
      ga('create', 'UA-XXXXX-X');
      ga('send', 'pageview');
      </script>
-
+     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
      <script src="bower_components/jquery/jquery.js"></script>
+     <script src="bower_components/plax/js/plax.js"></script>
      <script src="bower_components/jscrollpane/script/jquery.jscrollpane.min.js"></script>
      <script src="bower_components/jscrollpane/script/jquery.mousewheel.js"></script>
      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+     <script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.61.0-2013.06.06/jquery.blockUI.min.js"></script>
      <script src="bower_components/jquery.stellar/jquery.stellar.min.js"></script>
 
