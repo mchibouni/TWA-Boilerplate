@@ -257,14 +257,14 @@
 
     console.warn(this.viewIndex);
 
-    if (which === 1) {
+    if (which === "next") {
       this.viewIndex ++ ;
     }
-    else if (which === 0) {
+    else if (which === "prev") {
       this.viewIndex -- ;
     }
     else {
-
+      this.viewIndex = which ; 
     }
 
 

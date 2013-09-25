@@ -21,13 +21,13 @@
   <div id="wrapper" >
     <nav>
       <ul ng-repeat="menuElem in navHash">
-        <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),$index+1)"><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
+        <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
       <div id="nag-invoke" ng-click='invokeNag()'/>
     </nav>
 
-    <span ng-cloak ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),1)">{{routeList[viewIndex % routeList.length]}}</span>
-    <span ng-cloak ng-class="{'twa-prev' : viewIndex !== 1 }" ng-click="deferTransition(getPrevViewByName(),0)">{{routeList[viewIndex - 2  % routeList.length]}}</span>
+    <span ng-cloak ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),'next')">{{routeList[viewIndex % routeList.length]}}</span>
+    <span ng-cloak ng-class="{'twa-prev' : viewIndex !== 1 }" ng-click="deferTransition(getPrevViewByName(),'prev')">{{routeList[viewIndex - 2  % routeList.length]}}</span>
     <div id="main-logo"></div>
 
     
