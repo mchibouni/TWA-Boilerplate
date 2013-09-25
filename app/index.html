@@ -21,7 +21,7 @@
   <div id="wrapper" >
     <nav>
       <ul ng-repeat="menuElem in navHash">
-        <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="changeView(lowercase(menuElem.name))"><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
+        <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),$index+1)"><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
       <div id="nag-invoke" ng-click='invokeNag()'/>
     </nav>
@@ -60,108 +60,116 @@
           <h4>Lorem ipsum dolor siet amet, consectetur adipiscing ellit. Nulla pretium eros ut risos fringilla, non tristique urna feugiat. Sed massa massa, consectetur non vulputate eu. <a href="">Nominer une personne</a></h1>
           </div>
           <div>
-            <h2 class="modal-result-descriptor">286 Résultats</h2>
+            <h2 class="modal-result-descriptor">{{items.length}} Résultats</h2>
             <input type="text" placeholder="Recherche par personne" id="modal-result-filter"></input>
           </div>
           <hr>
-          <div ui-jq="jScrollPane" ui-options="{showArrows: false,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true, mouseWheelSpeed: 100}" class="modal-body scroll-pane">
-            <ul class="result-iterator">
-              <li class="result-entry" ng-repeat="item in items">
-                <div class="modal-result-circular-image"></div>
+          <div class="modal-body">
+            <div>
+              <ul class="result-iterator scroll-pane">
+                <li class="result-entry" ng-repeat="item in items | filter : hashfilter" ng-animate="
+                {
+                  enter: 'example-repeat-enter',
+                  leave: 'example-repeat-leave'
+                }
+                ">
+                <img class="modal-result-circular-image" src={{item.imguri}} />
                 <div class="modal-entry-metadata">
                   <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
-                  <span class="entry-submission-count">(250 Soumissions)</span>
-                  <button class="btn btn-submit">J'ai soumis<i class="icon-plus-sign icon-white"></i></button>
-                  <button class="btn btn-profile">Profil<i class="icon-user icon-white"></i></button>
+                  <span class="entry-submission-count">( {{item.count}} Soumissions)</span>
+                  <button class="btn btn-submit" ng-click="hashfilter.hashtags = 'bluh'"><a href ></a>Soumettre<i class="icon-plus-sign icon-white"></i></button>
+                  <button class="btn btn-profile"><a target="_blank" href={{item.url}}>Profil</a><i class="icon-user icon-white"></i></button>
                 </div>
                 <hr>
               </li>
             </ul>
-            <div ui-jq="jScrollPane" ui-options="{showArrows: false,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true, mouseWheelSpeed: 100}" class="scroll-pane grep-zone">
-              <span class="red-content">Trier par #</span>
-              <ul>
-                <li ng-repeat="hashTag in hashTags">
-                  <span class="hashtag-grep-entry">{{hashTag.name}}</span>
-                </li>              
-              </ul>
-            </div>
-            <!--            Selected: <b>{{ selected.item }}</b> -->
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+          <div class="grep-zone scroll-pane" ui-jq="jScrollPane" ui-options="{showArrows: false,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true, mouseWheelSpeed: 100}" >
+            <span class="red-content">Trier par #</span>
+            <ul>
+              <li ng-repeat="hashTag in hashTags">
+                <div ng-class="{block: $index === 0}" ng-show="$index === 0" ng-click="hashfilter.hashtags = ''"  class="hashtag-grep-entry">#tous</div>
+                <span ng-click="hashfilter.hashtags = hashTag.name"  class="hashtag-grep-entry">{{hashTag.name}}</span>
+              </li>              
+            </ul>
           </div>
-        </script>
-        <div ng-show="selected">Selection from a modal: {{ selected }}</div>
-      </div>
+          <!--            Selected: <b>{{ selected.item }}</b> -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" ng-click="ok()">OK</button>
+          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+      </script>
+      <div ng-show="selected">Selection from a modal: {{ selected }}</div>
+    </div>
 
 
 
-      <div class="logo-footer">
-        <span class="footer-slogan">Encourage Personal Creativity</span>
-      </div>
-      <footer>
-        <div><a href="fb">_</a></div>
-        <div><a href="tw">_</a></div>
-        <div><a href="in">_</a></div>
-        <div><a href="ml">_</a></div>
-      </footer>
+    <div class="logo-footer">
+      <span class="footer-slogan">Encourage Personal Creativity</span>
+    </div>
+    <footer>
+      <div><a href="fb">_</a></div>
+      <div><a href="tw">_</a></div>
+      <div><a href="in">_</a></div>
+      <div><a href="ml">_</a></div>
+    </footer>
 
-      <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-      <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-     ga('create', 'UA-XXXXX-X');
-     ga('send', 'pageview');
-     </script>
-     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-     <script src="bower_components/jquery/jquery.js"></script>
-     <script src="bower_components/plax/js/plax.js"></script>
-     <script src="bower_components/jscrollpane/script/jquery.jscrollpane.min.js"></script>
-     <script src="bower_components/jscrollpane/script/jquery.mousewheel.js"></script>
-     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-     <script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.61.0-2013.06.06/jquery.blockUI.min.js"></script>
-     <script src="bower_components/jquery.stellar/jquery.stellar.min.js"></script>
+   ga('create', 'UA-XXXXX-X');
+   ga('send', 'pageview');
+   </script>
+   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+   <script src="bower_components/jquery/jquery.js"></script>
+   <script src="bower_components/plax/js/plax.js"></script>
+   <script src="bower_components/jscrollpane/script/jquery.jscrollpane.min.js"></script>
+   <script src="bower_components/jscrollpane/script/jquery.mousewheel.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+   <script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.61.0-2013.06.06/jquery.blockUI.min.js"></script>
+   <script src="bower_components/jquery.stellar/jquery.stellar.min.js"></script>
 
-     <!-- build:js scripts/plugins.js -->
-     <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
-     <script src="bower_components/angular-timer/release/angular-timer.min.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
-     <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
-     <!-- endbuild -->
+   <!-- build:js scripts/plugins.js -->
+   <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+   <script src="bower_components/angular-timer/release/angular-timer.min.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-alert.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-dropdown.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-tooltip.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-modal.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-transition.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-button.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-popover.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-typeahead.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-carousel.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-scrollspy.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-collapse.js"></script>
+   <script src="bower_components/bootstrap-sass/js/bootstrap-tab.js"></script>
+   <!-- endbuild -->
 
-     <!-- build:js scripts/modules.js -->
-     <script src="bower_components/angular-resource/angular-resource.js"></script>
-     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-     <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-     <script src="bower_components/angular-underscore/angular-underscore.js"></script>
-     <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
-     <!-- endbuild -->
+   <!-- build:js scripts/modules.js -->
+   <script src="bower_components/angular-resource/angular-resource.js"></script>
+   <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+   <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+   <script src="bower_components/angular-underscore/angular-underscore.js"></script>
+   <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
+   <!-- endbuild -->
 
-     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-     <script src="scripts/app.js"></script>
-     <script src="scripts/blockui.directives.js"></script>
-     <script src="scripts/stellar.directives.js"></script>
-     <script src="scripts/controllers/main.js"></script>
-     <script src="scripts/controllers/services.js"></script> 
-     <script src="scripts/gf-include.js"></script>
-     <!-- endbuild -->
-   </body>
-   </html>
+   <!-- build:js({.tmp,app}) scripts/scripts.js -->
+   <script src="scripts/app.js"></script>
+   <script src="scripts/blockui.directives.js"></script>
+   <script src="scripts/stellar.directives.js"></script>
+   <script src="scripts/controllers/main.js"></script>
+   <script src="scripts/controllers/services.js"></script> 
+   <script src="scripts/gf-include.js"></script>
+   <!-- endbuild -->
+ </body>
+ </html>

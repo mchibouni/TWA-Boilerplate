@@ -1,6 +1,52 @@
-'use strict';
+/*Author Mehdi Chibouni
+  TWA 2013 - Built w/ AngularJS 
+  */
 
-var app = angular.module('twaAutocompletionApp')
+
+  'use strict';
+
+  var app = angular.module('twaAutocompletionApp')
+  .service('authStrategyService',[function(){
+
+    return [
+    {
+      provider:"facebook", 
+      regex: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/,
+      RestNameURI : function(name){
+        return ('http://graph.facebook.com/'+name+'?fields=name');
+      },
+      RestPictureURI: function(name){
+        return ('http://graph.facebook.com/'+name+'/picture?type=normal');
+      }
+    },
+    {
+      provider:"twitter",
+      regex: /TODO/,
+    },
+    {
+      provider:"foursquare", 
+      regex: /TODO/,
+    },
+    {
+      provider:"instagram", 
+      regex: /TODO/,
+      RestNameURI: function (name){
+        return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
+      },
+      RestPictureURI: function (name){
+        return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
+      }
+    },
+    {
+      provider:"soundcloud", 
+      regex: /TODO/,
+    },
+    {
+      provider:"noname", 
+      regex: /TODO/,
+    }
+    ];
+  }])
 .service('navMenuRawData', [function () {
   this.navHash = function(){
     return [
@@ -146,18 +192,12 @@ var app = angular.module('twaAutocompletionApp')
 })
 .controller('MainCtrl', function ($http,$q,$scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService) {
 
-
-  console.warn("THIS IS EXECUTED TWICE");
-
-
   $scope.hashtags = twaRestAPI.retrieveAllHashTags().query(null);
 
   twaRestAPI.retrieveAll().query(null,function(response){
     console.log(response); 
   });
-  $http.get('http://graph.facebook.com/kanaseed?fields=name').success(function(data){
-    console.log(data);
-  })
+
 
 
 
@@ -269,66 +309,49 @@ var app = angular.module('twaAutocompletionApp')
            return angular.lowercase(navHash[(currentIdx - 1) % navHash.length].name);
          }
        })
-.controller('TWASubmitCtrl', ['$scope', 'twaHashTagService','twaRestAPI','$http', function ($scope,twaHashTagService,twaRestAPI,$http) {
+.controller('TWASubmitCtrl', ['$resource', '$scope', 'twaHashTagService','twaRestAPI','$http', 'authStrategyService', function ($resource,$scope,twaHashTagService,twaRestAPI,$http,authStrategyService) {
 
 
 
-
-  $scope.processURL = function (url) {
-
-    FACEBOOK_STRATEGY_REGEX = /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/;  
-    TWITTER_STRATEGY_REGEX = undefined;
-    FOURSQUARE_STRATEGY_REGEX = undefined; 
-    INSTAGRAM_STRATEGY_REGEX = undefined; 
-    SOUNDCLOUD_STRATEGY_REGEX = undefined ; 
-
-
-
-    strategyContainer = [
-    {
-      provider:"facebook", regex: FACEBOOK_STRATEGY_REGEX, restAPI : function(name){
-        return ('http://graph.facebook.com/'+name+'?fields=name');
-      }
-    },
-    {
-      provider:"twitter", regex: TWITTER_STRATEGY_REGEX
-    },
-    {
-      provider:"foursquare", regex: FOURSQUARE_STRATEGY_REGEX
-    },
-    {
-      provider:"instagram", regex: INSTAGRAM_STRATEGY_REGEX
-    },
-    {
-      provider:"soundcloud", regex: SOUNDCLOUD_STRATEGY_REGEX
-    },
-    {
-      provider:"noname", regex : WTF_REGEX
-    }
-    ];
-
-
-    _.each(strategyContainer,function(element){
-      if (element.regex.test(url)){
-        console.warn("test");
-      }
-    });
-
-
-
-
-    //Assuming Facebook
-    $http.get('http://graph.facebook.com/'+url.match(FACEBOOK_STRATEGY_REGEX)[1]+'?fields=name');
+  $scope.sendSelectedHashes = function (collection){
+    return _.pluck(_.where(collection, {state:true}),'name');
   }
 
 
-  $scope.submitData = function (url,hashtags, metadata) {
-    $http.post('http://localhost:3000/wines',{"url":url,"name":metadata,"hashtags":hashtags}).success(function(data){
-      console.log("success");
+  $scope.submitData = function (url,hashtags, metadata, imgurl, count) {
+    $resource("http://localhost\\:3000/twa/check/:url").get({url:url},function(data){
+      if ( data.callback === true ) {
+              console.warn("in there");
+
+        $http.post('http://localhost:3000/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
+          console.log("success");
+        });
+      }
+      else {
+        alert("Vous avez déjà soumis cette URL");
+      }
     });
   } 
 
 
+
+
+  $scope.processURL = function (url,hashes) {
+
+    _.each(authStrategyService,function(element){
+      console.warn(element);
+      if (element.regex.test(url)){
+        console.warn("PROVIDER FOUND " + element.provider);
+        $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
+          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
+          console.warn("ERROR!");
+        })
+        .then(function(response){
+          $scope.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
+        });
+      }
+    });
+  }
 
   $scope.foo = function (event) {
     console.log(event.offsetX);
@@ -354,17 +377,16 @@ var app = angular.module('twaAutocompletionApp')
   $scope.twaHashTags = twaHashTagService.getHashList();
   $scope.notify = function (){
     console.log("You typed : " + $scope.keyword);
-    angular.forEach($scope.twaHashTags, function(value, key){
-      if (value.name !== "undefined" && value.name.indexOf($scope.keyword) !== -1){
-        $scope.twaHashTags[key].state = true; 
-        console.log("DEBUG INFO : might work ");
-      }
-      else{
-        $scope.twaHashTags[key].state = false; 
-      }
-    }
-    );
-  }
+    var validHash ; 
+    if ($scope.keyword !== undefined) { 
+     validHash = _.find(this.twaHashTags,function(element){
+      return $scope.keyword.indexOf(element.name.replace('#','')) !== -1;
+    });
+     console.warn(validHash);
+   }
+   if (validHash !== undefined)
+    validHash.state = true ; 
+}
 
 }])
 .controller('AboutCtrl', ['$scope', function ($scope) {
@@ -375,6 +397,7 @@ var app = angular.module('twaAutocompletionApp')
 
 }])
 var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
+
 
 
 
@@ -397,6 +420,8 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+
+
 
 
   $scope.addHashTagModal = function () {
@@ -440,9 +465,13 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
   };
 };
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, items, twaHashTagService, twaRestAPI) {
+var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTagService, twaRestAPI) {
 
 
+
+  $scope.$log = $log;  
+
+  $scope.hashfilter = {}; 
 
   $scope.hashTags = twaHashTagService.getHashList(); 
   $scope.items = twaRestAPI.retrieveAll().query(null,function(response){

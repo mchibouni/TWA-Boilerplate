@@ -93,16 +93,16 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
       })) + 1 ;
     }
 
-    $rootScope.invokeDialog = function(){
+    $rootScope.invokeDialog = function(item){
       $FB.ui(
       {
         show_error : true,  
         method: 'feed',
-      name: 'Facebook Dialogs', // name of the product or content you want to share
-      link: 'https://developers.facebook.com/docs/reference/dialogs/', // link back to the product or content you are sharing
+      name: 'Tunisiana Web Awards 2013', // name of the product or content you want to share
+      link: 'https://tunisiana.web.awards:9000', // link back to the product or content you are sharing
       picture: 'http://fbrell.com/f8.jpg', // path to an image you would like to share with this content
-      caption: 'Reference Documentation', // caption
-      description: 'Dialogs provide a simple, consistent interface for applications to interface with users.' // description of your product or content
+      caption: 'Phase de soumissions : ', // caption
+      description: "J'ai soumis le candidat" + item.name // description of your product or content
     },
     function(response) {
       if (response && response.post_id) {

@@ -11,6 +11,7 @@
 	<div class="fancy" id="tr-footer-3"/>
 	<div class="fancy" id="tr-red-1"/>
 	<div id="tr-plax-green"  data-xrange="40" data-yrange="40" plax/>
+	<div id="submission-meta" ng-controller="ModalCtrl" ng-click="open()"><p  class="center">DECOUVREZ LA LISTE DES</p><p class="center">SOUMISSIONS</p></div>
 	<label class="prompt" for="submission-fill">Tapez l'adresse URL de votre Candidat</label>
 	<label  class="meta-prompt">example: www.facebook.com/flenbenfoulen</label>
 	<div id="fillform-container" class="child-skew red">
@@ -18,31 +19,31 @@
 	</div>
 	<div class="choice-container">
 		<ul ng-repeat="twaElem in twaHashTags">
-			<li class="hash-elements raw" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 4) }"><a href="#" class="only-here">{{twaElem.name}}</a></li>
+			<li class="hash-elements raw" ng-click="twaElem.state = !twaElem.state" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 4) }"><a class="only-here">{{twaElem.name}}</a></li>
 		</ul>
 	</div>
 	<div class="choice-container">
 		<ul ng-repeat="twaElem in navCategoryList">
 
-			<li class="hash-elements grayed" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 4)}"><a href="#" class="only-here ">{{twaElem.name}}</a></li>
+			<li class="hash-elements grayed" ng-click="twaElem.state = !twaElem.state" ng-class="{'fithashtag': navCategoryList[$index].state, 'odd-translated' : ($index > 4)}"><a class="only-here ">{{twaElem.name}}</a></li>
+		</ul>
+	</div>
+
+
+	<div ng-controller="ModalCtrl">
+		<span  id="hash-icon" ><a href ng-click="addHashTagModal()">Proposer un hashtag</a></span>
+	</div>
+
+
+
+	<div id="share-area">
+		<ul>
+			<li ng-click="processURL(keyword,sendSelectedHashes(twaHashTags))"  class="share-fb" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
+			<li class="share-tw" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"><a href="https://twitter.com/intent/tweet?button_hashtag=TwitterStories&text=My%20story%20is%20about%20what's%20happening%20today" data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
 	</div>
 
 </div>
-<div ng-controller="ModalCtrl">
-	<span  id="hash-icon" ><a href ng-click="addHashTagModal()">Proposer un hashtag</a></span>
-</div>
-
-
-
-<div id="share-area" ng-controller="TWASubmitCtrl">
-	<ul>
-		<li ng-click="invokeDialog();submitData('bluh','#experimental')"  class="share-fb" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
-		<li class="share-tw" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"><a href="https://twitter.com/intent/tweet?button_hashtag=TwitterStories&text=My%20story%20is%20about%20what's%20happening%20today" data-lang="en" data-related="jasoncosta"></a></li>
-	</ul>
-</div>
-
-
 
 <script type="text/ng-template" id="hashtag.html">
 	<div class="center">
