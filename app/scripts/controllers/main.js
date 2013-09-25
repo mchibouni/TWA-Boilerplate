@@ -6,47 +6,77 @@
   'use strict';
 
   var app = angular.module('twaAutocompletionApp')
-  .service('authStrategyService',[function(){
+  .factory('twitter', function ($resource, $http) {
+    var consumerKey = encodeURIComponent('83EezbF5PeegDgA1YF4Yw')
+    var consumerSecret = encodeURIComponent('LCs9kOjJZKYSJtL5mkl1U83ED8pbm8dKyIluI4dzOk')
+    var credentials = btoa(consumerKey + ':' + consumerSecret)
+            // Twitters OAuth service endpoint
+            var twitterOauthEndpoint = $http.post(
+              'https://api.twitter.com/oauth2/token'
+              , "grant_type=client_credentials"
+              , {headers: {'Authorization': 'Basic ' + credentials, 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}}
+              )
+            twitterOauthEndpoint.success(function (response) {
+                // a successful response will return
+                // the "bearer" token which is registered
+                // to the $httpProvider
+                $httpProvider.defaults.headers.common['Authorization'] = "Bearer " + response.access_token;
+                $httpProvider.defaults.useXDomain = true;
+                delete $httpProvider.defaults.headers.common['X-Requested-With'];
+              }).error(function (response) {
+                  // error handling to some meaningful extent
+                })
 
-    return [
-    {
-      provider:"facebook", 
-      regex: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/,
-      RestNameURI : function(name){
-        return ('http://graph.facebook.com/'+name+'?fields=name');
-      },
-      RestPictureURI: function(name){
-        return ('http://graph.facebook.com/'+name+'/picture?type=normal');
-      }
+              var r = $resource('https://api.twitter.com/1.1/search/:action',
+                {action: 'tweets.json',
+                count: 10,
+              },
+              {
+               paginate: {method: 'GET'}
+             })
+              return r;
+            })
+.service('authStrategyService',[function(){
+
+  return [
+  {
+    provider:"facebook", 
+    regex: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/,
+    RestNameURI : function(name){
+      return ('http://graph.facebook.com/'+name+'?fields=name');
     },
-    {
-      provider:"twitter",
-      regex: /TODO/,
-    },
-    {
-      provider:"foursquare", 
-      regex: /TODO/,
-    },
-    {
-      provider:"instagram", 
-      regex: /TODO/,
-      RestNameURI: function (name){
-        return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
-      },
-      RestPictureURI: function (name){
-        return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
-      }
-    },
-    {
-      provider:"soundcloud", 
-      regex: /TODO/,
-    },
-    {
-      provider:"noname", 
-      regex: /TODO/,
+    RestPictureURI: function(name){
+      return ('http://graph.facebook.com/'+name+'/picture?type=normal');
     }
-    ];
-  }])
+  },
+  {
+    provider:"twitter",
+    regex: /TODO/,
+  },
+  {
+    provider:"foursquare", 
+    regex: /TODO/,
+  },
+  {
+    provider:"instagram", 
+    regex: /TODO/,
+    RestNameURI: function (name){
+      return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
+    },
+    RestPictureURI: function (name){
+      return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
+    }
+  },
+  {
+    provider:"soundcloud", 
+    regex: /TODO/,
+  },
+  {
+    provider:"noname", 
+    regex: /TODO/,
+  }
+  ];
+}])
 .service('processURLService', ['$resource','authStrategyService', '$http', function($resource,authStrategyService,$http){
   return { 
 
@@ -67,7 +97,7 @@
   }
 }])
 .service('submitDataService', ['authStrategyService','processURLService','$http',function (authStrategyService,processURLService,$http) {
-  return {  processURL : function (url,hashes) {
+  return {  processURL : function (url, hashes) {
 
     _.each(authStrategyService,function(element){
       console.warn(element);
@@ -357,19 +387,13 @@
 
   $scope.submitData = submitDataService.processURL ; 
 
-  console.warn($scope.submitData);
 
 
-  $scope.foo = function (event) {
-    console.log(event.offsetX);
-  }
 
   $scope.postEntry = function () {
     twaRestAPI.postEntry().save(null,function(response){
     });
-    console.log('done');
   }
-  console.log("DEBUG INFO");
   $scope.keyword = "http://www.facebook.com/OfficialChuckNorris";
 
 
@@ -478,6 +502,9 @@ var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTa
   console.warn($scope.submitData);
 
   $scope.$log = $log;  
+
+  $scope.SUBMIT_STRING = "J'ai soumis";
+
 
   $scope.hashfilter = {}; 
 

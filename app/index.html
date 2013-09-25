@@ -66,8 +66,8 @@
           <hr>
           <div class="modal-body">
             <div>
-              <ul class="result-iterator scroll-pane">
-                <li class="result-entry" ng-repeat="item in items | filter : hashfilter | filter: candidateName" ng-animate="
+              <ul class="result-iterator scroll-pane" ng-init="submissionLabel=[];ipCallbacks=[]">
+                <li class="result-entry" ng-repeat="item in items | orderBy: count | filter : hashfilter | filter: candidateName" ng-animate="
                 {
                   enter: 'example-repeat-enter',
                   leave: 'example-repeat-leave'
@@ -77,9 +77,10 @@
                 <div class="modal-entry-metadata">
                   <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
                   <span class="entry-submission-count">( {{item.count}} Soumissions)</span>
-                  <button class="btn btn-submit" ng-click="submitData(item.url,item.hashtags)"><a href ></a>Soumettre<i class="icon-plus-sign icon-white"></i></button>
+                  <button ng-init="submissionLabel[$index] = 'Soumettre'" ng-class="{'done' : submissionLabel[$index] === SUBMIT_STRING }" ng-model="submissionLabel[$index]" class="btn btn-submit" ng-click="ipCallbacks[$index] = submitData(item.url,item.hashtags);submissionLabel[$index] = SUBMIT_STRING"><a href ></a>{{submissionLabel[$index]}}<i class="icon-plus-sign icon-white"></i></button>
                   <button class="btn btn-profile"><a target="_blank" href={{item.url}}>Profil</a><i class="icon-user icon-white"></i></button>
                 </div>
+                <div ng-model="ipCallbacks[$index]" id="myAlert" ng-class="{'in' : ipCallbacks[$index] === false }" class="alert success fade" >Vous avez déjà soumis ce candidat.</div>
                 <hr>
               </li>
             </ul>
