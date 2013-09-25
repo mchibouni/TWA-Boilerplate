@@ -81,11 +81,11 @@
   return { 
 
     submitData : function (url,hashtags, metadata, imgurl, count) {
-      $resource("http://localhost\\:3000/twa/check/:url").get({url:url},function(data){
+      $resource("http://www.kanalabs.com\\:8080/twa/check/:url").get({url:url},function(data){
         if ( data.callback === true ) {
           console.warn("in there");
 
-          $http.post('http://localhost:3000/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
+          $http.post('http://www.kanalabs.com:8080/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
             console.log("success");
           });
         }
@@ -186,7 +186,7 @@
 {
   return {
     retrieveAll : function() {
-      return $resource('http://localhost\\:3000/wines',{
+      return $resource('http://www.kanalabs.com\\:8080/wines',{
         query: {
           method:'GET',          
           headers: {
@@ -198,12 +198,12 @@
       });
     },
     addHashTag : function(hashtag){
-      $http.post('http://localhost:3000/hashtags',{"hashtag":hashtag}).success(function(data){
+      $http.post('http://www.kanalabs.com:8080/hashtags',{"hashtag":hashtag}).success(function(data){
         console.log("success");
       });
     },
     retrieveAllHashTags : function() {
-      return $resource('http://localhost\\:3000/hashtags',{
+      return $resource('http://www.kanalabs.com\\:8080/hashtags',{
         query: {
           method:'GET',          
           headers: {
@@ -215,7 +215,7 @@
       });
     },
     postEntry: function(){
-      return $resource('http://localhost\\:3000/wines',{
+      return $resource('http://www.kanalabs.com\\:8080/wines',{
         update: {
           method:'POST'          
         }
@@ -386,6 +386,7 @@
   }
 
   $scope.submitData = submitDataService.processURL ; 
+
 
 
 
