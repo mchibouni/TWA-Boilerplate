@@ -80,7 +80,6 @@
                   <button ng-init="submissionLabel[$index] = 'Soumettre'" ng-class="{'done' : submissionLabel[$index] === SUBMIT_STRING }" ng-model="submissionLabel[$index]" class="btn btn-submit" ng-click="ipCallbacks[$index] = submitData(item.url,item.hashtags);submissionLabel[$index] = SUBMIT_STRING"><a href ></a>{{submissionLabel[$index]}}<i class="icon-plus-sign icon-white"></i></button>
                   <button class="btn btn-profile"><a target="_blank" href={{item.url}}>Profil</a><i class="icon-user icon-white"></i></button>
                 </div>
-                <div ng-model="ipCallbacks[$index]" id="myAlert" ng-class="{'in' : ipCallbacks[$index] === false }" class="alert success fade" >Vous avez déjà soumis ce candidat.</div>
                 <hr>
               </li>
             </ul>

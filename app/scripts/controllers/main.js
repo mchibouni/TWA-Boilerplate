@@ -96,7 +96,7 @@
     } 
   }
 }])
-.service('submitDataService', ['authStrategyService','processURLService','$http',function (authStrategyService,processURLService,$http) {
+.service('submitDataService', ['$rootScope','authStrategyService','processURLService','$http',function ($rootScope,authStrategyService,processURLService,$http) {
   return {  processURL : function (url, hashes) {
 
     _.each(authStrategyService,function(element){
