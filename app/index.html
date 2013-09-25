@@ -61,13 +61,13 @@
           </div>
           <div>
             <h2 class="modal-result-descriptor">{{items.length}} Résultats</h2>
-            <input type="text" placeholder="Recherche par personne" id="modal-result-filter"></input>
+            <input type="text" placeholder="Recherche par personne" id="modal-result-filter" ng-model="candidateName"></input>
           </div>
           <hr>
           <div class="modal-body">
             <div>
               <ul class="result-iterator scroll-pane">
-                <li class="result-entry" ng-repeat="item in items | filter : hashfilter" ng-animate="
+                <li class="result-entry" ng-repeat="item in items | filter : hashfilter | filter: candidateName" ng-animate="
                 {
                   enter: 'example-repeat-enter',
                   leave: 'example-repeat-leave'
@@ -77,7 +77,7 @@
                 <div class="modal-entry-metadata">
                   <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
                   <span class="entry-submission-count">( {{item.count}} Soumissions)</span>
-                  <button class="btn btn-submit" ng-click="hashfilter.hashtags = 'bluh'"><a href ></a>Soumettre<i class="icon-plus-sign icon-white"></i></button>
+                  <button class="btn btn-submit" ng-click="submitData(item.url,item.hashtags)"><a href ></a>Soumettre<i class="icon-plus-sign icon-white"></i></button>
                   <button class="btn btn-profile"><a target="_blank" href={{item.url}}>Profil</a><i class="icon-user icon-white"></i></button>
                 </div>
                 <hr>

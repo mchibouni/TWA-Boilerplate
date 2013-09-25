@@ -47,6 +47,44 @@
     }
     ];
   }])
+.service('processURLService', ['$resource','authStrategyService', '$http', function($resource,authStrategyService,$http){
+  return { 
+
+    submitData : function (url,hashtags, metadata, imgurl, count) {
+      $resource("http://localhost\\:3000/twa/check/:url").get({url:url},function(data){
+        if ( data.callback === true ) {
+          console.warn("in there");
+
+          $http.post('http://localhost:3000/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
+            console.log("success");
+          });
+        }
+        else {
+          alert("Vous avez déjà soumis cette URL");
+        }
+      });
+    } 
+  }
+}])
+.service('submitDataService', ['authStrategyService','processURLService','$http',function (authStrategyService,processURLService,$http) {
+  return {  processURL : function (url,hashes) {
+
+    _.each(authStrategyService,function(element){
+      console.warn(element);
+      if (element.regex.test(url)){
+        console.warn("PROVIDER FOUND " + element.provider);
+        $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
+          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
+          console.warn("ERROR!");
+        })
+        .then(function(response){
+          processURLService.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
+        });
+      }
+    });
+  }
+}
+}])
 .service('navMenuRawData', [function () {
   this.navHash = function(){
     return [
@@ -309,7 +347,7 @@
            return angular.lowercase(navHash[(currentIdx - 1) % navHash.length].name);
          }
        })
-.controller('TWASubmitCtrl', ['$resource', '$scope', 'twaHashTagService','twaRestAPI','$http', 'authStrategyService', function ($resource,$scope,twaHashTagService,twaRestAPI,$http,authStrategyService) {
+.controller('TWASubmitCtrl', ['$scope', 'twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,twaHashTagService,twaRestAPI, submitDataService) {
 
 
 
@@ -317,41 +355,10 @@
     return _.pluck(_.where(collection, {state:true}),'name');
   }
 
+  $scope.submitData = submitDataService.processURL ; 
 
-  $scope.submitData = function (url,hashtags, metadata, imgurl, count) {
-    $resource("http://localhost\\:3000/twa/check/:url").get({url:url},function(data){
-      if ( data.callback === true ) {
-              console.warn("in there");
+  console.warn($scope.submitData);
 
-        $http.post('http://localhost:3000/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
-          console.log("success");
-        });
-      }
-      else {
-        alert("Vous avez déjà soumis cette URL");
-      }
-    });
-  } 
-
-
-
-
-  $scope.processURL = function (url,hashes) {
-
-    _.each(authStrategyService,function(element){
-      console.warn(element);
-      if (element.regex.test(url)){
-        console.warn("PROVIDER FOUND " + element.provider);
-        $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
-          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
-          console.warn("ERROR!");
-        })
-        .then(function(response){
-          $scope.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
-        });
-      }
-    });
-  }
 
   $scope.foo = function (event) {
     console.log(event.offsetX);
@@ -465,13 +472,16 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
   };
 };
 
-var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTagService, twaRestAPI) {
+var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTagService, twaRestAPI,submitDataService) {
 
-
+  $scope.submitData = submitDataService.processURL;
+  console.warn($scope.submitData);
 
   $scope.$log = $log;  
 
   $scope.hashfilter = {}; 
+
+  $scope.candidateName = "";
 
   $scope.hashTags = twaHashTagService.getHashList(); 
   $scope.items = twaRestAPI.retrieveAll().query(null,function(response){
