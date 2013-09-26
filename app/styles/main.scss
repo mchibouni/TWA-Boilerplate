@@ -970,9 +970,6 @@ p.about-last {
   -o-background-size: cover;
   background-size: cover;
   animation: slide 0.3s linear 0s; 
-  -webkit-perspective: 1000;
-  -webkit-backface-visibility: hidden;    
-  -webkit-transform-style: preserve-3d;
 }
 
 .about-text {
