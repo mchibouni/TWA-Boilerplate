@@ -297,7 +297,7 @@
   }
 
   if (!$cookies.firstLogin){
-    $scope.invokeNag();
+//    $scope.invokeNag();
     $cookies.firstLogin = "true";  
   }
 
