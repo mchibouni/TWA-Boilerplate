@@ -298,57 +298,79 @@
 
   if (!$cookies.firstLogin){
 //    $scope.invokeNag();
-    $cookies.firstLogin = "true";  
-  }
+$cookies.firstLogin = "true";  
+}
 
-  $scope.nag = function(){
-    $blockUI.createBlockUI({
+$scope.nag = function(){
+  $blockUI.createBlockUI({
       // Angular Gurus, I beg for your vehemence.
       innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
 
     }).blockUI();
+}
+
+$scope.dispatchNag = function () {
+  blockUI.unblockUI();
+  console.log('Dispatched Nag Screen');
+}
+
+$scope.easeInQuart = function (x, t, b, c, d) {
+  return c*(t/=d)*t*t*t + b;
+}
+
+$scope.safeApply = function(fn) {
+  var phase = this.$root.$$phase;
+  if(phase == '$apply' || phase == '$digest') {
+    if(fn && (typeof(fn) === 'function')) {
+      fn();
+    }
+  } else {
+    this.$apply(fn);
+  }
+};
+
+$scope.safeApply = function(fn) {
+  var phase = this.$root.$$phase;
+  if(phase == '$apply' || phase == '$digest') {
+    if(fn && (typeof(fn) === 'function')) {
+      fn();
+    }
+  } else {
+    this.$apply(fn);
+  }
+};
+
+$scope.deferTransition = function(view,which){
+  console.warn($scope.viewIndex);
+  $('.fancy').fadeTo(300,0.5,$scope.easeInQuart);
+  $('.main-container').animate({'left':'-75%'},function(){
+    $scope.changeView(view,which);
+    $(this).css('left','0%').animate({'left':'30%'});
+    console.warn ($scope.viewIndex);
+    $scope.safeApply();  
+  });
+
+};
+
+
+$scope.changeView = function(view,which){
+
+
+  console.warn(this.viewIndex);
+
+  if (which === "next") {
+    this.viewIndex ++ ;
+  }
+  else if (which === "prev") {
+    this.viewIndex -- ;
+  }
+  else {
+    this.viewIndex = which ; 
   }
 
-  $scope.dispatchNag = function () {
-    blockUI.unblockUI();
-    console.log('Dispatched Nag Screen');
-  }
 
-  $scope.easeInQuart = function (x, t, b, c, d) {
-    return c*(t/=d)*t*t*t + b;
-  }
-
-  $scope.deferTransition = function(view,which){
-    console.warn($scope.viewIndex);
-    $('.fancy').fadeTo(300,0.5,$scope.easeInQuart);
-    $('.main-container').animate({'left':'-75%'},function(){
-      $scope.changeView(view,which);
-      $(this).css('left','0%').animate({'left':'30%'});
-      console.warn ($scope.viewIndex);
-      $scope.$apply();  
-    });
-
-  };
-
-
-  $scope.changeView = function(view,which){
-
-
-    console.warn(this.viewIndex);
-
-    if (which === "next") {
-      this.viewIndex ++ ;
-    }
-    else if (which === "prev") {
-      this.viewIndex -- ;
-    }
-    else {
-      this.viewIndex = which ; 
-    }
-
-
-    angular.element('.twa-next').html(this.routeList[this.viewIndex % this.routeList.length]);
-    angular.element('.twa-prev').html(this.routeList[this.viewIndex -2 % this.routeList.length]);   
+  angular.element('.twa-next').html(this.routeList[this.viewIndex % this.routeList.length]);
+  angular.element('.twa-prev').html(this.routeList[this.viewIndex -2 % this.routeList.length]);   
             $location.path(view); // path not hash
           };
           $scope.currentView = ($location.path() === "/") ? "home" : $location.path();
