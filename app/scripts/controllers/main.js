@@ -380,12 +380,17 @@
 .controller('TWASubmitCtrl', ['$scope', 'twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,twaHashTagService,twaRestAPI, submitDataService) {
 
 
-
   $scope.sendSelectedHashes = function (collection){
     return _.pluck(_.where(collection, {state:true}),'name');
   }
 
+
   $scope.submitData = submitDataService.processURL ; 
+
+  $scope.twitterShare = function(kw,json){
+    return "https://twitter.com/intent/tweet?button_hashtag=TWA&text=J'ai%20soumis%20ma%20candidature%20pour%20" + kw + "%20"
+    + $scope.sendSelectedHashes(json).join(" ");
+  }
 
 
 

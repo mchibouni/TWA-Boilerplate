@@ -39,7 +39,7 @@
 	<div id="share-area">
 		<ul>
 			<li ng-click="submitData(keyword,sendSelectedHashes(twaHashTags))"  class="share-fb" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
-			<li class="share-tw" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"><a href="https://twitter.com/intent/tweet?button_hashtag=TwitterStories&text=My%20story%20is%20about%20what's%20happening%20today" data-lang="en" data-related="jasoncosta"></a></li>
+			<li class="share-tw" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"><a href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
 	</div>
 

@@ -649,10 +649,11 @@ nav ul li {
   #main-logo {
     position: fixed;
     top: 5%;
-    left: 5%;
+    left: 2%;
     background: url("/images/main-logo.png") no-repeat;
-    width: 143px;
-    height: 125px;
+    width: 9%;
+    height: 15%;
+    background-size: contain;
   }
 
   .red {
@@ -847,13 +848,13 @@ p.about-last {
 
 #tr-header-1 {
   background: url("/images/tr-header-4.png") no-repeat;
-  height: 429px;
-  width: 303px;
+  height: 52%;
+  width: 32%;
   position: fixed;
+  background-size: 100%;
   top: 0;
-  left: 0;
+  left: -10%;
   z-index: -1;
-  background-position-x: 95%;
 }
 
 #tr-header-2 {
