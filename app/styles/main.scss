@@ -92,12 +92,16 @@ footer > div > a {
 }
 div > ul > li > a.only-here  {
   cursor: pointer;
-  display:block;
-  text-decoration:none;
-  padding:5px 10px;
-  font-size:15px;
-  color:#000;
-  color: white; 
+  display: block;
+  text-decoration: none;
+  padding: 5px 10px;
+  font-size: 95%;
+  text-align: center;
+  color: #000;
+  top: -2px;
+  right: 4px;
+  position: relative;
+  color: white;
   font-weight: bold;
 }
 
@@ -106,12 +110,13 @@ div > ul > li > a.only-here  {
 }
 
 div > ul > li.hash-elements{
+  line-height: 100%;
   display: inline-block;
   text-align: center;
   float: left;
-  margin-right: -11px;
-  margin-bottom: 0px;
-  width: 127px;
+  margin-right: -1.5%;
+  margin-bottom: 0.5%;
+  width: 19%;
 }
 
 ul{
@@ -179,9 +184,11 @@ nav {
   background: url("/images/shadowmenu.png") no-repeat;
   height: 85px;
   margin: auto;
-  width: 60%;
+  width: 65%;
+  background-size: contain;
   font-size: 50%;
   line-height: 10px;
+  margin-left: 20%;
 }
 
 
@@ -218,7 +225,7 @@ nav ul li {
     background: #fdca00 !important;
     font-size: 90%;
     white-space: nowrap;
-    height:30px; /* Width and height of top-level nav items */
+    height:27px; /* Width and height of top-level nav items */
     width:90px;
     text-align:center;
     transform: skew(-30deg);
@@ -242,10 +249,12 @@ nav ul li {
   nav ul li a:hover, .parentnav-active {
     background: #0d0e10 !important;
     color: #fdca00;
+    height: 27px;
   }
 
   nav ul li a span:hover {
     color: #fdca00;
+    height: 27px;
   }
 
   .childnav-active {
@@ -255,7 +264,7 @@ nav ul li {
   nav li:hover ul {
     display: block;
     position: absolute;
-    height:30px;
+    height:25px;
     text-decoration: none;
   }
 
@@ -406,15 +415,20 @@ nav ul li {
   }
 
   .result-entry {
-    width: 70%;
+    width: 100%;
+    height: 35%;
   }
 
   .modal-entry-metadata {
     display: inline-block;
+    width: 50%;
   }
 
   div.modal-entry-metadata > span {
     display: block; 
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
   }
 
   .entry-submission-count {
@@ -423,10 +437,12 @@ nav ul li {
   }
 
   .grep-zone { 
+    background: url("/images/bg-sub.jpg") no-repeat;
     display: inline-block;
     height: 90%;
-    width: 30%;
-    border-left: 1px solid #eeeeee; 
+    width: 33%;
+    background-size: cover;
+    border-left: 1px solid #eeeeee;
     overflow: auto;
   }
 
@@ -458,8 +474,12 @@ nav ul li {
   }
 
   .hashtag-grep-entry:hover {
-    color: red;
+    color: #fecb00;
   }
+
+  .hashtag-grep-entry:clicked {
+    color: #fecb00;
+  }  
 
   #contact-form-container > div > * { 
     margin: auto;
@@ -535,9 +555,9 @@ nav ul li {
     width: 40px;
     height: 40px;
     float: left;
+    margin-left: 1%;
+    z-index: 100;
     cursor: pointer;
-    right: 33%;
-    position: fixed;
   }
 
   .parallax-hack { 
@@ -555,7 +575,7 @@ nav ul li {
     background-repeat: no-repeat;
     background-image: url("/images/hash-suggest.png");
     display: block;
-    width: 25%;
+    width: 40%;
     height: 25px;
     text-indent: 30px;
     font-weight: bold;
@@ -615,7 +635,7 @@ nav ul li {
     position: absolute;
     bottom: 2%;
     left: 2%;
-    width: 20%;
+    width: 35%;
     height: 23px;
   }
 
@@ -671,10 +691,13 @@ nav ul li {
 
   .grayed {
     background: url("/images/hash-cat.png") no-repeat;
+    background-size: 100%; 
+    margin-top: 1.5%;
   }
 
   .raw {
     background: url("/images/hash-raw.png") no-repeat;
+    background-size: 100%;
   }
 
   .red-content { 
@@ -878,18 +901,30 @@ p.about-last {
 }
 
 #tr-header-4 {
-  background: url("/images/tr-header-4.png") no-repeat;
-  background-position-x: -22%;
-  height: 429px;
-  width: 303px;
-  position: fixed;
-  top: 0;
-  right: 0;
+ background: url("/images/tr-header-4.png") no-repeat;
+ background-position-x: -22%;
+ background-size: 100%;
+ height: 100%;
+ width: 33%;
+ position: fixed;
+ top: 0;
+ z-index: 1;
+ right: -17%;
 }
 
 #tr-header-4 div:hover {
   -webkit-animation: rotating 0.7s linear;
 
+}
+
+#or-label {
+  top: 30px;
+  background-color: white;
+  position: relative;
+  text-align: center;
+  margin: auto;
+  text-indent: 0%;
+  width: 10%;
 }
 
 .glow-effect {
@@ -1012,8 +1047,9 @@ p.about-last {
   width: 90px;
   height: 90px;
   top: 5%;
-  right: 10%;
+  right: 15%;
   background: url("/images/tr-plax-green.png") no-repeat;
+  z-index: 1;
 }
 
 #tr-plax-red {
@@ -1096,10 +1132,11 @@ ul > li.child-skew {
 
 
 #submission-meta {
+  left: 8%;
   position: relative;
   bottom: -15px;
-  left: 85px;
   cursor: pointer;
+  margin: auto;
   width: 484px;
   height: 122px;
   background: url("/images/soumission.png") no-repeat;
@@ -1173,4 +1210,38 @@ ul > li.child-skew {
   color: #fff !important;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.39);
   -webkit-font-smoothing: antialiased;
+}
+
+#or-container { 
+  position: relative;
+  top: -40px;
+  height: 22px;
+}
+
+#meta-container {
+  width: 550px;
+  height: 450px;
+}
+
+.grayed-vote {
+  background: url("/images/vote-grayed.png");
+  width: 32%;
+  height: 75px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  float: right;
+  margin-top: 2%;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.hr-iterator {
+  margin: -5px 0;
 }

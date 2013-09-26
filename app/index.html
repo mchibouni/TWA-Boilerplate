@@ -63,8 +63,8 @@
             <h2 class="modal-result-descriptor">{{items.length}} Résultats</h2>
             <input type="text" placeholder="Recherche par personne" id="modal-result-filter" ng-model="candidateName"></input>
           </div>
-          <hr>
-          <div class="modal-body">
+          <hr class="no-margin">
+          <div class="modal-body no-padding">
             <div>
               <ul class="result-iterator scroll-pane" ng-init="submissionLabel=[];ipCallbacks=[]">
                 <li class="result-entry" ng-repeat="item in items | orderBy: count | filter : hashfilter | filter: candidateName" ng-animate="
@@ -80,11 +80,12 @@
                   <button ng-init="submissionLabel[$index] = 'Soumettre'" ng-class="{'done' : submissionLabel[$index] === SUBMIT_STRING }" ng-model="submissionLabel[$index]" class="btn btn-submit" ng-click="ipCallbacks[$index] = submitData(item.url,item.hashtags);submissionLabel[$index] = SUBMIT_STRING"><a href ></a>{{submissionLabel[$index]}}<i class="icon-plus-sign icon-white"></i></button>
                   <button class="btn btn-profile"><a target="_blank" href={{item.url}}>Profil</a><i class="icon-user icon-white"></i></button>
                 </div>
-                <hr>
+                <div class="grayed-vote"></div>
+                <hr class="hr-iterator" />
               </li>
             </ul>
           </div>
-          <div class="grep-zone scroll-pane" ui-jq="jScrollPane" ui-options="{showArrows: false,autoReinitialise: true, jScrollPane.VERTICAL_SCROLLBAR_ALWAYS: true, mouseWheelSpeed: 100}" >
+          <div class="grep-zone">
             <span class="red-content">Trier par #</span>
             <ul>
               <li ng-repeat="hashTag in hashTags">
@@ -94,10 +95,6 @@
             </ul>
           </div>
           <!--            Selected: <b>{{ selected.item }}</b> -->
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" ng-click="ok()">OK</button>
-          <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
       </script>
       <div ng-show="selected">Selection from a modal: {{ selected }}</div>
