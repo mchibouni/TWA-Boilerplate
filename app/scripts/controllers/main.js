@@ -399,6 +399,7 @@
   $scope.submitData = submitDataService.processURL ; 
 
   $scope.twitterShare = function(kw,json){
+    console.warn($scope.sendSelectedHashes(json).join(" "));
     return "https://twitter.com/intent/tweet?button_hashtag=TWA&text=J'ai%20soumis%20ma%20candidature%20pour%20" + kw + "%20"
     + $scope.sendSelectedHashes(json).join(" ");
   }
