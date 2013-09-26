@@ -415,8 +415,9 @@ nav ul li {
   }
 
   .result-entry {
-    width: 100%;
+    width: 97%;
     height: 35%;
+    margin-left: 3%;
   }
 
   .modal-entry-metadata {
@@ -448,6 +449,8 @@ nav ul li {
 
   #modal-result-filter {
     display: inline-block;
+    text-indent: 20px;
+    margin-left: 15%;
   }
 
   ul.result-iterator {
@@ -477,7 +480,7 @@ nav ul li {
     color: #fecb00;
   }
 
-  .hashtag-grep-entry:clicked {
+  .hashtag-grep-entry:focus {
     color: #fecb00;
   }  
 
@@ -692,7 +695,6 @@ nav ul li {
   .grayed {
     background: url("/images/hash-cat.png") no-repeat;
     background-size: 100%; 
-    margin-top: 1.5%;
   }
 
   .raw {
@@ -1244,4 +1246,9 @@ ul > li.child-skew {
 
 .hr-iterator {
   margin: -5px 0;
+}
+
+.embed {
+  position: relative;
+  right: 22.2%;
 }

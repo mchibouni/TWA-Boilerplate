@@ -278,24 +278,35 @@
 
 
   $scope.lowercase = angular.lowercase;
-  var blockUI;
+
+
 
   $scope.invokeNag = function() {
-    blockUI = $blockUI.createBlockUI({
+    console.warn("In there");
+    $scope.blockUI = $blockUI.createBlockUI({
 
       // Angular Gurus, I beg for your vehemence.
       innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
 
     });
-    blockUI.blockUI();
-    angular.element(document).bind('click', function() {
-      blockUI.unblockUI();
-      console.log("Success callback - unblocking");
-    });
-  };
+    $scope.blockUI.blockUI();
+  }
+
+  $scope.revokeNag = function(){
+    $scope.blockUI.unblockUI();
+  }
+
   if (!$cookies.firstLogin){
     $scope.invokeNag();
     $cookies.firstLogin = "true";  
+  }
+
+  $scope.nag = function(){
+    $blockUI.createBlockUI({
+      // Angular Gurus, I beg for your vehemence.
+      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
+
+    }).blockUI();
   }
 
   $scope.dispatchNag = function () {
@@ -433,7 +444,7 @@
 .controller('MediaCtrl', ['$scope', function ($scope) {
 
 }])
-var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
+var ModalCtrl = function ($scope, $modal, $log, twaHashTagService,$window) {
 
 
 
@@ -502,7 +513,7 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService) {
   };
 };
 
-var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTagService, twaRestAPI,submitDataService) {
+var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTagService, twaRestAPI,submitDataService,$window) {
 
   $scope.submitData = submitDataService.processURL;
   console.warn($scope.submitData);

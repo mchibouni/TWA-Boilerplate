@@ -23,7 +23,7 @@
       <ul ng-repeat="menuElem in navHash">
         <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
-      <div id="nag-invoke" ng-click='invokeNag()'/>
+      <div id="nag-invoke" ng-click="angular.element('.nag-primary').length ? revokeNag(): invokeNag()"/>
     </nav>
 
     <span ng-cloak ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),'next')">{{routeList[viewIndex % routeList.length]}}</span>
@@ -61,7 +61,7 @@
           </div>
           <div>
             <h2 class="modal-result-descriptor">{{items.length}} Résultats</h2>
-            <input type="text" placeholder="Recherche par personne" id="modal-result-filter" ng-model="candidateName"></input>
+            <input type="text" placeholder="Recherche par personne" id="modal-result-filter" ng-model="candidateName"><i class="icon-search embed"></i></input>
           </div>
           <hr class="no-margin">
           <div class="modal-body no-padding">
