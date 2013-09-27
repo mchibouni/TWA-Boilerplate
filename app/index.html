@@ -27,7 +27,7 @@
     </nav>
 
     <span ng-cloak ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),'next')">{{routeList[viewIndex % routeList.length]}}</span>
-    <span ng-cloak ng-class="{'twa-prev' : viewIndex !== 1 }" ng-click="deferTransition(getPrevViewByName(),'prev')">{{routeList[viewIndex - 2  % routeList.length]}}</span>
+    <span ng-cloak ng-class="{'twa-prev' : viewIndex !== 1 }" ng-click="deferTransition(getPrevViewByName(),'prev')">{{(viewIndex !== 1) ? routeList[viewIndex - 2  % routeList.length] : "" }}</span>
     <div id="main-logo"></div>
 
     

@@ -5,8 +5,9 @@
 	<div class="fancy" id="partial-motive"/>
 
 	<div ng-controller="PartyCtrl">
-		<div class="jury-centered ">Présentée par : </div>
-		<ul class="media-list-override">
+	<div class="jury-skew">
+			<div class="jury-centered jury-unskew">Présentée par : </div>
+		</div>		<ul class="media-list-override">
 			<li class="jury-elem" ng-repeat="pres in presCollection">	
 				<div class="jury-meta-container">	
 					<span class="jury-meta black">{{pres.name}}</span>
@@ -17,7 +18,9 @@
 			</li>
 		</ul>
 
-		<div class="jury-centered">Animée par : </div>
+		<div class="jury-skew">
+			<div class="jury-centered jury-unskew">Animée par : </div>
+		</div>
 
 		<ul class="media-list-override">
 			<li class="jury-elem" ng-repeat="jury in juryCollection">	

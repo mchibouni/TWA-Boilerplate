@@ -801,7 +801,7 @@ li.jury-elem {
 }
 
 .jury-centered {
-  color: red;
+  color: white;
   font-size: 120%;
   font-weight: bold;
   margin-top: 25px;
@@ -1399,4 +1399,22 @@ ul > li.child-skew {
   top: 0;
   z-index: -2;
   right: 11%;
+}
+
+.jury-skew {
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
+  background-color: red; 
+}
+
+.jury-unskew {
+  -webkit-transform: skewX(30deg);
+  -moz-transform: skewX(30deg);
+  -ms-transform: skewX(30deg);
+  -o-transform: skewX(30deg);
+  transform: skewX(30deg);
+  text-indent: 5%;
 }

@@ -130,12 +130,12 @@
   this.getHashList = function() {
     return [
     {name:'#musique',state:false},
-    {name:'#facebook',state:false},
-    {name:'#twitter',state:false} , 
-    {name:'#instragram',state:false},
-    {name:'#foursquare',state:false},
-    {name:'#dessin',state:false},
-    {name:'#soundcloud',state:false},
+    {name:'#politique',state:false},
+    {name:'#geek',state:false} , 
+    {name:'#lifestyle',state:false},
+    {name:'#tanbir',state:false},
+    {name:'#caricature',state:false},
+    {name:'#art',state:false},
     {name:'#blog',state:false},
     {name:'#siteweb',state:false},
     {name:'#satire',state:false},
