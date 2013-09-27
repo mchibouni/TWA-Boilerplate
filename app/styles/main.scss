@@ -1331,6 +1331,10 @@ ul > li.child-skew {
   font-style: oblique;
   font-weight: bold;
   -webkit-transform: skewX(30deg);
+  -moz-transform: skewX(30deg);
+  -ms-transform: skewX(30deg);
+  -o-transform: skewX(30deg);
+  transform: skewX(30deg);
   position: absolute;
   overflow: hidden;
   text-overflow: ellipsis;
