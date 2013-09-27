@@ -582,14 +582,16 @@ nav ul li {
   }
 
   #hash-icon {
-    background-repeat: no-repeat;
     background-image: url("/images/hash-suggest.png");
-    display: block;
-    width: 40%;
-    height: 25px;
-    text-indent: 30px;
-    font-weight: bold;
+    background-repeat: no-repeat;
     cursor: pointer;
+    display: block;
+    font-weight: bold;
+    height: 25px;
+    left: -76px;
+    position: relative;
+    text-indent: 30px;
+    width: 40%;
   }
 
   #hash-suggest {
@@ -1143,15 +1145,15 @@ ul > li.child-skew {
 
 
 #submission-meta {
-  left: 8%;
-  position: relative;
-  bottom: -15px;
+  background: url("/images/soumission.png") no-repeat scroll 0 0 / contain transparent;
+  bottom: -16px;
   cursor: pointer;
+  height: 96px;
+  left: 8%;
   margin: auto;
+  position: relative;
   width: 484px;
-  height: 122px;
-  background: url("/images/soumission.png") no-repeat;
-  background-size: contain;
+  z-index: 2;
 }
 
 #submission-meta > p {
@@ -1350,3 +1352,4 @@ ul > li.child-skew {
   z-index: -2;
   right: 9%;
 }
+
