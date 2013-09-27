@@ -352,7 +352,7 @@ $scope.deferTransition = function(view,which){
   $('.fancy').fadeTo(300,0.5,$scope.easeInQuart);
   $('.main-container').animate({'left':'-75%'},function(){
     $scope.changeView(view,which);
-    $(this).css('left','0%').animate({'left':'30%'});
+    $(this).css('left','0%').animate({'left':'21%'});
     console.warn ($scope.viewIndex);
     $scope.safeApply();  
   });

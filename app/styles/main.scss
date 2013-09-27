@@ -801,7 +801,6 @@ li.jury-elem {
 }
 
 .jury-centered {
-  text-align: center;
   color: red;
   font-size: 120%;
   font-weight: bold;
@@ -966,19 +965,18 @@ p.about-last {
 #partial-motive {
   background-image: url("/images/bg-motive.png");
   position: fixed;
-  right: 0; 
+  right: 0;
   top: 0;
   height: 100%;
-  width: 37.5%;
+  width: 34.5%;
+  background-repeat: no-repeat;
 }
 
 .overlay {
-  background: url('/images/bg-motive.png') no-repeat 237% center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  animation: slide 0.3s linear 0s; 
+background: url("/images/bg-motive.png") no-repeat 116% center fixed;
+background-size: 140% 100%;
+-webkit-animation: slide 0.3s linear 0s;
+animation: slide 0.3s linear 0s;
 }
 
 .about-text {
@@ -1379,4 +1377,26 @@ ul > li.child-skew {
   opacity: 0;
   top: -50px;
   height: 0px;
+}
+
+#media-header-1 {
+  background: url("/images/media-header-1.png") no-repeat;
+  height: 25%;
+  width: 22%;
+  position: fixed;
+  background-size: 100%;
+  top: 0;
+  z-index: -2;
+  right: 29%;
+}
+
+#media-header-2 {
+  background: url("/images/media-header-2.png") no-repeat;
+  height: 33%;
+  width: 34%;
+  position: fixed;
+  background-size: 100%;
+  top: 0;
+  z-index: -2;
+  right: 11%;
 }
