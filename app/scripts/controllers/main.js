@@ -22,8 +22,6 @@
                 // to the $httpProvider
                 console.warn("IN THERE");
                 $httpProvider.defaults.headers.common['Authorization'] = "Bearer " + response.access_token;
-                $httpProvider.defaults.useXDomain = true;
-                delete $httpProvider.defaults.headers.common['X-Requested-With'];
               }).error(function (response) {
                   // error handling to some meaningful extent
                 })
