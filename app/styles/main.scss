@@ -1407,12 +1407,12 @@ ul > li.child-skew {
 #media-header-2 {
   background: url("/images/media-header-2.png") no-repeat;
   height: 33%;
-  width: 34%;
+  width: 31%;
   position: fixed;
   background-size: 100%;
   top: 0;
   z-index: -2;
-  right: 11%;
+  right: 13.5%;
 }
 
 .jury-skew {
@@ -1431,4 +1431,15 @@ ul > li.child-skew {
   -o-transform: skewX(30deg);
   transform: skewX(30deg);
   text-indent: 5%;
+}
+
+#tr-media-footer {
+  background: url("/images/tr-media-footer.png") no-repeat;
+  background-size: 100%;
+  position: fixed;
+  bottom: 8%;
+  right: -6%;
+  width: 24%;
+  height: 45%;
+  z-index: 1;
 }

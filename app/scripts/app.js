@@ -73,20 +73,20 @@ angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui
        }]).
 run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
-  $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
-    $rootScope.routeList = ['Home','About','Media','Jury','Soirée','Contact'];
-    $location.hash($routeParams.scrollTo);
-    $anchorScroll();  
-    $rootScope.initViewIndex = function(){     
-     /* angular.forEach(this.routeList,function(v,k){
-       if (angular.lowercase(v) === $location.path().replace('/',''))
-        {
-          console.warn("MATCH" + angular.lowercase(v));
-          return k + 1 ; 
-        }
-      })
-      return 1;
-      */
+  $rootScope.routeList = ['Home','About','Media','Jury','Soirée','Contact'];
+
+  $rootScope.$on('$locationChangeStart', function (nextLocation, currentLocation) {
+    console.warn("ROOT CHANGE ! ");
+    $('.fancy').fadeTo(300,0.5,"default");
+    $('.main-container').animate({'left':'-75%'},function(){
+      $(this).css('left','0%').animate({'left':'25%'});
+    })
+  });
+
+    $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
+      $location.hash($routeParams.scrollTo);
+      $anchorScroll();  
+      $rootScope.initViewIndex = function(){     
       return this.routeList.indexOf(_.find(this.routeList,function(elt){
         if ($location.path() === '/') return 'home';
         return angular.lowercase(elt) ===  $location.path().replace('/','');

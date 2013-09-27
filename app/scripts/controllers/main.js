@@ -336,27 +336,16 @@ $scope.safeApply = function(fn) {
   }
 };
 
-$scope.safeApply = function(fn) {
-  var phase = this.$root.$$phase;
-  if(phase == '$apply' || phase == '$digest') {
-    if(fn && (typeof(fn) === 'function')) {
-      fn();
-    }
-  } else {
-    this.$apply(fn);
-  }
-};
 
 $scope.deferTransition = function(view,which){
   console.warn($scope.viewIndex);
-  $('.fancy').fadeTo(300,0.5,$scope.easeInQuart);
+/*  $('.fancy').fadeTo(300,0.5,$scope.easeInQuart);
   $('.main-container').animate({'left':'-75%'},function(){
-    $scope.changeView(view,which);
     $(this).css('left','0%').animate({'left':'21%'});
     console.warn ($scope.viewIndex);
-    $scope.safeApply();  
-  });
+    $scope.safeApply();  */
 
+    $scope.changeView(view,which);
 };
 
 
