@@ -1301,11 +1301,11 @@ ul > li.child-skew {
 
 .jury-adden:hover {
   background-color: #fdca00;
-  -webkit-transform: skewX(-30deg)
-  -moz-transform: skewX(-30deg)
-  -ms-transform: skewX(-30deg)
-  -o-transform: skewX(-30deg)
-  transform: skewX(-30deg)
+  -webkit-transform: skewX(-30deg);
+  -moz-transform: skewX(-30deg);
+  -ms-transform: skewX(-30deg);
+  -o-transform: skewX(-30deg);
+  transform: skewX(-30deg);
   -webkit-transition: opacity 0.5s;
   -moz-transition: opacity 0.5s;
   -ms-transition: opacity 0.5s;
