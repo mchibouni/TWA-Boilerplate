@@ -885,7 +885,7 @@ p.about-last {
 
 #tr-header-1 {
   background: url("/images/tr-header-4.png") no-repeat;
-  height: 54%;
+  height: 60%;
   width: 33%;
   position: fixed;
   background-size: 103%;
@@ -1301,8 +1301,16 @@ ul > li.child-skew {
 
 .jury-adden:hover {
   background-color: #fdca00;
-  -webkit-transform: skewX(-30deg);
+  -webkit-transform: skewX(-30deg)
+  -moz-transform: skewX(-30deg)
+  -ms-transform: skewX(-30deg)
+  -o-transform: skewX(-30deg)
+  transform: skewX(-30deg)
   -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s;
   opacity: 1;
   color: black;
 }
