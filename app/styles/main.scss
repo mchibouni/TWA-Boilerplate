@@ -12,6 +12,11 @@ html, body {
   font-family: "Titillium Web", Helvetica, Arial, sans-serif;
 }
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+
 @-webkit-keyframes slide
 {
   100%   {background-position:-255px 0;}
@@ -370,6 +375,7 @@ nav ul li {
 
   .main-btn {
     background-repeat: no-repeat;
+    background-size: 100%;
     display: inline-block;
     width: 92px;
     height: 90px;

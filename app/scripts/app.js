@@ -37,8 +37,8 @@ angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui
   });  
 })
 .config(['$httpProvider', function($httpProvider) {
-  $httpProvider.defaults.useXDomain = true;
-  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+//  $httpProvider.defaults.useXDomain = true;
+//  delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
 .directive('uiScroll',['ui.config', function(uiConfig) {
   'use strict';

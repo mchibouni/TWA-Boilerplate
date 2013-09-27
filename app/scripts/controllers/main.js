@@ -20,6 +20,7 @@
                 // a successful response will return
                 // the "bearer" token which is registered
                 // to the $httpProvider
+                console.warn("IN THERE");
                 $httpProvider.defaults.headers.common['Authorization'] = "Bearer " + response.access_token;
                 $httpProvider.defaults.useXDomain = true;
                 delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -159,6 +160,14 @@
     ]
   }
 }])
+.directive('ngOverlay', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      console.warn(iElement.data('index'));
+    }
+  };
+}])
 .directive('ngMotivic', [function () {
   return {
     link: function (scope, element, iAttrs) {
@@ -258,7 +267,7 @@
     $scope.timerRunning = false;
   };
 })
-.controller('MainCtrl', function ($http,$q,$scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService) {
+.controller('MainCtrl', function ($http,$q,$scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService,twitter) {
 
   $scope.hashtags = twaRestAPI.retrieveAllHashTags().query(null);
 
@@ -410,8 +419,9 @@ $scope.changeView = function(view,which){
            return angular.lowercase(navHash[(currentIdx - 1) % navHash.length].name);
          }
        })
-.controller('TWASubmitCtrl', ['$scope', 'twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,twaHashTagService,twaRestAPI, submitDataService) {
+.controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService) {
 
+  $scope.$window = $window;
 
   $scope.sendSelectedHashes = function (collection){
     return _.pluck(_.where(collection, {state:true}),'name');
@@ -421,9 +431,8 @@ $scope.changeView = function(view,which){
   $scope.submitData = submitDataService.processURL ; 
 
   $scope.twitterShare = function(kw,json){
-    console.warn($scope.sendSelectedHashes(json).join(" "));
-    return "https://twitter.com/intent/tweet?button_hashtag=TWA&text=J'ai%20soumis%20ma%20candidature%20pour%20" + kw + "%20"
-    + $scope.sendSelectedHashes(json).join(" ");
+    console.warn($scope.sendSelectedHashes(json).join(',').replace(/#/g,''));
+    return "https://twitter.com/intent/tweet?url="+kw+"&text=J'ai+Soumis&hashtags="+$scope.sendSelectedHashes(json).join(',').replace(/#/g,'')+',TWA';
   }
 
 
