@@ -854,15 +854,16 @@ p.about-last {
 }
 
 #jury-container {
-  width: 74%;
+  width: 100%;
   margin: auto;
 }
 
 .jury-sep {
   color: white;
-  margin-top: 30px;
-  margin-bottom: 30px;
   font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .contact-submit {
@@ -973,10 +974,10 @@ p.about-last {
 }
 
 .overlay {
-background: url("/images/bg-motive.png") no-repeat 116% center fixed;
-background-size: 140% 100%;
--webkit-animation: slide 0.3s linear 0s;
-animation: slide 0.3s linear 0s;
+  background: url("/images/bg-motive.png") no-repeat 116% center fixed;
+  background-size: 140% 100%;
+  -webkit-animation: slide 0.3s linear 0s;
+  animation: slide 0.3s linear 0s;
 }
 
 .about-text {
@@ -1315,6 +1316,7 @@ ul > li.child-skew {
   height: 100%;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
 }
 
 .jury-adden > p {
