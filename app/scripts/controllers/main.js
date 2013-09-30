@@ -30,41 +30,68 @@
             console.warn("in there");
 
             $http.post('http://www.kanalabs.com:8080/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
+              $('<div/>',{class:"alert"}).html("Votre soumission a été reçue, Merci d'avoir participé !")
+              .css({
+                'z-index' : '9999',
+                'text-align' : 'center',
+                'opacity' : '1',
+                'position' : 'fixed',
+                'display' : 'none',
+                'width' : '60%',
+                'right' : '20%',
+                'top' : '10%'
+              })
+              .appendTo($('body')).fadeIn('fast',function(){
+                $(this).fadeOut(6000);
+              });
               console.log("success");
             });
           }
           else {
-            alert("Vous avez déjà soumis cette URL");
+            $('<div/>',{class:"alert"}).html('Vous avez déjà soumis cette URL')
+            .css({
+              'z-index' : '9999',
+              'text-align' : 'center',
+              'opacity' : '1',
+              'position' : 'fixed',
+              'display' : 'none',
+              'width' : '60%',
+              'right' : '20%',
+              'top' : '10%'
+            })
+            .appendTo($('body')).fadeIn('fast',function(){
+              $(this).fadeOut(5000);
+            })
           }
         });
-      } 
-    }
-  }])
-  .service('submitDataService', ['$rootScope','authStrategyService','processURLService','$http','$resource',function ($rootScope,authStrategyService,processURLService,$http,$resource) {
-    return {  processURL : function (url, hashes) {
+} 
+}
+}])
+.service('submitDataService', ['$rootScope','authStrategyService','processURLService','$http','$resource',function ($rootScope,authStrategyService,processURLService,$http,$resource) {
+  return {  processURL : function (url, hashes) {
 
-      _.each(authStrategyService,function(element){
-        console.warn(element);
-        if (element.regex.test(url)){
-          console.warn("PROVIDER FOUND " + element.provider);
-          $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
-            alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
-            console.warn("ERROR!");
-          })
-          .then(function(response){
-            console.warn("ACCESSING PROVIDER FIRST TIME");
-            processURLService.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
-          });
-        }
-        else {
-          $resource("http://www.kanalabs.com\\:8080/meta/:url").get({url:url},function(response){
-            console.warn("ACCESSING PROVIDER SECOND TIME");
-            processURLService.submitData(url,hashes,response.profile,response.image);
-          })
-        }
-      });
-    }
+    _.each(authStrategyService,function(element){
+      console.warn(element);
+      if (element.regex.test(url)){
+        console.warn("PROVIDER FOUND " + element.provider);
+        $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
+          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
+          console.warn("ERROR!");
+        })
+        .then(function(response){
+          console.warn("ACCESSING PROVIDER FIRST TIME");
+          processURLService.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
+        });
+      }
+      else {
+        $resource("http://www.kanalabs.com\\:8080/meta/:url").get({url:url},function(response){
+          console.warn("ACCESSING PROVIDER SECOND TIME");
+          processURLService.submitData(url,hashes,response.profile,response.image);
+        })
+      }
+    });
   }
+}
 }])
 .service('navMenuRawData', [function () {
   this.navHash = function(){
@@ -398,14 +425,12 @@ $scope.deferTransition = function(view,which){
 
   $scope.$window = $window;
   $scope.clicked = false;  
-  $scope.sendSelectedHashes = function (collection){
-    return _.pluck(_.where(collection, {state:true}),'name');
-  }
+
 
 
   $scope.submitData = submitDataService.processURL ; 
 
- 
+
 
 
 

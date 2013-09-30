@@ -777,19 +777,20 @@ div.modal-entry-metadata > button > i {
   text-align: center;
   background-position: center;
   background-size: 100% 150%;
-  width: 70%;
+  width: 110%;
 }
 
 .white {
   color: white;
   background-image: url("/images/jury-label.png");
-  background-repeat: no-repeat;  
+  background-repeat: no-repeat;
   background-position: center;
   width: 100%;
+  margin-left: -21%;
 }
 
 .black {
-  margin-left: 33%;
+  margin-left: -2%;
 }
 
 .jury-meta-container {
@@ -1565,17 +1566,17 @@ div.obstrusive-shr > ul > li {
   cursor: pointer; 
 }
 .share-fb-mod {
-background: url("/images/share-fb-mod.png") no-repeat;
-background-size: contain;
-height: 19px;
-position: relative;
-left: -5%;
+  background: url("/images/share-fb-mod.png") no-repeat;
+  background-size: contain;
+  height: 19px;
+  position: relative;
+  left: -5%;
 }
 
 .share-tw-mod {
-background: url("/images/share-tw-mod.png") no-repeat;
-background-size: contain;
-height: 19px;
-position: relative;
-left: -25%;
+  background: url("/images/share-tw-mod.png") no-repeat;
+  background-size: contain;
+  height: 19px;
+  position: relative;
+  left: -25%;
 }
