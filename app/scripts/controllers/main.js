@@ -6,113 +6,64 @@
   'use strict';
 
   var app = angular.module('twaAutocompletionApp')
-  .factory('twitter', function ($resource, $http) {
-    var consumerKey = encodeURIComponent('83EezbF5PeegDgA1YF4Yw')
-    var consumerSecret = encodeURIComponent('LCs9kOjJZKYSJtL5mkl1U83ED8pbm8dKyIluI4dzOk')
-    var credentials = btoa(consumerKey + ':' + consumerSecret)
-            // Twitters OAuth service endpoint
-            var twitterOauthEndpoint = $http.post(
-              'https://api.twitter.com/oauth2/token'
-              , "grant_type=client_credentials"
-              , {headers: {'Authorization': 'Basic ' + credentials, 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'}}
-              )
-            twitterOauthEndpoint.success(function (response) {
-                // a successful response will return
-                // the "bearer" token which is registered
-                // to the $httpProvider
-                console.warn("IN THERE");
-                $httpProvider.defaults.headers.common['Authorization'] = "Bearer " + response.access_token;
-              }).error(function (response) {
-                  // error handling to some meaningful extent
-                })
+  .service('authStrategyService',[function(){
 
-              var r = $resource('https://api.twitter.com/1.1/search/:action',
-                {action: 'tweets.json',
-                count: 10,
-              },
-              {
-               paginate: {method: 'GET'}
-             })
-              return r;
-            })
-.service('authStrategyService',[function(){
-
-  return [
-  {
-    provider:"facebook", 
-    regex: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/,
-    RestNameURI : function(name){
-      return ('http://graph.facebook.com/'+name+'?fields=name');
-    },
-    RestPictureURI: function(name){
-      return ('http://graph.facebook.com/'+name+'/picture?type=normal');
+    return [
+    {
+      provider:"facebook", 
+      regex: /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/,
+      RestNameURI : function(name){
+        return ('http://graph.facebook.com/'+name+'?fields=name');
+      },
+      RestPictureURI: function(name){
+        return ('http://graph.facebook.com/'+name+'/picture?type=normal');
+      }
     }
-  },
-  {
-    provider:"twitter",
-    regex: /TODO/,
-  },
-  {
-    provider:"foursquare", 
-    regex: /TODO/,
-  },
-  {
-    provider:"instagram", 
-    regex: /TODO/,
-    RestNameURI: function (name){
-      return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
-    },
-    RestPictureURI: function (name){
-      return "https://api.instagram.com/v1/users/search?q="+name+"&count=1&access_token=145074565.f59def8.f64188f9bcaf4a1a9b6ff35828e6222b"
+    ];
+  }])
+  .service('processURLService', ['$resource','authStrategyService', '$http', function($resource,authStrategyService,$http){
+    return { 
+
+      submitData : function (url,hashtags, metadata, imgurl, count) {
+        $resource("http://www.kanalabs.com\\:8080/twa/check/:url").get({url:url},function(data){
+          if ( data.callback === true ) {
+            console.warn("in there");
+
+            $http.post('http://www.kanalabs.com:8080/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
+              console.log("success");
+            });
+          }
+          else {
+            alert("Vous avez déjà soumis cette URL");
+          }
+        });
+      } 
     }
-  },
-  {
-    provider:"soundcloud", 
-    regex: /TODO/,
-  },
-  {
-    provider:"noname", 
-    regex: /TODO/,
-  }
-  ];
-}])
-.service('processURLService', ['$resource','authStrategyService', '$http', function($resource,authStrategyService,$http){
-  return { 
+  }])
+  .service('submitDataService', ['$rootScope','authStrategyService','processURLService','$http','$resource',function ($rootScope,authStrategyService,processURLService,$http,$resource) {
+    return {  processURL : function (url, hashes) {
 
-    submitData : function (url,hashtags, metadata, imgurl, count) {
-      $resource("http://www.kanalabs.com\\:8080/twa/check/:url").get({url:url},function(data){
-        if ( data.callback === true ) {
-          console.warn("in there");
-
-          $http.post('http://www.kanalabs.com:8080/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
-            console.log("success");
+      _.each(authStrategyService,function(element){
+        console.warn(element);
+        if (element.regex.test(url)){
+          console.warn("PROVIDER FOUND " + element.provider);
+          $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
+            alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
+            console.warn("ERROR!");
+          })
+          .then(function(response){
+            processURLService.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
           });
         }
         else {
-          alert("Vous avez déjà soumis cette URL");
+          $resource("http://www.kanalabs.com\\:8080/meta/:url").get({url:url},function(response){
+            console.warn(response);
+            processURLService.submitData(url,hashes,response.profile,response.image);
+          })
         }
       });
-    } 
+    }
   }
-}])
-.service('submitDataService', ['$rootScope','authStrategyService','processURLService','$http',function ($rootScope,authStrategyService,processURLService,$http) {
-  return {  processURL : function (url, hashes) {
-
-    _.each(authStrategyService,function(element){
-      console.warn(element);
-      if (element.regex.test(url)){
-        console.warn("PROVIDER FOUND " + element.provider);
-        $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
-          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
-          console.warn("ERROR!");
-        })
-        .then(function(response){
-          processURLService.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
-        });
-      }
-    });
-  }
-}
 }])
 .service('navMenuRawData', [function () {
   this.navHash = function(){
@@ -163,6 +114,30 @@
     restrict: 'A',
     link: function (scope, iElement, iAttrs) {
       console.warn(iElement.data('index'));
+    }
+  };
+}])
+.directive('ngFaulty', [function(){
+  // Runs during compile
+  return {
+    restrict: 'A',
+    // name: '',
+    // priority: 1,
+    // terminal: true,
+    // scope: {}, // {} = isolate, true = child, false/undefined = no change
+    // cont­rol­ler: function($scope, $element, $attrs, $transclue) {},
+    // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+    // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+    // template: '',
+    // templateUrl: '',
+    // replace: true,
+    // transclude: true,
+    // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+    link: function($scope, iElm, iAttrs, controller) {
+      iElm.error(function(){
+        iElm.attr('src',iElm.css('background-image').match(/\((.*)\)/)[1]);
+        iElm.css('background-image','none');
+      })
     }
   };
 }])
@@ -265,7 +240,7 @@
     $scope.timerRunning = false;
   };
 })
-.controller('MainCtrl', function ($http,$q,$scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService,twitter) {
+.controller('MainCtrl', function ($http,$q,$scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService) {
 
   $scope.hashtags = twaRestAPI.retrieveAllHashTags().query(null);
 
@@ -346,27 +321,27 @@ $scope.deferTransition = function(view,which){
     $scope.safeApply();  */
 
     $scope.changeView(view,which);
-};
+  };
 
 
-$scope.changeView = function(view,which){
+  $scope.changeView = function(view,which){
 
 
-  console.warn(this.viewIndex);
+    console.warn(this.viewIndex);
 
-  if (which === "next") {
-    this.viewIndex ++ ;
-  }
-  else if (which === "prev") {
-    this.viewIndex -- ;
-  }
-  else {
-    this.viewIndex = which ; 
-  }
+    if (which === "next") {
+      this.viewIndex ++ ;
+    }
+    else if (which === "prev") {
+      this.viewIndex -- ;
+    }
+    else {
+      this.viewIndex = which ; 
+    }
 
 
-  angular.element('.twa-next').html(this.routeList[this.viewIndex % this.routeList.length]);
-  angular.element('.twa-prev').html(this.routeList[this.viewIndex -2 % this.routeList.length]);   
+    angular.element('.twa-next').html(this.routeList[this.viewIndex % this.routeList.length]);
+    angular.element('.twa-prev').html(this.routeList[this.viewIndex -2 % this.routeList.length]);   
             $location.path(view); // path not hash
           };
           $scope.currentView = ($location.path() === "/") ? "home" : $location.path();

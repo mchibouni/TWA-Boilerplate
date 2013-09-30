@@ -68,7 +68,7 @@
             <div>
               <ul class="result-iterator scroll-pane" ng-init="submissionLabel=[];ipCallbacks=[]">
                 <li class="result-entry" ng-repeat="item in items | orderBy: count | filter : hashfilter | filter: candidateName" ng-animate="'li-animate'">
-                <img class="modal-result-circular-image" src={{item.imguri}} />
+                <img class="modal-result-circular-image" ng-faulty src={{item.imguri}} />
                 <div class="modal-entry-metadata">
                   <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
                   <span class="entry-submission-count">( {{item.count}} Soumissions)</span>
