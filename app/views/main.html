@@ -42,8 +42,8 @@
 
 	<div id="share-area">
 		<ul>
-			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)).then(invokeDialog('test')))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
-			<li class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
+			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags))).then(invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
+			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
 	</div>
 

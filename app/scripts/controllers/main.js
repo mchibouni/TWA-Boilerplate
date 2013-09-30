@@ -52,12 +52,13 @@
             console.warn("ERROR!");
           })
           .then(function(response){
+            console.warn("ACCESSING PROVIDER FIRST TIME");
             processURLService.submitData(url,hashes,response.data.name,element.RestPictureURI(url.match(element.regex)[1]));
           });
         }
         else {
           $resource("http://www.kanalabs.com\\:8080/meta/:url").get({url:url},function(response){
-            console.warn(response);
+            console.warn("ACCESSING PROVIDER SECOND TIME");
             processURLService.submitData(url,hashes,response.profile,response.image);
           })
         }
@@ -108,6 +109,18 @@
     {name:'#citoyen',state:false}
     ]
   }
+}])
+.directive('ngExpand', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.find('button').on('click',function(){
+        //iElement.find('hr').animate({'margin-top':'6%'},200,'swing');
+        iElement.animate({'height':'47%'},200,'swing'); 
+        iElement.find('.obstrusive-shr').fadeIn();       
+      })
+    }
+  };
 }])
 .directive('ngOverlay', [function () {
   return {
@@ -384,7 +397,7 @@ $scope.deferTransition = function(view,which){
 .controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService) {
 
   $scope.$window = $window;
-
+  $scope.clicked = false;  
   $scope.sendSelectedHashes = function (collection){
     return _.pluck(_.where(collection, {state:true}),'name');
   }

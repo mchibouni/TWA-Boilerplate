@@ -1545,8 +1545,36 @@ form.contact {
   background: url("/images/tr-middle-contact.png") no-repeat;
   position: fixed;
   left: 15%;
-  top: 40%;
-  width: 10%;
-  height: 10%;
+  top: 29%;
+  width: 25%;
+  height: 48%;
   background-size: contain;
+}
+
+.obstrusive-shr {
+  position: relative;
+  top: -18%;
+  display: none;
+}
+
+div.obstrusive-shr > ul > li {
+  display: inline-block; 
+  width: 17%;
+  margin-top: 3%;
+  margin-left: 19%;
+}
+.share-fb-mod {
+background: url("/images/share-fb-mod.png") no-repeat;
+background-size: cover;
+height: 19px;
+position: relative;
+left: -5%;
+}
+
+.share-tw-mod {
+background: url("/images/share-tw-mod.png") no-repeat;
+background-size: cover;
+height: 19px;
+position: relative;
+left: -25%;
 }
