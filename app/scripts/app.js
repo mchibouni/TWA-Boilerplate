@@ -33,7 +33,7 @@ angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui
 .config(function ($FBProvider) {
   $FBProvider.setInitParams({
     // This is my FB app id for plunker demo app
-    appId: '452487374865553'
+    appId: '536088209798325'
   });  
 })
 .config(['$httpProvider', function($httpProvider) {
