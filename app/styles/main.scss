@@ -1280,6 +1280,15 @@ ul > li.child-skew {
   right: 27%;
 }
 
+#tr-black-footer-alt {
+  background: url("/images/tr-black-footer.png");
+  position: fixed; 
+  width: 73px;
+  height: 69px;
+  top: 15%;
+  right: 27%;
+}
+
 #tr-footer-about {
   background: url("/images/tr-footer-about.png");
   width: 110px;
@@ -1529,6 +1538,17 @@ ul > li.child-skew {
   background-size: contain;
 }
 
+#tr-red-3-alt {
+  position: fixed;
+  background: url("/images/tr-media-footer.png") no-repeat;
+  width: 15%;
+  height: 18%;
+  right: 12.5%;
+  bottom: 2%;
+  z-index: 10;
+  background-size: contain;
+}
+
 .grayscale {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+, Firefox on Android */
   filter: gray; /* IE6-9 */
@@ -1618,4 +1638,30 @@ timer > div.ng-binding {
   margin-left: 17%;
   height: 30px;
   width: 100%;
+}
+
+#tr-footer-6 {
+  background: url("/images/tr-footer-6.png") no-repeat;
+  position: fixed;
+  left: -8%;
+  bottom: 0%;
+  width: 22%;
+  z-index: -1;
+  height: 20%;
+  background-size: contain;
+}
+
+#tr-footer-7 {
+  background: url("/images/tr-footer-7.png") no-repeat;
+  position: fixed;
+  right: 16%;
+  bottom: 0%;
+  width: 24%;
+  z-index: 100;
+  height: 10%;
+  background-size: contain;
+}
+
+.altered {
+  top: 70%;
 }
