@@ -1,6 +1,6 @@
 
 
-<div ng-controller="TWASubmitCtrl">
+<form name="prompt" id="prompt" ng-controller="TWASubmitCtrl">
 		<div class="fancy" id="tr-header-1" />
 	<div class="fancy" id="tr-header-2"/>
 	<div class="fancy" id="tr-header-3"/>
@@ -18,8 +18,8 @@
 	</div>
 	<label class="prompt" for="submission-fill">Tapez l'adresse URL de votre Candidat</label>
 	<label  class="meta-prompt">example: www.facebook.com/flenbenfoulen</label>
-	<div id="fillform-container" class="child-skew red">
-		<input  id="fillform"  class="unskew-text full " type="text" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
+	<div id="fillform-container"  class="child-skew red">
+		<input  id="fillform"  name="fillform" class="unskew-text full " type="url" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
 	</div>
 	<div class="choice-container">
 		<ul ng-repeat="twaElem in twaHashTags">
@@ -42,12 +42,12 @@
 
 	<div id="share-area">
 		<ul>
-			<li ng-click="submitData(keyword,sendSelectedHashes(twaHashTags))"  class="share-fb" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
-			<li class="share-tw" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"><a href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
+			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)).then(invokeDialog('test')))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
+			<li class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
 	</div>
 
-</div>
+</form>
 
 <script type="text/ng-template" id="hashtag.html">
 	<div class="center">
