@@ -405,10 +405,7 @@ $scope.deferTransition = function(view,which){
 
   $scope.submitData = submitDataService.processURL ; 
 
-  $scope.twitterShare = function(kw,json){
-    console.warn($scope.sendSelectedHashes(json).join(',').replace(/#/g,''));
-    return "https://twitter.com/intent/tweet?url="+kw+"&text=J'ai+Soumis&hashtags="+$scope.sendSelectedHashes(json).join(',').replace(/#/g,'')+',TWA';
-  }
+ 
 
 
 

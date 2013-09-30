@@ -1562,10 +1562,11 @@ div.obstrusive-shr > ul > li {
   width: 17%;
   margin-top: 3%;
   margin-left: 19%;
+  cursor: pointer; 
 }
 .share-fb-mod {
 background: url("/images/share-fb-mod.png") no-repeat;
-background-size: cover;
+background-size: contain;
 height: 19px;
 position: relative;
 left: -5%;
@@ -1573,7 +1574,7 @@ left: -5%;
 
 .share-tw-mod {
 background: url("/images/share-tw-mod.png") no-repeat;
-background-size: cover;
+background-size: contain;
 height: 19px;
 position: relative;
 left: -25%;

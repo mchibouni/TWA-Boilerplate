@@ -97,6 +97,15 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
       })) + 1 ;
     }
 
+    $rootScope.sendSelectedHashes = function (collection){
+      return _.pluck(_.where(collection, {state:true}),'name');
+    }
+
+    $rootScope.twitterShare = function(kw,json){
+      console.warn(this.sendSelectedHashes(json).join(',').replace(/#/g,''));
+      return "https://twitter.com/intent/tweet?url="+kw+"&text=J'ai+Soumis&hashtags="+this.sendSelectedHashes(json).join(',').replace(/#/g,'')+',TWA';
+    }
+
     $rootScope.invokeDialog = function(item){
       $FB.ui(
       {
@@ -105,8 +114,8 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
       name: 'Tunisiana Web Awards 2013', // name of the product or content you want to share
       link: 'https://tunisiana.web.awards:9000', // link back to the product or content you are sharing
       picture: 'http://fbrell.com/f8.jpg', // path to an image you would like to share with this content
-      caption: 'Phase de soumissions : ', // caption
-      description: "J'ai soumis le candidat" + item.name // description of your product or content
+      caption: 'Phase de soumission : ', // caption
+      description: "J'ai soumis le candidat " + item + "#TWA" // description of your product or content
     },
     function(response) {
       if (response && response.post_id) {
