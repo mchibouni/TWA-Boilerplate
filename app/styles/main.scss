@@ -841,9 +841,11 @@ li.jury-elem {
 
 li.about-li {
   display: inline-block;
+  margin-left: 5%;
 }
 
 .about-link-container {
+  margin-top: 6%;
   color: white;
   font-weight: bold;
 }
@@ -1579,4 +1581,41 @@ div.obstrusive-shr > ul > li {
   height: 19px;
   position: relative;
   left: -25%;
+}
+
+#tr-end {
+  background: url("/images/tr-end.png") no-repeat;
+  background-size: cover;
+  position: fixed;
+  right: 0%;
+  top: 0%;
+  height: 100%;
+  width: 37%;
+}
+
+#tr-header-end {
+  background: url("/images/tr-header-end.png") no-repeat;
+  position: fixed;
+  right: -16%;
+  top: 0%;
+  height: 41%;
+  width: 31%;
+  background-size: contain;
+}
+
+div.timer-meta > span {
+  margin-left: 4%;
+}
+
+timer > div.ng-binding {
+  letter-spacing: 1px;
+  font-size: 100%;
+  text-indent: 2%;
+}
+
+#about-blur {
+  background: url("/images/about-blur.png") no-repeat;
+  margin-left: 17%;
+  height: 30px;
+  width: 100%;
 }

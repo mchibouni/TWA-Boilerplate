@@ -113,7 +113,7 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
         method: 'feed',
       name: 'Tunisiana Web Awards 2013', // name of the product or content you want to share
       link: 'https://tunisiana.web.awards:9000', // link back to the product or content you are sharing
-      picture: 'http://fbrell.com/f8.jpg', // path to an image you would like to share with this content
+      picture: 'http://kanalabs.com:9000/images/main-logo.png', // path to an image you would like to share with this content
       caption: 'Phase de soumission : ', // caption
       description: "J'ai soumis le candidat " + item + "#TWA" // description of your product or content
     },
