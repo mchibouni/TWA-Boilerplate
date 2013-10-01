@@ -309,21 +309,24 @@
 
   $scope.lowercase = angular.lowercase;
 
+  var blockUI ;  
 
 
   $scope.invokeNag = function() {
     console.warn("In there");
-    $scope.blockUI = $blockUI.createBlockUI({
+    blockUI = $blockUI.createBlockUI({
 
       // Angular Gurus, I beg for your vehemence.
       innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
 
     });
-    $scope.blockUI.blockUI();
-  }
+    blockUI.blockUI();
 
-  $scope.revokeNag = function(){
-    $scope.blockUI.unblockUI();
+    // Hack to stop click propagation. Dirt.
+
+    setTimeout(function(){
+      $('body').click(function(){$scope.dispatchNag();$(this).unbind("click")});
+    },200);
   }
 
   if (!$cookies.firstLogin){
@@ -331,13 +334,7 @@
 $cookies.firstLogin = "true";  
 }
 
-$scope.nag = function(){
-  $blockUI.createBlockUI({
-      // Angular Gurus, I beg for your vehemence.
-      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
 
-    }).blockUI();
-}
 
 $scope.dispatchNag = function () {
   blockUI.unblockUI();
