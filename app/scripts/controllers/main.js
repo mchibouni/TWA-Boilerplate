@@ -149,6 +149,14 @@
     }
   };
 }])
+.directive('ngSmooth', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.css({'text-shadow':'0 0 1px rgba(0,0,0,0.3)'});
+    }
+  };
+}])
 .directive('ngOverlay', [function () {
   return {
     restrict: 'A',
