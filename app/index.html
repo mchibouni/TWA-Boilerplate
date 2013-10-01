@@ -23,7 +23,7 @@
       <ul ng-repeat="menuElem in navHash">
         <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
-      <div id="nag-invoke" ng-click="angular.element('.nag-primary').length ? revokeNag(): invokeNag()"/>
+      <div id="nag-invoke" ng-click="invokeNag()"/>
     </nav>
 
     <span ng-cloak ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),'next')">{{routeList[viewIndex % routeList.length]}}</span>

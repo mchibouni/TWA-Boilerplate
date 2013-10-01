@@ -330,35 +330,35 @@
   }
 
   if (!$cookies.firstLogin){
-//    $scope.invokeNag();
-$cookies.firstLogin = "true";  
-}
-
-
-
-$scope.dispatchNag = function () {
-  blockUI.unblockUI();
-  console.log('Dispatched Nag Screen');
-}
-
-$scope.easeInQuart = function (x, t, b, c, d) {
-  return c*(t/=d)*t*t*t + b;
-}
-
-$scope.safeApply = function(fn) {
-  var phase = this.$root.$$phase;
-  if(phase == '$apply' || phase == '$digest') {
-    if(fn && (typeof(fn) === 'function')) {
-      fn();
-    }
-  } else {
-    this.$apply(fn);
+    $scope.invokeNag();
+    $cookies.firstLogin = "true";  
   }
-};
 
 
-$scope.deferTransition = function(view,which){
-  console.warn($scope.viewIndex);
+
+  $scope.dispatchNag = function () {
+    blockUI.unblockUI();
+    console.log('Dispatched Nag Screen');
+  }
+
+  $scope.easeInQuart = function (x, t, b, c, d) {
+    return c*(t/=d)*t*t*t + b;
+  }
+
+  $scope.safeApply = function(fn) {
+    var phase = this.$root.$$phase;
+    if(phase == '$apply' || phase == '$digest') {
+      if(fn && (typeof(fn) === 'function')) {
+        fn();
+      }
+    } else {
+      this.$apply(fn);
+    }
+  };
+
+
+  $scope.deferTransition = function(view,which){
+    console.warn($scope.viewIndex);
 /*  $('.fancy').fadeTo(300,0.5,$scope.easeInQuart);
   $('.main-container').animate({'left':'-75%'},function(){
     $(this).css('left','0%').animate({'left':'21%'});
