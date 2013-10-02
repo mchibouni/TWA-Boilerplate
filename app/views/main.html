@@ -1,7 +1,7 @@
 
 
-<form name="prompt" id="prompt" ng-controller="TWASubmitCtrl">
-		<div class="fancy" id="tr-header-1" />
+<form name="prompt" id="prompt" ng-controller="TWASubmitCtrl" ng-init="submitDone = false" >
+	<div class="fancy" id="tr-header-1" />
 	<div class="fancy" id="tr-header-2"/>
 	<div class="fancy" id="tr-header-3"/>
 	<div class="fancy" id="tr-header-4" class="tr-motives"></div>
@@ -11,41 +11,50 @@
 	<div class="fancy" id="tr-footer-3"/>
 	<div class="fancy" id="tr-red-1"/>
 	<div id="tr-plax-green"  data-xrange="40" data-yrange="40" plax/>
-	<div id="submission-meta" ng-controller="ModalCtrl" ng-click="open()"></div>
-	<div id="or-container">
-		<label id="or-label" class="prompt">Ou</label>
-		<hr>
-	</div>
-	<label class="prompt" for="submission-fill">Tapez l'adresse URL de votre Candidat</label>
-	<label  class="meta-prompt">example: www.facebook.com/flenbenfoulen</label>
-	<div id="fillform-container"  class="child-skew red">
-		<input  id="fillform"  name="fillform" class="unskew-text full " type="url" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
+	<label  class="meta-prompt">Donnez un coup de main à vos créatifs favoris!</label>
+	<label class="prompt" for="submission-fill">Proposez leurs candidatures et inscrivez les aux TWA</label>
+	<div class="parent-incentive">
+		<label class="prompt incentive"><span># Décrivez </span><span>votre candidat, en hashtags</span></label>
 	</div>
 	<div class="choice-container">
 		<ul ng-repeat="twaElem in twaHashTags">
-			<li class="hash-elements raw" ng-click="twaElem.state = !twaElem.state" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 4) }"><a class="only-here">{{twaElem.name}}</a></li>
+			<li class="hash-elements raw" ng-click="twaElem.state = !twaElem.state;
+			toggleFilter(twaElem)" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 6 && $index <= 12), 'push-hack': ($index === 12), 'even-translated':($index > 12), 'fake-hashtag-entry':($index === twaHashTags.length -1)}"><a class="only-here">{{twaElem.name}}</a></li>
 		</ul>
 	</div>
 	<div class="choice-container">
-		<ul ng-repeat="twaElem in navCategoryList">
+<!--		<ul ng-repeat="twaElem in navCategoryList">
 
 			<li class="hash-elements grayed" ng-click="twaElem.state = !twaElem.state" ng-class="{'fithashtag': navCategoryList[$index].state, 'odd-translated' : ($index > 4)}"><a class="only-here ">{{twaElem.name}}</a></li>
-		</ul>
+		</ul> -->
 	</div>
+	<div class="incentive-wrapper">
+		<div class="submission-incentive"></div>
+		<div class="well submission-container main-submission-container">
+			<p><i class="icon-paperclip"></i>Copier coller l'URL de votre candidat :</p>
+			<input  id="fillform"  name="fillform" type="url" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
 
-
-	<div ng-controller="ModalCtrl">
-		<span  id="hash-icon" ><a href ng-click="addHashTagModal()">Proposer un hashtag</a></span>
+			<ul class="selected-container">
+				<li class="horizontal-li" ng-fade ng-repeat="validElement in twaHashTags | filter : validHashTagFilter"><a href="#">{{validElement.name}}</a></li>
+			</ul>
+		</div>
+		<div class="well submission-container">
+			<ul class="center inlined" >
+				<img class="modal-result-circular-image" ng-fade ng-repeat="item in (lazyLoadCandidates | filter: hashFilter).splice(0,3)" ng-faulty src={{item.imguri}} />
+			</ul>
+			<span ng-controller="ModalCtrl" ng-click="open()" class="right view-candidates">+ voir les autres candidats</span>
+		</div>
 	</div>
-
-
-
+	<div ng-submit-done class="center submit-result" ng-hide="submitDone"></div>
 	<div id="share-area">
 		<ul>
 			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags))).then(invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
 			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
 	</div>
+</div>
+
+
 
 </form>
 

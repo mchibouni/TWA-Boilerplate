@@ -67,7 +67,7 @@
           <div class="modal-body no-padding">
             <div>
               <ul class="result-iterator scroll-pane" ng-init="submissionLabel=[];ipCallbacks=[]">
-                <li ng-model="clicked" clicked="false" ng-expand class="result-entry" ng-repeat="item in items | orderBy: count | filter : hashfilter | filter: candidateName" ng-animate="'li-animate'">
+                <li  clicked="false" ng-expand class="result-entry" ng-repeat="item in items | orderBy: count | filter : hashfilter | filter: candidateName" ng-animate="'li-animate'">
                   <img class="modal-result-circular-image" ng-faulty src={{item.imguri}} />
                   <div class="modal-entry-metadata">
                     <span class="modal-result-name" ng-click="selected.item = item">{{ item.name }}</span>
@@ -134,6 +134,7 @@
      <script src="bower_components/jscrollpane/script/jquery.mousewheel.js"></script>
      <script src="scripts/angular-easyfb.min.js"></script>
      <script src="bower_components/angular-ui/build/angular-ui.min.js"></script>
+     <script src="bower_components/nginfinitescroll/build/ng-infinite-scroll.js"></script>     
      <script src="scripts/jquery.blockUI.min.js"></script>
      <script src="bower_components/angular-timer/release/angular-timer.min.js"></script>
      <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>

@@ -106,8 +106,7 @@ div > ul > li > a.only-here  {
   top: -2px;
   right: 4px;
   position: relative;
-  color: white;
-  font-weight: bold;
+  color: black;
 }
 
 .nav-element {
@@ -121,7 +120,7 @@ div > ul > li.hash-elements{
   float: left;
   margin-right: -1.5%;
   margin-bottom: 0.5%;
-  width: 19%;
+  width: 15%;
 }
 
 ul{
@@ -161,6 +160,7 @@ ul{
   height: 100% !important;
 }
 #fillform {
+  width: 100%;
   height: 30px;
   border: none;
   border-radius: none !important; 
@@ -333,6 +333,7 @@ nav ul li {
   }
 
   #share-area {
+    display: none;
     margin: auto; 
     position: fixed;
     top: 73%;
@@ -448,7 +449,7 @@ nav ul li {
   .grep-zone { 
     background: url("/images/bg-sub.jpg") no-repeat;
     display: inline-block;
-    height: 90%;
+    height: 300px;
     width: 33%;
     background-size: cover;
     border-left: 1px solid #eeeeee;
@@ -1059,7 +1060,7 @@ p.about-last {
 
 .odd-translated {
   position: relative; 
-  right: 50px;
+  right: -30px;
 }
 
 #tr-plax-green {
@@ -1664,4 +1665,114 @@ timer > div.ng-binding {
 
 .altered {
   top: 70%;
+}
+
+.horizontal-li {
+  display: inline-block;
+  cursor: default;
+  margin-right: 1%;
+}
+
+.selected-container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width : 100%;
+  float: left;
+}
+
+.submission-container {
+  width: 49%;
+  display: inline-block;
+  float: left;
+  min-height: 155px;
+  background-color: white;
+}
+
+.incentive {
+  margin-bottom: 5%;
+  margin-top: 5%;
+  height: 2em;
+  line-height: 187%;
+  color: white;
+  transform: skew(30deg);
+  -o-transform: skew(30deg);
+  -moz-transform: skew(30deg);
+  -webkit-transform: skew(30deg);
+}
+
+.parent-incentive {
+  width: 60%;
+  margin: auto; 
+  background-color: red;
+  transform: skew(-30deg);
+  -o-transform: skew(-30deg);
+  -moz-transform: skew(-30deg);
+  -webkit-transform: skew(-30deg);
+}
+
+.right {
+  float: right;
+  color: #c3c3c3
+}
+
+.submit-result {
+  cursor: pointer;
+  background-image: url("/images/first-step-submit.png");
+  width: 11%;
+  height: 7%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-size: bold;
+  position: fixed;
+  bottom: 18%;
+  right: 45%;
+}
+
+.even-translated {
+  position: relative;
+}
+
+.push-hack {
+  margin-right: 5% !important;
+}
+
+.fake-hashtag-entry {
+  background: url("/images/dummy-hash.png");
+  background-size: cover;
+  width: 29% !important;
+  background-repeat: no-repeat;
+  height: 24px;
+}
+
+.main-submission-container {
+  position: relative;
+  left: 1%;
+  width: 50%;
+}
+
+.inlined {
+  margin: auto;
+}
+
+.submission-incentive { 
+  background: url("/images/submission-incentive.png") no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 50px;
+  position: relative;
+  top: 15px;
+  z-index: 10;
+}
+
+.incentive-wrapper {
+  position: relative;
+  bottom: 30px;
+}
+
+span.view-candidates {
+  cursor: pointer; 
+}
+
+span.view-candidates:hover {
+
 }

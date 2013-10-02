@@ -118,7 +118,15 @@
     {name:'#blog',state:false},
     {name:'#siteweb',state:false},
     {name:'#satire',state:false},
-
+    {name:'#sport',state:false},
+    {name:'#photo',state:false},
+    {name:'#video',state:false},
+    {name:'#redaction',state:false},
+    {name:'#humour',state:false},
+    {name:'#mode',state:false},
+    {name:'#startup',state:false},
+    {name:'#citoyen',state:false},
+    {name:'+ Proposez un hashtag',state:false},
     ];
   }
 }])
@@ -136,6 +144,26 @@
     {name:'#citoyen',state:false}
     ]
   }
+}])
+.directive('ngSubmitDone', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.on('click',function(){
+        iElement.fadeOut('fast',function(){
+          $("#share-area").hide().fadeIn();
+        })
+      });
+    }
+  };
+}])
+.directive('ngFade', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.hide().fadeIn('fast');
+    }
+  };
 }])
 .directive('ngExpand', [function () {
   return {
@@ -292,10 +320,6 @@
 
   $scope.hashtags = twaRestAPI.retrieveAllHashTags().query(null);
 
-  twaRestAPI.retrieveAll().query(null,function(response){
-    console.log(response); 
-  });
-
 
 
 
@@ -428,9 +452,22 @@
        })
 .controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService) {
 
+
+  $scope.hashFilter = {};
+
+  $scope.toggleFilter = function(hashElement){
+    (hashElement.state === true) ? (this.hashFilter.name = hashElement.name) : (this.hashFilter.name = '') ;
+  };
+
   $scope.$window = $window;
   $scope.clicked = false;  
 
+
+  $scope.lazyLoadCandidates = twaRestAPI.retrieveAll().query(null,function(response){
+    console.log(response); 
+  });
+
+  $scope.validHashTagFilter = {state:true};
 
 
   $scope.submitData = submitDataService.processURL ; 
