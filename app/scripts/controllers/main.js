@@ -30,7 +30,7 @@
             console.warn("in there");
 
             $http.post('http://www.kanalabs.com:8080/wines',{"url":url,"name":metadata,"hashtags":hashtags, imguri: imgurl, "count": 1 }).success(function(data){
-              $('<div/>',{class:"alert"}).html("Votre soumission a été reçue, Merci d'avoir participé !")
+              $('<div/>',{class:"alert"}).addClass('alert-success').html("Votre soumission a été reçue, Merci d'avoir participé !")
               .css({
                 'z-index' : '9999',
                 'text-align' : 'center',
@@ -48,7 +48,7 @@
             });
           }
           else {
-            $('<div/>',{class:"alert"}).html('Vous avez déjà soumis cette URL')
+            $('<div/>',{class:"alert"}).addClass('alert-danger').html('Vous avez déjà soumis cette URL')
             .css({
               'z-index' : '9999',
               'text-align' : 'center',
@@ -453,10 +453,15 @@
 .controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService) {
 
 
-  $scope.hashFilter = {};
+  $scope.hashFilter = {
+    hashtags : []
+  };
 
   $scope.toggleFilter = function(hashElement){
-    (hashElement.state === true) ? (this.hashFilter.name = hashElement.name) : (this.hashFilter.name = '') ;
+    console.warn(hashElement);
+    (hashElement.state === true) ? (this.hashFilter.hashtags.push(hashElement.name)) : (_.reject(this.hashFilter.hashtags, function(elt){
+      return elt === hashElement.name;
+    })) ;
   };
 
   $scope.$window = $window;
@@ -466,6 +471,7 @@
   $scope.lazyLoadCandidates = twaRestAPI.retrieveAll().query(null,function(response){
     console.log(response); 
   });
+
 
   $scope.validHashTagFilter = {state:true};
 
