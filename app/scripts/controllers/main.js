@@ -459,7 +459,7 @@
 
   $scope.toggleFilter = function(hashElement){
     console.warn(hashElement);
-    (hashElement.state === true) ? (this.hashFilter.hashtags.push(hashElement.name)) : (_.reject(this.hashFilter.hashtags, function(elt){
+    (hashElement.state === true) ? (this.hashFilter.hashtags.push(hashElement.name)) : this.hashFilter.hashtags = (_.reject(this.hashFilter.hashtags, function(elt){
       return elt === hashElement.name;
     })) ;
   };
