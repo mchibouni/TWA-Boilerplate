@@ -168,11 +168,21 @@
     }
   };
 }])
+.directive('validateBlankHashes', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      scope.$watch('zeroHash',function(newV,oldV){
+        console.warn("WARNING");
+      }); 
+    }
+  };
+}])
 .directive('ngReverseCandidate', [function () {
   return {
     restrict: 'A',
     link: function (scope, iElement, iAttrs) {
-        console.warn("sdfsdf");
+      console.warn("sdfsdf");
       iElement.on('mouseleave',function(){
         switch (iElement.parent().data('index')) {
           case 0 : 
@@ -507,6 +517,25 @@
   $scope.selection_2 = "";
 
 
+
+  $scope.assertZeroLength = function(collection){
+    if (collection.length) return true ; 
+    $('<div/>',{class:"alert"}).addClass('alert-warning').html("Veuillez associer au moins un HashTag à votre candidat")
+    .css({
+      'z-index' : '9999',
+      'text-align' : 'center',
+      'opacity' : '1',
+      'position' : 'fixed',
+      'display' : 'none',
+      'width' : '60%',
+      'right' : '20%',
+      'top' : '10%'
+    })
+    .appendTo($('body')).fadeIn('fast',function(){
+      $(this).fadeOut(6000);
+    });                  
+    return false;  
+  }
 
   $scope.toggleFilter = function(hashElement){
     console.warn(hashElement);

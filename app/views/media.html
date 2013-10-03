@@ -1,3 +1,8 @@
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	$("a[rel^='prettyPhoto']").prettyPhoto({deeplinking: true});
+});
+</script>
 <div id="tr-plax-red" data-xrange="40" data-yrange="40" plax/>
 
 <div class="fancy" id="tr-header-1" plax/>
@@ -14,33 +19,67 @@
 <div class="fancy" id="tr-header-4" class="tr-motives"></div>
 <div ng-controller="ModalCtrl" class="media-container">
 	<ul class="media-list-override pic-first-row">
-		<li ng-click="openGallery()" class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-	</ul>
-	<ul class="media-list-override">
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-	</ul>
-	<span id="pic-list"></span>
-	<ul class="media-list-override video-first-row">
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-	</ul>
-	<ul class="media-list-override">
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-		<li class="child-skew"><img src="/images/soumiss.png"></li>
-	</ul>
-	<span id="video-list"></span>
-</div>
+		<li class="child-skew">
+			<div class="reverse-skew">
+				<a  href="/images/1.jpg" target="_self" rel="prettyPhoto"> <img src="/images/1.jpg">
+				</div>
+			</li></a>
 
-<script type="text/ng-template" id="gallery.html">
-	<div></div>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto" href="/images/2.jpg"><img src="/images/2.jpg"></a>
+				</div>
+			</li>
+
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto" href="/images/3.jpg"><img src="/images/3.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto" href="/images/4.jpg"><img src="/images/4.jpg"></a>
+				</div>
+			</li>
+		</ul>
+		<ul class="media-list-override">
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto" href="/images/5.jpg"><img src="/images/5.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto" href="/images/6.jpg"><img src="/images/6.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto" href="/images/7.jpg"><img src="/images/7.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a rel="prettyPhoto"href="/images/8.jpg"><img src="/images/8.jpg"></a>
+				</div>
+			</li>
+		</ul> 
+		<span id="pic-list"></span>
+		<ul class="media-list-override video-first-row">
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+		</ul>
+		<ul class="media-list-override">
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+			<li class="child-skew"><img src="/images/soumiss.png"></li>
+		</ul>
+		<span id="video-list"></span>
+	</div>
+
+	<script type="text/ng-template" id="gallery.html">
+		<div></div>
 	</script>

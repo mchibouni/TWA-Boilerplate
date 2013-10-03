@@ -43,7 +43,11 @@
 				<a ng-click="submitData(item.url,item.hashtags)" class="no-decoration" href="" ng-fade ng-repeat="item in (lazyLoadCandidates | filter: hashFilter).splice(0,3)" >
 					<div data-index = {{$index}} class="result-wrapper" ng-switch on="selection_{{$index}}">
 						<img ng-candidate ng-fade ng-switch-default  class="modal-result-circular-image modal-result-entry-override"  ng-faulty src={{item.imguri}} />
-						<div  ng-reverse-candidate ng-switch-when="meta" class="modal-result-circular-image sample-result-meta modal-result-entry-override" ng-fade ng-faulty>{{item.name}}<p class="meta-submit"><i class="icon-heart icon-white"></i>Soumettre</p></div>
+						<div  ng-reverse-candidate ng-switch-when="meta" class="modal-result-circular-image sample-result-meta modal-result-entry-override" ng-fade ng-faulty>
+							<p class="name-meta">{{item.name}}
+							</p>
+							<p class="meta-submit"><i class="icon-heart icon-white"></i>Soumettre </p>
+						</div>
 					</div>
 				</a>
 				
@@ -51,7 +55,7 @@
 			<span ng-controller="ModalCtrl" ng-click="open()" class="right view-candidates">+ voir les autres candidats</span>
 		</div>
 	</div>
-	<div ng-submit-done class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone"></div>
+	<div ng-submit-done class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
 	<div id="share-area">
 		<ul>
 			<li ng-click="!prompt.fillform.$valid || (invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
