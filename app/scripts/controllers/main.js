@@ -60,7 +60,7 @@
               'top' : '10%'
             })
             .appendTo($('body')).fadeIn('fast',function(){
-              $(this).fadeOut(5000);
+              $(this).fadeOut(8000);
             })
           }
         });
@@ -144,6 +144,51 @@
     {name:'#citoyen',state:false}
     ]
   }
+}])
+.directive('ngCandidate', [function () {
+  return {
+    restrict: 'A',
+    scope : '=',
+    link: function (scope, iElement, iAttrs) {
+      iElement.bind('mouseenter',function(){
+        switch (iElement.parent().data('index')) {
+          case 0 : 
+          console.warn("IN there");
+          $('#prompt').scope().selection_0 = "meta"; 
+          break;
+          case 1 : 
+          $('#prompt').scope().selection_1 = "meta"; 
+          break;
+          case 2 :
+          $('#prompt').scope().selection_2 = "meta"; 
+          break;
+        }
+        $('#prompt').scope().$apply();
+      });
+    }
+  };
+}])
+.directive('ngReverseCandidate', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+        console.warn("sdfsdf");
+      iElement.on('mouseleave',function(){
+        switch (iElement.parent().data('index')) {
+          case 0 : 
+          $('#prompt').scope().selection_0 = ""; 
+          break;
+          case 1 : 
+          $('#prompt').scope().selection_1 = ""; 
+          break;
+          case 2 :
+          $('#prompt').scope().selection_2 = ""; 
+          break;
+        }
+        $('#prompt').scope().$apply();
+      });
+    }
+  };
 }])
 .directive('ngSubmitDone', [function () {
   return {
@@ -456,6 +501,12 @@
   $scope.hashFilter = {
     hashtags : []
   };
+
+  $scope.selection_0 = "";
+  $scope.selection_1 = "";
+  $scope.selection_2 = "";
+
+
 
   $scope.toggleFilter = function(hashElement){
     console.warn(hashElement);

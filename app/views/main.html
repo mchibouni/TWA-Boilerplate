@@ -40,7 +40,13 @@
 		</div>
 		<div class="well submission-container">
 			<ul class="center inlined" >
-				<a href=""><img class="modal-result-circular-image" ng-fade ng-repeat="item in (lazyLoadCandidates | filter: hashFilter).splice(0,3)" ng-faulty src={{item.imguri}} /></a>
+				<a class="no-decoration" href="" ng-fade ng-repeat="item in (lazyLoadCandidates | filter: hashFilter).splice(0,3)" >
+					<div data-index = {{$index}} class="result-wrapper" ng-switch on="selection_{{$index}}">
+						<img ng-candidate ng-fade ng-switch-default  class="modal-result-circular-image"  ng-faulty src={{item.imguri}} />
+						<div  ng-reverse-candidate ng-switch-when="meta" class="modal-result-circular-image sample-result-meta" ng-fade ng-faulty>{{item.name}}<p class="meta-submit"><i class="icon-heart icon-white"></i>Soumettre</p></div>
+					</div>
+				</a>
+				
 			</ul>
 			<span ng-controller="ModalCtrl" ng-click="open()" class="right view-candidates">+ voir les autres candidats</span>
 		</div>
@@ -48,8 +54,8 @@
 	<div ng-submit-done class="center submit-result" ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone"></div>
 	<div id="share-area">
 		<ul>
-			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags))).then(invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
-			<li ng-click="!prompt.fillform.$valid || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
+			<li ng-click="!prompt.fillform.$valid || (invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
+			<li ng-click="!prompt.fillform.$valid" class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
 	</div>
 </div>

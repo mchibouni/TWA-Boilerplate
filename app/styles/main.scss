@@ -1,6 +1,6 @@
 $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
- 
+
 @import "bootstrap-sass/lib/bootstrap";
 //@import url("http://fonts.googleapis.com/css?family=Titillium+Web");
 /* Put your CSS here */
@@ -335,9 +335,7 @@ nav ul li {
   #share-area {
     display: none;
     margin: auto; 
-    position: fixed;
-    top: 73%;
-    left: 30%;
+    width: 70%;
   }
 
 
@@ -663,6 +661,8 @@ nav ul li {
 }
 
 .share-fb {
+  position: relative;
+  top: -35px;
   background: url("/images/share-fb.png") no-repeat;
   width: 206px;
   height: 26px;
@@ -671,6 +671,8 @@ nav ul li {
 
 .share-tw {
   background: url("/images/share-tw.png") no-repeat;
+  position: relative;
+  top: -35px;
   width: 191px;
   height: 26px;
   cursor: pointer;
@@ -687,7 +689,7 @@ li.share-tw > a {
   position: fixed;
   top: 5%;
   left: 2%;
-  background: url("/images/main-logo.png") no-repeat;
+  background: url("/images/logo_new.png") no-repeat;
   width: 9%;
   height: 15%;
   background-size: contain;
@@ -1674,6 +1676,7 @@ timer > div.ng-binding {
 }
 
 .selected-container {
+  max-height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   width : 100%;
@@ -1771,4 +1774,31 @@ timer > div.ng-binding {
 
 span.view-candidates {
   cursor: pointer; 
+}
+
+.sample-result-meta {
+  background-image: none;
+  background-color: red; 
+  color: white;
+  font-size: 75%;
+  line-height: 400%;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: bold;
+  vertical-align: middle;
+  border: 0;
+}
+
+.meta-submit {
+  position: relative;
+  top: -45%;
+  font-weight: bold;
+}
+
+.result-wrapper {
+  display: inline-block;
+}
+
+a.no-decoration:hover {
+  text-decoration: none;
 }
