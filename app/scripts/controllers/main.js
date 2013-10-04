@@ -449,10 +449,10 @@
     },200);
   }
 
-  if (!$cookies.firstLogin){
+  /*if (!$cookies.firstLogin){
     $scope.invokeNag();
     $cookies.firstLogin = "true";  
-  }
+  }*/
 
 
 
