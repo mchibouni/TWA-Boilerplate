@@ -55,7 +55,8 @@
 			<span ng-controller="ModalCtrl" ng-click="open()" class="right view-candidates">+ voir les autres candidats</span>
 		</div>
 	</div>
-	<div ng-submit-done class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
+	<div ng-submit-done loaded="submissionSent"></div>
+	<div  class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
 	<div id="share-area">
 		<ul>
 			<li ng-click="!prompt.fillform.$valid || (invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>

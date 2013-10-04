@@ -92,6 +92,9 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
     $location.hash($routeParams.scrollTo);
     $anchorScroll();  
+
+    $rootScope.submissionSent = false ; 
+
     $rootScope.initViewIndex = function(){     
       return this.routeList.indexOf(_.find(this.routeList,function(elt){
         if ($location.path() === '/') return 'home';

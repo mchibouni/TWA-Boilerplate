@@ -21,7 +21,7 @@
     }
     ];
   }])
-  .service('processURLService', ['$resource','authStrategyService', '$http', function($resource,authStrategyService,$http){
+  .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope', function($resource,authStrategyService,$http,$rootScope){
     return { 
 
       submitData : function (url,hashtags, metadata, imgurl, count) {
@@ -44,6 +44,7 @@
               .appendTo($('body')).fadeIn('fast',function(){
                 $(this).fadeOut(6000);
               });
+              $rootScope.submissionSent = true ; 
               console.log("success");
             });
           }
@@ -162,7 +163,7 @@
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
       iElm.on('click',function(){
-      $.prettyPhoto.open("http://"+$location.host()+":"+$location.port()+iElm.data('pp'));
+        $.prettyPhoto.open("http://"+$location.host()+":"+$location.port()+iElm.data('pp'));
       });
     }
   };
@@ -225,14 +226,20 @@
 .directive('ngSubmitDone', [function () {
   return {
     restrict: 'A',
+    scope: {
+      loaded : '='
+    },
     link: function (scope, iElement, iAttrs) {
-      iElement.on('click',function(){
-        iElement.fadeOut('fast',function(){
-          $("#share-area").hide().fadeIn();
-        })
-      });
+      scope.$watch('loaded',function(newValue,oldValue){
+        console.warn("ISOLATESCOPE");
+        if (newValue === true ){
+          $(".submit-result").fadeOut('fast',function(){
+            $("#share-area").hide().fadeIn();
+          })          
+        }
+      })
     }
-  };
+  }
 }])
 .directive('ngFade', [function () {
   return {
