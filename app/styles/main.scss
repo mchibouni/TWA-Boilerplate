@@ -69,6 +69,10 @@ footer {
   background-repeat: no-repeat;
 }
 
+label {
+  cursor: default !important;
+}
+
 label.prompt {
   text-align: center; 
   font-weight: bold;
@@ -673,14 +677,14 @@ nav ul li {
 .share-fb {
   position: relative;
   top: -35px;
-  background: url("/images/share-fb.png") no-repeat;
+  background: url("/images/fb-btn.png") no-repeat;
   width: 206px;
   height: 26px;
   cursor: pointer; 
 }
 
 .share-tw {
-  background: url("/images/share-tw.png") no-repeat;
+  background: url("/images/twt-btn.png") no-repeat;
   position: relative;
   top: -35px;
   width: 191px;
@@ -1703,6 +1707,7 @@ timer > div.ng-binding {
 }
 
 .incentive {
+  cursor: default !important;
   margin-bottom: 5%;
   margin-top: 5%;
   height: 2em;
@@ -1788,7 +1793,15 @@ timer > div.ng-binding {
 }
 
 span.view-candidates {
-  cursor: pointer; 
+  cursor: pointer;
+  color: black;
+  position: relative;
+  bottom: 27px;
+  left: 4%;
+}
+
+span.view-candidates:hover{
+  color: red;
 }
 
 .sample-result-meta {
@@ -1864,4 +1877,13 @@ div.reverse-skew a img {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.modal-close {
+ background: url("/images/modal-close.jpg") no-repeat;
+ background-size: cover;
+ float: right;
+ width: 41px;
+ height: 41px;
+ cursor: pointer;
 }
