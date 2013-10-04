@@ -158,6 +158,19 @@
     ]
   }
 }])
+.directive('twaBg', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      var srcContainer = ["/images/amel-smaoui.png","/images/fatma-ben-haj-ali.png",
+      "/images/karim-ben-amor.png","/images/mohamed-ali-souissi.png","/images/khaled-koubaa.png",
+      "/images/amina-abdellatif.png"];
+      $.each($('.dummy-bg'),function(key,value){
+        $(this).css('background-image','url('+srcContainer[key]+')')
+      })
+    }
+  };
+}])
 .directive('ngPrettyPhoto', ['$location', function($location){
   // Runs during compile
   return {
