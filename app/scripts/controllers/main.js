@@ -391,12 +391,12 @@
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
   $scope.juryCollection = [
-  {name:"Denzel Washington", meta: "Actor"},
-  {name: "John Doe", meta: "Who cares"},
-  {name: "Sean Connery", meta: "Photographer"},
-  {name: "Johnny Depp", meta: "Blogger"},
-  {name: "Will Smith", meta: "Designer"},
-  {name: "Catherine Zeta Jones", meta: "Journaliste"}
+  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI"},
+  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana"},
+  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil"},
+  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM"},
+  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google"},
+  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer"}
   ];
 }])
 .controller('ContactCtrl', function ($scope) {
