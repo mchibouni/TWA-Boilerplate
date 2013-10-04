@@ -801,7 +801,7 @@ div.modal-entry-metadata > button > i {
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  margin-left: -21%;
+  margin-left: -13%;
 }
 
 .black {
@@ -998,7 +998,7 @@ p.about-last {
 .overlay {
   background: url("/images/bg-motive.png") no-repeat 116% center fixed;
   background-size: 140% 100%;
-  -webkit-animation: slide 0.3s linear 0s;
+//  -webkit-animation: slide 0.3s linear 0s;
   animation: slide 0.3s linear 0s;
 }
 
@@ -1354,29 +1354,28 @@ ul > li.child-skew {
 
 .jury-adden {
   position: relative;
-  right: 5%;
+  right: 8%;
   color: transparent;
   text-align: center;
-  width: 100%;
+  width: 102%;
   height: 100%;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
 }
 
 .jury-adden > p {
   font-style: oblique;
   font-weight: bold;
   -webkit-transform: skewX(30deg);
-  -moz-transform: skewX(30deg);
   -ms-transform: skewX(30deg);
-  -o-transform: skewX(30deg);
   transform: skewX(30deg);
   position: absolute;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 80%;
-  max-height: 80%;
+  width: 94%;
+  height: 80%;
+  top: -87%;
+  position: relative;
   margin: auto;
   font-weight: 75%;
 }
