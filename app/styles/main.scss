@@ -65,8 +65,8 @@ footer {
   height: 26px;
   bottom: 2%;
   right: 2%;
-  background-image: url("/images/share-sprite.png");
-  background-repeat: no-repeat;
+ /* background-image: url("/images/share-sprite.png");
+ background-repeat: no-repeat;*/
 }
 
 label {
@@ -175,9 +175,11 @@ ul{
 #fillform {
   width: 100%;
   height: 30px;
-  border: none;
-  border-radius: none !important; 
-  font-size: 100%;
+  border: 1px solid #dadada;
+  color: #c3c3c3;
+  border-radius: none !important;
+  font-size: 90%;
+  font-weight: bold;
 }
 
 #fillform-container {
@@ -203,9 +205,10 @@ nav {
   background: url("/images/shadowmenu.png") no-repeat;
   height: 85px;
   margin: auto;
-  width: 65%;
+  width: 80%;
   background-size: contain;
   font-size: 50%;
+  background-position-x: -10%;
   line-height: 10px;
   margin-left: 20%;
 }
@@ -1451,7 +1454,7 @@ ul > li.child-skew {
   background-size: 100%;
   top: 0;
   z-index: -2;
-  right: 29%;
+  right: 12%;
 }
 
 #media-header-2 {
@@ -1775,6 +1778,11 @@ timer > div.ng-binding {
   height: 24px;
 }
 
+.fake-hashtag-entry:hover {
+  background: url("/images/dummy-hash.png") !important;
+  background-size: cover !important;
+}
+
 .main-submission-container {
   position: relative;
   left: 1%;
@@ -1899,3 +1907,37 @@ div.reverse-skew a img, div.reverse-skew img {
  height: 41px;
  cursor: pointer;
 }
+
+#fb{
+ background: url("/images/fb.png") no-repeat;
+ background-size: contain;
+}
+
+.social-medias {
+  width: 80%;
+  height: 83%;
+  z-index: 10000;
+  display: block;
+  cursor: pointer;
+}
+
+a.social-medias:hover {
+  background: url("/images/fb_hover.png") no-repeat;
+  background-size: contain;
+}
+
+#tw{
+ background: url("/images/tw.png") no-repeat;
+ background-size: contain; 
+}
+
+#li{
+ background: url("/images/in.png") no-repeat;
+ background-size: contain;
+}
+
+#ml{
+  background: url("/images/mail.png") no-repeat;
+  background-size: contain;
+}
+

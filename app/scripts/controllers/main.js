@@ -331,7 +331,17 @@
   return {
     restrict: 'A',
     link: function (scope, iElement, iAttrs) {
-      iElement.plaxify().fadeIn();
+      var plaxifyOptions = (iElement.data('reverse') === "1") ? {"invert":true} : {};
+      iElement.plaxify(plaxifyOptions).fadeIn();
+      $.plax.enable();
+    }
+  };
+}])
+.directive('invertPlax', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      iElement.plaxify({"invert":true}).fadeIn();
       $.plax.enable();
     }
   };
