@@ -76,20 +76,20 @@
       if (element.regex.test(url)){
         console.warn("PROVIDER FOUND " + element.provider);
         $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
-              $('<div/>',{class:"alert"}).addClass('alert-danger').html("Ce profil semble inexistant, veuillez revérifier votre URL")
-              .css({
-                'z-index' : '9999',
-                'text-align' : 'center',
-                'opacity' : '1',
-                'position' : 'fixed',
-                'display' : 'none',
-                'width' : '60%',
-                'right' : '20%',
-                'top' : '10%'
-              })
-              .appendTo($('body')).fadeIn('fast',function(){
-                $(this).fadeOut(6000);
-              });          console.warn("ERROR!");
+          $('<div/>',{class:"alert"}).addClass('alert-danger').html("Ce profil semble inexistant, veuillez revérifier votre URL")
+          .css({
+            'z-index' : '9999',
+            'text-align' : 'center',
+            'opacity' : '1',
+            'position' : 'fixed',
+            'display' : 'none',
+            'width' : '60%',
+            'right' : '20%',
+            'top' : '10%'
+          })
+          .appendTo($('body')).fadeIn('fast',function(){
+            $(this).fadeOut(6000);
+          });          console.warn("ERROR!");
         })
         .then(function(response){
           console.warn("ACCESSING PROVIDER FIRST TIME");
@@ -103,7 +103,7 @@
         })
       }
     });
-  }
+}
 }
 }])
 .service('navMenuRawData', [function () {
@@ -391,12 +391,12 @@
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
   $scope.juryCollection = [
-  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI"},
-  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana"},
-  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil"},
-  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM"},
-  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google"},
-  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer"}
+  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel_smaoui.png"},
+  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana", src:"/images/fatma_belhaj.png"},
+  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim_ben_amor.png"},
+  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/medali_souissi.png"},
+  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled_koubaa.png"},
+  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina_amoniak.png"}
   ];
 }])
 .controller('ContactCtrl', function ($scope) {
