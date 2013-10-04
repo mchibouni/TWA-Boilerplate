@@ -76,8 +76,20 @@
       if (element.regex.test(url)){
         console.warn("PROVIDER FOUND " + element.provider);
         $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
-          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
-          console.warn("ERROR!");
+              $('<div/>',{class:"alert"}).addClass('alert-danger').html("Ce profil semble inexistant, veuillez revérifier votre URL")
+              .css({
+                'z-index' : '9999',
+                'text-align' : 'center',
+                'opacity' : '1',
+                'position' : 'fixed',
+                'display' : 'none',
+                'width' : '60%',
+                'right' : '20%',
+                'top' : '10%'
+              })
+              .appendTo($('body')).fadeIn('fast',function(){
+                $(this).fadeOut(6000);
+              });          console.warn("ERROR!");
         })
         .then(function(response){
           console.warn("ACCESSING PROVIDER FIRST TIME");
