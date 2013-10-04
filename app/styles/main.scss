@@ -778,10 +778,12 @@ div.modal-entry-metadata > button > i {
 }
 
 .jury-img {
-  background: url("/images/soumiss.png") no-repeat;
-  width: 50%;
-  height: 100%;
+  width: 63%;
+  height: 97%;
+  height: 60px;
   float: left;
+  position: relative;
+  left: -15%;
 }
 
 .jury-meta {
@@ -803,11 +805,13 @@ div.modal-entry-metadata > button > i {
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  margin-left: -13%;
+  margin-left: 19%;
+  font-size: 75%;
 }
 
 .black {
-  margin-left: -2%;
+  margin-left: 8%;
+  font-size: 85%;
 }
 
 .jury-meta-container {
@@ -818,6 +822,7 @@ div.modal-entry-metadata > button > i {
 }
 
 li.jury-elem {
+  opacity: 1;
   width: 240px;
 }
 
@@ -1356,11 +1361,12 @@ ul > li.child-skew {
 
 .jury-adden {
   position: relative;
-  right: 8%;
+  right: 10%;
   color: transparent;
   text-align: center;
-  width: 102%;
-  height: 100%;
+  width: 111%;
+  bottom: 107%;
+  height: 109%;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
 }
@@ -1376,7 +1382,7 @@ ul > li.child-skew {
   text-overflow: ellipsis;
   width: 94%;
   height: 80%;
-  top: -87%;
+  top: 29%;
   position: relative;
   margin: auto;
   font-weight: 75%;
@@ -1866,7 +1872,7 @@ li.hash-elements:hover {
   width: 210%;
 }
 
-div.reverse-skew a img {
+div.reverse-skew a img, div.reverse-skew img {
   -webkit-transform: translate3d(0,0,0);
   -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
