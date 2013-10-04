@@ -83,13 +83,18 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
 
     console.warn("ROOT CHANGE ! ");
+    $('.twa-prev,.twa-next').css('pointer-events','none');
     $('.fancy').fadeTo(300,0.5,"swing");
     $('.main-container').animate({'left':'-75%'},function(){
       $(this).css('left','15%').animate({'left':'25%'});
+      $('.twa-prev,.twa-next').css('pointer-events','auto');
     });
 
     $location.hash($routeParams.scrollTo);
     $anchorScroll();  
+
+    $rootScope.submissionSent = false ; 
+
     $rootScope.initViewIndex = function(){     
       return this.routeList.indexOf(_.find(this.routeList,function(elt){
         if ($location.path() === '/') return 'home';

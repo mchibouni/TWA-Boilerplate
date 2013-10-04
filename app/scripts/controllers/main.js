@@ -21,7 +21,7 @@
     }
     ];
   }])
-  .service('processURLService', ['$resource','authStrategyService', '$http', function($resource,authStrategyService,$http){
+  .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope', function($resource,authStrategyService,$http,$rootScope){
     return { 
 
       submitData : function (url,hashtags, metadata, imgurl, count) {
@@ -44,6 +44,7 @@
               .appendTo($('body')).fadeIn('fast',function(){
                 $(this).fadeOut(6000);
               });
+              $rootScope.submissionSent = true ; 
               console.log("success");
             });
           }
@@ -75,8 +76,20 @@
       if (element.regex.test(url)){
         console.warn("PROVIDER FOUND " + element.provider);
         $http.get(element.RestNameURI(url.match(element.regex)[1])).error(function(){
-          alert("Ce profile n'existe pas, veuillez saisir une URL Facebook Valide");
-          console.warn("ERROR!");
+              $('<div/>',{class:"alert"}).addClass('alert-danger').html("Ce profil semble inexistant, veuillez revérifier votre URL")
+              .css({
+                'z-index' : '9999',
+                'text-align' : 'center',
+                'opacity' : '1',
+                'position' : 'fixed',
+                'display' : 'none',
+                'width' : '60%',
+                'right' : '20%',
+                'top' : '10%'
+              })
+              .appendTo($('body')).fadeIn('fast',function(){
+                $(this).fadeOut(6000);
+              });          console.warn("ERROR!");
         })
         .then(function(response){
           console.warn("ACCESSING PROVIDER FIRST TIME");
@@ -145,6 +158,28 @@
     ]
   }
 }])
+.directive('ngPrettyPhoto', ['$location', function($location){
+  // Runs during compile
+  return {
+    // name: '',
+    // priority: 1,
+    // terminal: true,
+    // scope: {}, // {} = isolate, true = child, false/undefined = no change
+    // cont­rol­ler: function($scope, $element, $attrs, $transclue) {},
+    // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+    // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+    // template: '',
+    // templateUrl: '',
+    // replace: true,
+    // transclude: true,
+    // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+    link: function($scope, iElm, iAttrs, controller) {
+      iElm.on('click',function(){
+        $.prettyPhoto.open("http://"+$location.host()+":"+$location.port()+iElm.data('pp'));
+      });
+    }
+  };
+}])
 .directive('ngCandidate', [function () {
   return {
     restrict: 'A',
@@ -203,14 +238,20 @@
 .directive('ngSubmitDone', [function () {
   return {
     restrict: 'A',
+    scope: {
+      loaded : '='
+    },
     link: function (scope, iElement, iAttrs) {
-      iElement.on('click',function(){
-        iElement.fadeOut('fast',function(){
-          $("#share-area").hide().fadeIn();
-        })
-      });
+      scope.$watch('loaded',function(newValue,oldValue){
+        console.warn("ISOLATESCOPE");
+        if (newValue === true ){
+          $(".submit-result").fadeOut('fast',function(){
+            $("#share-area").hide().fadeIn();
+          })          
+        }
+      })
     }
-  };
+  }
 }])
 .directive('ngFade', [function () {
   return {
@@ -462,6 +503,8 @@
     else {
       this.viewIndex = which ; 
     }
+
+    if (view === 'home') view = '/'; //RouteChange Hack
 
 
     angular.element('.twa-next').html(this.routeList[this.viewIndex % this.routeList.length]);
