@@ -872,7 +872,12 @@ li.about-li {
   font-weight: bold;
 }
 
-.about-li:hover {
+.about-li > a {
+  color: white;
+}
+
+.about-li > a:hover {
+  text-decoration: none;
   color: yellow;
   cursor: pointer;
 }

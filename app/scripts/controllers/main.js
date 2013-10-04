@@ -379,8 +379,8 @@
 }])
 .controller('PartyCtrl', ['$scope', function ($scope) {
   $scope.presCollection = [
-  {name:"Nejib Belkadhi",meta:"Présentateur"},
-  {name:"Kenza Fourati",meta:"Model"}
+  {name:"Nejib Belkadhi",meta:"Présentateur", src:"/images/nejib_bel.png"},
+  {name:"Kenza Fourati",meta:"Model", src:"/images/kenza_f.png"}
   ];
   $scope.juryCollection = [
   {name:"DJ anonimus", meta: "DJ"},
