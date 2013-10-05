@@ -427,11 +427,12 @@ nav ul li {
     -moz-border-radius: 30px;
     background: url(/images/main-logo.png) no-repeat;
     background-size: contain;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
     margin-right: 15px;
     margin-bottom: 30px;
+    border: 2px solid white;
   }
 
   .result-entry {
@@ -615,24 +616,24 @@ nav ul li {
   }
   .media-list-override {
     display: block;
-    width: 500px;
+    width: 80%;
   }
   .media-list-override > li:hover {
     opacity: 0.8;
   }
   .media-list-override > li {
     opacity: 1;
-    width: 100px;
+    width: 19%;
     height: 60px;
     position: relative; 
     list-style-type: none;  
     display: inline-block;
-    margin-bottom: 8px;
-    margin-right: 8px;
+    margin-bottom: 1%;
+    margin-right: 1%;
   }
 
   .pic-first-row {
-    margin-right: 19px; 
+    margin-right: 5%; 
   }
 
   .video-first-row {
@@ -644,11 +645,11 @@ nav ul li {
     display: inline-block;
     background-image: url("/images/photo-list.png");
     width: 175px;
-    height: 176px;
+    height: 126px;
     margin-right: 0px;
-    position: absolute;
-    left: 78%;
-    top: 83%;
+    position: relative;
+    margin-left: 73%;
+    margin-top: -64px;
     background-size: 100%;
     background-repeat: no-repeat;
   }
@@ -656,10 +657,10 @@ nav ul li {
   #video-list {
     display: inline-block;
     background-image: url("/images/video-list.png");
-    width: 153px;
-    height: 129px;
+    width: 184px;
+    height: 130px;
     position: relative;
-    left: -6%;
+    left: -3%;
     bottom: 134px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -1848,7 +1849,7 @@ p.about-last {
     overflow: hidden;
     font-weight: bold;
     vertical-align: middle;
-    border: 0;
+    border: 2px solid white;
   }
 
   .meta-submit {
@@ -1871,11 +1872,11 @@ p.about-last {
   }
 
   .modal-result-entry-override {
-    height: 80px;
-    width: 80px;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
+    height: 86px;
+    width: 86px;
+    -webkit-border-radius: 43px;
+    -moz-border-radius: 43px;
+    border-radius: 43px;
   }
 
   .name-meta {
@@ -1967,4 +1968,16 @@ a.social-medias:hover {
 
 .mid-font {
   font-size: 100%;
+}
+
+#media-responsive-hack {
+  margin-top: -68px;
+}
+
+.jury-first {
+  margin-left: 7%;
+}
+
+.jury-last {
+  margin-left: -7%;
 }
