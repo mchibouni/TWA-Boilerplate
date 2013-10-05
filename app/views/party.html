@@ -14,14 +14,11 @@
 		</div>		
 		<ul class="media-list-override">
 			<li class="jury-elem" ng-repeat="pres in presCollection">	
-				<div class="jury-meta-container">	
+				<div class="jury-meta-container" twa-bg>	
 					<span class="jury-meta black">{{pres.name}}</span>
 					<span class="jury-meta white">{{pres.meta}}</span>
 				</div>
-				<div class="child-skew">
-					<div class="reverse-skew">
-						<img class="jury-img" src={{pres.src}} />
-					</div>
+				<div class="dummy-bg grayscale" data-src={{pres.src}}>
 				</div>
 				<div class="jury-adden"><p>{{pres.desc}}</p></div>
 			</li>
@@ -32,13 +29,14 @@
 		</div>
 
 		<ul class="media-list-override">
-			<li class="jury-elem" ng-repeat="jury in juryCollection">	
-				<div class="jury-meta-container">	
-					<span class="jury-meta black">{{jury.name}}</span>
-					<span class="jury-meta white">{{jury.meta}}</span>
+			<li class="jury-elem" ng-repeat="pres in juryCollection">	
+				<div class="jury-meta-container" twa-bg>	
+					<span class="jury-meta black">{{pres.name}}</span>
+					<span class="jury-meta white">{{pres.meta}}</span>
 				</div>
-				<div class="jury-img"/>
-				<div class="jury-adden"><p>Lorem ipsum dolor site amet, consectetur adi elit. Proint tincidunt purus at poseuere sagittis maecenas at gravida mi. Curabitur sagittis.</p></div>
+				<div class="dummy-bg grayscale" data-src={{pres.src}}>
+				</div>
+				<div class="jury-adden"><p>{{pres.desc}}</p></div>
 			</li>
 		</ul>
 	</div>
