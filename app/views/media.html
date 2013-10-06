@@ -20,12 +20,19 @@ $(document).ready(function(){
 
 <div class="fancy" id="tr-header-4" class="tr-motives"></div>
 <div ng-controller="ModalCtrl" class="media-container">
-	<ul class="media-list-override pic-first-row">
-		<li class="child-skew">
-			<div class="reverse-skew">
-				<a  ng-pretty-photo data-pp="/images/1.jpg" target="_self" > <img src="/images/1.jpg">
+	<div id="media-pic-container">
+		<ul class="media-list-override pic-first-row">
+
+			<li id="pic-first-hack" class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="/images/1.jpg" target="_self" > <img src="/images/1.jpg"></a>
 				</div>
-			</li></a>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="/images/1.jpg" target="_self" > <img src="/images/1.jpg"></a>
+				</div>
+			</li>
 
 			<li class="child-skew">
 				<div class="reverse-skew">
@@ -38,86 +45,93 @@ $(document).ready(function(){
 					<a  ng-pretty-photo data-pp="/images/3.jpg"><img src="/images/3.jpg"></a>
 				</div>
 			</li>
-			<li class="child-skew">
+			<li id="pic-responsive-hack" class="child-skew">
 				<div class="reverse-skew">
-					<a  ng-pretty-photo data-pp="/images/4.jpg"><img src="/images/4.jpg"></a>
+					<a  ng-pretty-photo data-pp="/images/4.jpg"><img src="/images/photo-list.png"></a>
 				</div>
 			</li>
 		</ul>
-		<span id="pic-list"></span>
-		<ul id="media-responsive-hack" class="media-list-override">
-			<li class="child-skew">
-				<div class="reverse-skew">
-					<a  ng-pretty-photo data-pp="/images/5.jpg"><img src="/images/5.jpg"></a>
-				</div>
-			</li>
-			<li class="child-skew">
-				<div class="reverse-skew">
-					<a  ng-pretty-photo data-pp="/images/6.jpg"><img src="/images/6.jpg"></a>
-				</div>
-			</li>
-			<li class="child-skew">
-				<div class="reverse-skew">
-					<a ng-pretty-photo data-pp="/images/7.jpg"><img src="/images/7.jpg"></a>
-				</div>
-			</li>
-			<li class="child-skew">
-				<div class="reverse-skew">
-					<a ng-pretty-photo data-pp="/images/8.jpg"><img src="/images/8.jpg"></a>
-				</div>
-			</li>
-		</ul> 
-		<span id="video-list"></span>
-		<div id="video-pic-container">
-			<ul class="media-list-override video-first-row">
-				<li class="child-skew">
-					<div class="reverse-skew">
-						<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=taLRYpeWfXI&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=1" target="_self" > <img src="http://img.youtube.com/vi/taLRYpeWfXI/3.jpg">
-						</div>
-					</li></a>
-
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=_VyBVhrciOQ&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=2"><img src="http://img.youtube.com/vi/_VyBVhrciOQ/3.jpg"></a>
-						</div>
-					</li>
-
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=3QWdBgnnR4I&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=3"><img src="http://img.youtube.com/vi/3QWdBgnnR4I/3.jpg"></a>
-						</div>
-					</li>
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=gkHkELtmKFY&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=5"><img src="http://img.youtube.com/vi/gkHkELtmKFY/3.jpg"></a>
-						</div>
-					</li>
-				</ul>
-				<ul class="media-list-override">
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=ctEDOQMHqy0&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=6"><img src="http://img.youtube.com/vi/gkHkELtmKFY/3.jpg"></a>
-						</div>
-					</li>
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a  ng-pretty-photo data-pp="/images/6.jpg"><img src="http://img.youtube.com/vi/ctEDOQMHqy0/0.jpg"></a>
-						</div>
-					</li>
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a ng-pretty-photo data-pp="/images/7.jpg"><img src="http://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg"></a>
-						</div>
-					</li>
-					<li class="child-skew">
-						<div class="reverse-skew">
-							<a ng-pretty-photo data-pp="/images/8.jpg"><img src="http://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg"></a>
-						</div>
-					</li>
-				</ul>
+	</div>
+	<!--	<span id="pic-list"></span> -->
+	<ul id="media-responsive-hack" class="media-list-override">
+		<li class="child-skew">
+			<div class="reverse-skew">
+				<a  ng-pretty-photo data-pp="/images/5.jpg"><img src="/images/5.jpg"></a>
 			</div>
-		</div>
+		</li>
+		<li class="child-skew">
+			<div class="reverse-skew">
+				<a  ng-pretty-photo data-pp="/images/6.jpg"><img src="/images/6.jpg"></a>
+			</div>
+		</li>
+		<li class="child-skew">
+			<div class="reverse-skew">
+				<a ng-pretty-photo data-pp="/images/7.jpg"><img src="/images/7.jpg"></a>
+			</div>
+		</li>
+		<li class="child-skew">
+			<div class="reverse-skew">
+				<a ng-pretty-photo data-pp="/images/8.jpg"><img src="/images/8.jpg"></a>
+			</div>
+		</li>
+	</ul> 
+	<!--	<span id="video-list"></span> -->
+	<div id="video-pic-container">
+		<ul class="media-list-override video-first-row">
+			<li id="video-first-hack" class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="/images/video-list.png"></a>
+				</div>
+			</li>
 
-		<script type="text/ng-template" id="gallery.html">
-			<div></div>
-		</script>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=taLRYpeWfXI&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=1" target="_self" > <img src="http://img.youtube.com/vi/taLRYpeWfXI/3.jpg"></a>
+				</div>
+			</li>
+
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=_VyBVhrciOQ&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=2"><img src="http://img.youtube.com/vi/_VyBVhrciOQ/3.jpg"></a>
+				</div>
+			</li>
+
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=3QWdBgnnR4I&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=3"><img src="http://img.youtube.com/vi/3QWdBgnnR4I/3.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=gkHkELtmKFY&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=5"><img src="http://img.youtube.com/vi/gkHkELtmKFY/3.jpg"></a>
+				</div>
+			</li>
+		</ul>
+		<ul id="video-box-overhaul" class="media-list-override">
+			<li id="video-hack-trigger" class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=ctEDOQMHqy0&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=6"><img src="http://img.youtube.com/vi/gkHkELtmKFY/3.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a  ng-pretty-photo data-pp="/images/6.jpg"><img src="http://img.youtube.com/vi/ctEDOQMHqy0/0.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a ng-pretty-photo data-pp="/images/7.jpg"><img src="http://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg"></a>
+				</div>
+			</li>
+			<li class="child-skew">
+				<div class="reverse-skew">
+					<a ng-pretty-photo data-pp="/images/8.jpg"><img src="http://img.youtube.com/vi/<insert-youtube-video-id-here>/0.jpg"></a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script type="text/ng-template" id="gallery.html">
+<div></div>
+</script>
