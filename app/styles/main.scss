@@ -835,7 +835,7 @@ div.modal-entry-metadata > button > i {
 
 li.jury-elem {
   opacity: 1;
-  width: 240px;
+  width: 45%;
 }
 
 .jury-centered {
@@ -1727,8 +1727,9 @@ p.about-last {
   }
 
   .submission-container {
-    height: 125px;
-    width: 40%;
+    margin-left: -4%;
+    height: 140px;
+    width: 50%;
     display: inline-block;
     float: left;
     background-color: white;
@@ -1799,22 +1800,24 @@ p.about-last {
   .main-submission-container {
     position: relative;
     left: 1%;
-    width: 43%;
-    margin-left: 7%;
+    width: 47%;
+    margin-left: 6%;
   }
 
   .inlined {
+    margin-left: -4%;
+    width: 115%;
     margin: auto;
   }
 
   .submission-incentive { 
     background: url("/images/submission-incentive.png") no-repeat;
-    background-size: contain;
-    width: 135%;
-    height: 55px;
+    background-size: 100%;
+    width: 88%;
+    height: 4em;
     position: relative;
-    top: 15px;
-    left: 7.2%;
+    top: 20px;
+    left: 8.2%;
     z-index: 10;
   }
 
@@ -1876,11 +1879,11 @@ p.about-last {
   }
 
   .modal-result-entry-override {
-    height: 86px;
-    width: 86px;
-    -webkit-border-radius: 43px;
-    -moz-border-radius: 43px;
-    border-radius: 43px;
+    height: 76px;
+    width: 76px;
+    -webkit-border-radius: 38px;
+    -moz-border-radius: 38px;
+    border-radius: 38px;
   }
 
   .name-meta {
