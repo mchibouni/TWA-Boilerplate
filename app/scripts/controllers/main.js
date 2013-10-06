@@ -454,7 +454,21 @@
   };
 
   $scope.sendMail = function (){
-    $resource('http://localhost\\:3000/sendMail').save({from:this.email,msg:this.message, sendername:this.senderName})
+    $resource('http://localhost\\:3000/sendMail').save({from:this.email,msg:this.message, sendername:this.senderName});
+    $('<div/>',{class:"alert"}).addClass('alert-success').html("Message envoyé avec succès.")
+    .css({
+      'z-index' : '9999',
+      'text-align' : 'center',
+      'opacity' : '1',
+      'position' : 'fixed',
+      'display' : 'none',
+      'width' : '60%',
+      'right' : '20%',
+      'top' : '10%'
+    })
+    .appendTo($('body')).fadeIn('fast',function(){
+      $(this).fadeOut(6000);
+    });   
   }
 
 })
@@ -594,7 +608,7 @@
            return angular.lowercase(navHash[(currentIdx - 1) % navHash.length].name);
          }
        })
-.controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService) {
+.controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', '$resource', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService, $resource) {
 
 
   $scope.hashFilter = {
@@ -629,6 +643,7 @@
       .appendTo($('body')).fadeIn('fast',function(){
         $(this).fadeOut(6000);
       });   
+      $resource('http://www.kanalabs.com\\:3000/hashtags').save({hashtag:this.suggestHash});
     }
     else {
       $('<div/>',{class:"alert"}).addClass('alert-danger').html("Hashtag Invalide, veuillez revérifier.")

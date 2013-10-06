@@ -511,7 +511,10 @@ nav ul li {
     display: block;
     box-shadow: none;
     border: none;
-    width: 103%;
+    width: 85%;
+    resize: none;
+    background-size: 100%;
+    min-height: 20px;
   }
 
   #contact-form-body {
@@ -538,7 +541,7 @@ nav ul li {
 
   #contact-label { 
     color: white;
-    margin-left: 16%;
+    margin-left: 9%;
     background-size: contain;
     width: 90%;
     text-indent: 3%;
@@ -912,7 +915,9 @@ p.about-last {
 
 .contact-submit {
   background: url("/images/contact-submit.png") no-repeat;
+  background-size: contain;
   content: none;
+  border: none;
   width: 177px;
   height:46px;
   cursor: pointer;
@@ -925,7 +930,8 @@ p.about-last {
   width: 619px;
   height: 107px;
   text-indent: 17%;
-  margin-left: -8.9%;
+  background-size: contain !important;
+  margin-left: -10.9%;
 }
 
 #tr-header-1 {
@@ -1343,14 +1349,14 @@ p.about-last {
   #contact-email {
     background: url("/images/contact-input.png") no-repeat;
     height: 10%;
-    margin-left: -8%;
+    margin-left: -10%;
     text-indent: 20%;
   }
 
   #contact-name {
     background: url("/images/contact-input.png") no-repeat;
-    margin-left: -4.5%;
-    height: 10%;
+    margin-left: -7.5%;
+    height: 29px;
     text-indent: 20%;
   }
 
@@ -1992,4 +1998,8 @@ a.social-medias:hover {
 
 .no-text {
   color: transparent;
+}
+
+#contact-chrome-reset {
+  width: 20%;
 }
