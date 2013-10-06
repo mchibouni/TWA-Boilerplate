@@ -211,7 +211,7 @@ nav {
   font-size: 50%;
   background-position-x: -10%;
   line-height: 10px;
-  margin-left: 20%;
+  margin-left: 27%;
 }
 
 
@@ -1797,6 +1797,10 @@ p.about-last {
     background-size: cover !important;
   }
 
+  .fake-hashtag-entry a:hover {
+    color: red;
+  }
+
   .main-submission-container {
     position: relative;
     left: 1%;
@@ -1814,7 +1818,7 @@ p.about-last {
     background: url("/images/submission-incentive.png") no-repeat;
     background-size: 100%;
     width: 88%;
-    height: 4em;
+    height: 5em;
     position: relative;
     top: 20px;
     left: 8.2%;
@@ -1832,8 +1836,8 @@ p.about-last {
     cursor: pointer;
     color: black;
     position: absolute;
-    top: 285%;
-    right: 11%;
+    top: 270%;
+    right: 3%;
   }
 
   span.view-candidates:hover{
