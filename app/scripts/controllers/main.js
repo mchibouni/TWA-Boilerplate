@@ -138,10 +138,10 @@
     {name:'#humour',state:false},
     {name:'#mode',state:false},
     {name:'#startup',state:false},
-    {name:'#citoyen',state:false},
-    {name:'+ Proposez un hashtag',state:false},
-    ];
-  }
+    {name:'#citoyen',state:false}
+//    {name:'+ Proposez un hashtag',state:false},
+];
+}
 }])
 .service('twaCategoryService', [function () {
   this.getCategoryList = function () {
@@ -158,6 +158,19 @@
     ]
   }
 }])
+.directive('ngEnter', function () {
+  return function (scope, element, attrs) {
+    element.bind("keydown keypress", function (event) {
+      if(event.which === 13) {
+        scope.$apply(function (){
+          scope.$eval(attrs.ngEnter);
+        });
+
+        event.preventDefault();
+      }
+    });
+  };
+})
 .directive('twaBg', [function () {
   return {
     restrict: 'A',
@@ -422,7 +435,12 @@
   {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina_amoniak.png"}
   ];
 }])
-.controller('ContactCtrl', function ($scope) {
+.controller('ContactCtrl', function ($scope, $resource) {
+
+  $scope.senderName = "";
+  $scope.email= ""; 
+  $scope.message= "";
+
   $scope.timerRunning = true;
 
   $scope.startTimer = function (){
@@ -434,6 +452,11 @@
     $scope.$broadcast('timer-stop');
     $scope.timerRunning = false;
   };
+
+  $scope.sendMail = function (){
+    $resource('http://localhost\\:3000/sendMail').save({from:this.email,msg:this.message, sendername:this.senderName})
+  }
+
 })
 .controller('MainCtrl', function ($http,$q,$scope, $cookies, $document, $blockUI, $route, $routeParams, $location, navMenuRawData,twaRestAPI, twaCategoryService) {
 
@@ -578,10 +601,53 @@
     hashtags : []
   };
 
+  $scope.enableHashInput = false ; 
+
   $scope.selection_0 = "";
   $scope.selection_1 = "";
   $scope.selection_2 = "";
 
+  $scope.suggestHash = "#";
+
+
+  $scope.sendHashtag = function(){
+    console.warn(this.suggestHash);
+
+    var hashRegex = /\S*#(?:\[[^\]]+\]|\S+)/
+    if (hashRegex.test(this.suggestHash)){
+      $('<div/>',{class:"alert"}).addClass('alert-success').html("Hashtag " + this.suggestHash + " soumis. Merci pour votre proposition")
+      .css({
+        'z-index' : '9999',
+        'text-align' : 'center',
+        'opacity' : '1',
+        'position' : 'fixed',
+        'display' : 'none',
+        'width' : '60%',
+        'right' : '20%',
+        'top' : '10%'
+      })
+      .appendTo($('body')).fadeIn('fast',function(){
+        $(this).fadeOut(6000);
+      });   
+    }
+    else {
+      $('<div/>',{class:"alert"}).addClass('alert-danger').html("Hashtag Invalide, veuillez revérifier.")
+      .css({
+        'z-index' : '9999',
+        'text-align' : 'center',
+        'opacity' : '1',
+        'position' : 'fixed',
+        'display' : 'none',
+        'width' : '60%',
+        'right' : '20%',
+        'top' : '10%'
+      })
+      .appendTo($('body')).fadeIn('fast',function(){
+        $(this).fadeOut(6000);
+      });                        
+    }
+    $scope.enableHashInput = false ;                
+  }
 
 
   $scope.assertZeroLength = function(collection){

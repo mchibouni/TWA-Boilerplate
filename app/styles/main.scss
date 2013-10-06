@@ -65,6 +65,7 @@ footer {
   height: 26px;
   bottom: 2%;
   right: 2%;
+  z-index: 1;
  /* background-image: url("/images/share-sprite.png");
  background-repeat: no-repeat;*/
 }
@@ -657,12 +658,11 @@ nav ul li {
   #video-list {
     display: inline-block;
     background-image: url("/images/video-list.png");
-    width: 184px;
-    height: 130px;
-    position: relative;
-    left: -3%;
+    width: 29%;
+    height: 165px;
+    margin-left: -6%;
     bottom: 134px;
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
   }
 
@@ -1980,4 +1980,16 @@ a.social-medias:hover {
 
 .jury-last {
   margin-left: -7%;
+}
+
+#fake-input {
+  opacity: 0.5;
+  width: 91%;
+  display: block;
+  height: 100%;
+  background: none;
+}
+
+.no-text {
+  color: transparent;
 }

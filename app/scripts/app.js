@@ -79,6 +79,15 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
   });
 
+
+  // It is 3PM now, who you read this, behold of this fucked up Anti-pattern. Do this only when you have to work on saturdays.
+
+  $('.hash-elements').last().click(function(){
+    console.warn('YOO');
+  })
+
+
+
   $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
 
 

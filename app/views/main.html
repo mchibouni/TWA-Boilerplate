@@ -1,6 +1,6 @@
 
 
-<form name="prompt" id="prompt" ng-controller="TWASubmitCtrl" ng-init="submitDone = false" >
+<form name="prompt" id="prompt" ng-controller="TWASubmitCtrl" ng-init="submitDone = false" ng-submit="sendHashTag()" >
 	<div class="fancy" id="tr-header-1" />
 	<div class="fancy" id="tr-header-2"/>
 	<div class="fancy" id="tr-header-3"/>
@@ -12,16 +12,23 @@
 	<div class="fancy" id="tr-red-1"/>
 	<div id="tr-plax-green"  data-xrange="40" data-yrange="40" plax/>
 	<label  class="meta-prompt">Donnez un coup de main à vos créatifs favoris!</label>
-	<label class="prompt" for="submission-fill">Proposez leurs candidatures et inscrivez les aux TWA</label>
+	<label class="prompt" for="submission-fill">Proposez leurs candidatures et inscrivez-les aux TWA</label>
 	<div class="parent-incentive">
 		<label class="prompt incentive"><span># Décrivez </span><span>votre candidat, en hashtags</span></label>
 	</div>
-	<div class="choice-container">
-		<ul ng-repeat="twaElem in twaHashTags">
+	<div ng-wtf class="choice-container">
+		<ul  ng-repeat="twaElem in twaHashTags">
 			<li class="hash-elements raw" ng-click="twaElem.state = !twaElem.state;
-			toggleFilter(twaElem)" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 6 && $index <= 12), 'push-hack': ($index === 12), 'even-translated':($index > 12), 'fake-hashtag-entry':($index === twaHashTags.length -1)}"><a class="only-here">{{twaElem.name}}</a></li>
+			toggleFilter(twaElem)" ng-class="{'fithashtag': twaHashTags[$index].state, 'odd-translated' : ($index > 6 && $index <= 12), 'push-hack': ($index === 12), 'even-translated':($index > 12)}"><a class="only-here">{{twaElem.name}}</a></li>
+			<li ng-class="{'no-text' : enableHashInput === true }" class="hash-elements raw fake-hashtag-entry" ng-show="$index === twaHashTags.length - 1 ">
+				<a class="only-here" ng-click="enableHashInput = true" ng-hide="enableHashInput===true">
+					+Proposez un Hashtag
+				</a>
+				<input type="text" ng-init="suggestHash='#'" ng-model="suggestHash" ng-enter="sendHashtag()" name="hash-input" ng-show="enableHashInput=== true" ng-fade id="fake-input" ng-hide="enableHashInput === false" />
+			</li>
 		</ul>
 	</div>
+	<input type="submit"  style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
 	<div class="choice-container">
 <!--		<ul ng-repeat="twaElem in navCategoryList">
 
@@ -35,7 +42,7 @@
 			<input  id="fillform"  name="fillform" type="url" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
 
 			<ul class="selected-container">
-				<li class="horizontal-li" ng-fade ng-repeat="validElement in twaHashTags | filter : validHashTagFilter"><a href="#">{{validElement.name}}</a></li>
+				<li class="horizontal-li" ng-repeat="validElement in twaHashTags | filter : validHashTagFilter"><a href="#">{{validElement.name}}</a></li>
 			</ul>
 		</div>
 		<div class="well submission-container">
@@ -51,7 +58,7 @@
 					</div>
 				</a>
 				
-			<span ng-controller="ModalCtrl" ng-click="open()" class="right view-candidates">+ voir les autres candidats</span>
+				<span ng-controller="ModalCtrl" ng-click="open()" class="right view-candidates">+ voir les autres candidats</span>
 			</ul>
 		</div>
 	</div>

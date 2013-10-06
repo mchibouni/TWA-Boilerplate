@@ -31,7 +31,7 @@ angular.module('BlockUI', []).provider("$blockUI", function() {
             left: 0,
             'background-color': '#000',
             opacity: 0.4,
-            cursor: 'wait',
+            cursor: 'default',
             position: 'fixed'
           };
           this.backdropEl = angular.element('<div>').css(backdropCss);
