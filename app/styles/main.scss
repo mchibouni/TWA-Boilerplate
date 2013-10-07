@@ -322,7 +322,7 @@ nav ul li {
     font-weight: bold;
     text-align: center;
     line-height: 45px;
-    font-size: 200%;
+    font-size: 150%;
     cursor: pointer;
     background-image: url("/images/nav-next.png");
     background-repeat: no-repeat;
@@ -340,7 +340,7 @@ nav ul li {
     font-weight: bold;
     text-align: center;
     line-height: 45px;
-    font-size: 200%;
+    font-size: 150%;
     cursor: pointer;
     background-image: url("/images/nav-prev.png");
     background-repeat: no-repeat;
@@ -631,7 +631,7 @@ nav ul li {
   }
   .media-list-override {
     display: block;
-    width: 80%;
+    width: 92%;
   }
   .media-list-override > li:hover {
     opacity: 0.8;
@@ -648,11 +648,11 @@ nav ul li {
   }
 
   .pic-first-row {
-    margin-right: 5%; 
+    margin-right: -2%; 
   }
 
   .video-first-row {
-    margin-left: 95px;
+    margin-left: 10%;
     margin-left: none !important; 
   }
 
@@ -1040,6 +1040,7 @@ padding-left: 15%;
 }
 
 .overlay {
+
   background: url("/images/bg-motive.png") no-repeat 116% center fixed;
   background-size: 140% 100%;
 //  -webkit-animation: slide 0.3s linear 0s;
@@ -1392,7 +1393,7 @@ padding-left: 15%;
     -ms-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
-    opacity: 1;
+    opacity: 0.9;
     color: black;
   }
 
@@ -1402,7 +1403,7 @@ padding-left: 15%;
     color: transparent;
     text-align: center;
     width: 87.8%;
-    bottom: 107%;
+    bottom: 120%;
     line-height: 105%;
     font-size: 80%;
     height: 93%;
@@ -1951,8 +1952,8 @@ div.reverse-skew a img, div.reverse-skew img {
 }
 
 .social-medias {
-  width: 80%;
-  height: 83%;
+  width: 28px;
+  height: 28px;
   z-index: 10000;
   display: block;
   cursor: pointer;
@@ -2093,13 +2094,14 @@ and (max-width : 1024px) {
 
 .party-parent {
   width: 43%;
-  margin-left: 20%;
+  margin-left: 15%;
 }
 
 .party-child {
-  width: 50%;
+  font-size: 100%;
   position: relative;
-  right: -48%;
+  right: -53%;
+  width: 56%;
 }
 
 #media-pic-container {
@@ -2115,4 +2117,42 @@ and (max-width : 1024px) {
 
 .media-last-child { 
   right: 0%;
+}
+
+.bold {
+  vertical-align: middle;
+  font-size: 120%;
+  font-weight: bold;
+  margin-top: -3%;
+  display: inline-block;
+}
+
+.blink {
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  /* Decimal not necessary, 0 and 1 is enough */
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
 }

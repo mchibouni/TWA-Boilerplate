@@ -158,6 +158,16 @@
     ]
   }
 }])
+.directive('ngFocus', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      $("input[type='text'],input[type='url']").on("click", function () {
+       $(this).select();
+     });
+    }
+  };
+}])
 .directive('ngEnter', function () {
   return function (scope, element, attrs) {
     element.bind("keydown keypress", function (event) {
@@ -420,7 +430,7 @@
   {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel-smaoui.png"},
   {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana", src:"/images/fatma-ben-haj-ali.png"},
   {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim-ben-amor.png"},
-  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/mohamed-ali-souissi.png"},
+  {name: "Med Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/mohamed-ali-souissi.png"},
   {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled-koubaa.png"},
   {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina-abdellatif.png"}
   ];
@@ -600,6 +610,13 @@
        })
 .controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', '$resource', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService, $resource) {
 
+  $scope.showLoad = function () {
+    $(".submit-result").fadeOut('fast',function(){
+      $(this).html("Envoi en cours..").css('background-image','none').addClass('blink').fadeIn();
+    })
+    return true;  
+  }
+
 
   $scope.hashFilter = {
     hashtags : []
@@ -748,6 +765,25 @@
 var ModalCtrl = function ($scope, $modal, $log, twaHashTagService,$window) {
 
 
+  $scope.shareModal = function () {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'share-modal.html',
+      controller: ModalInstanceCtrl,
+      windowClass: 'twa-gallery-modal',
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 
 
   $scope.openGallery = function () {
