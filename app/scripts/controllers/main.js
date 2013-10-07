@@ -44,7 +44,7 @@
               .appendTo($('body')).fadeIn('fast',function(){
                 $(this).fadeOut(6000,function(){
                   console.warn("RELOAD");
-                  $window.location.href = '/'; $scope.$apply();
+
                 });
               });
               $rootScope.submissionSent = true ; 
@@ -65,7 +65,7 @@
             })
             .appendTo($('body')).fadeIn('fast',function(){
               if (target === "home")
-              $(this).fadeOut(8000);
+                $(this).fadeOut(8000);
             })
           }
         });
@@ -417,14 +417,14 @@
 .controller('PartyCtrl', ['$scope', function ($scope) {
 
   $scope.presCollection = [
-  {name:"Nejib Belkadhi",meta:"Présentateur", src:"/images/nejib-belkadhi.png"},
-  {name:"Kenza Fourati",meta:"Model", src:"/images/kenza-fourati.png"}
+  {name:"Nejib Belkadhi",meta:"Réalisateur", src:"/images/nejib-belkadhi.png"},
+  {name:"Kenza Fourati",meta:"Top Model", src:"/images/kenza-fourati.png"}
   ];
   $scope.juryCollection = [
-  {name:"Amine Nouri", meta: "DJ",src:"/images/amine-nouri.png"},
-  {name: "Katybon", meta: "Chanteur",src:"/images/katybon.png"},
-  {name: "Taha Nouri", meta: "Artist", src:"/images/taha-nouri.png"},
-  {name: "Zein", meta: "Music band", src:"/images/zein.png"}
+  {name:"Amine Nouri", meta: "Artiste",src:"/images/amine-nouri.png"},
+  {name: "Katybon", meta: "Chanteur Hip-hop",src:"/images/katybon.png"},
+  {name: "Taha Nouri", meta: "Artiste", src:"/images/taha-nouri.png"},
+  {name: "Zein Hayej", meta: "DJ", src:"/images/zein.png"}
   ];
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
@@ -432,7 +432,7 @@
 
   $scope.juryCollection = [
   {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel-smaoui.png"},
-  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana", src:"/images/fatma-ben-haj-ali.png"},
+  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable des Relations Presse chez Tunisiana", src:"/images/fatma-ben-haj-ali.png"},
   {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim-ben-amor.png"},
   {name: "Med Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/mohamed-ali-souissi.png"},
   {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled-koubaa.png"},
@@ -567,6 +567,13 @@
     }
     else {
       this.viewIndex = which ; 
+      angular.forEach(this.navHash, function(v,k){
+        if (k === $scope.viewIndex - 1)
+          v.state = true ; 
+        else 
+          v.state = false ;
+      });
+
     }
 
     if (view === 'home') view = '/'; //RouteChange Hack

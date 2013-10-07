@@ -361,6 +361,7 @@ nav ul li {
   }
 
   #step-area {
+    width: 100%;
     position: fixed;
     top: 81%;
     left: 30%;
@@ -563,9 +564,9 @@ nav ul li {
   .nag-first {
     width: 247px;
     height: 104px;
-    top: 11%;
+    top: 35%;
     position: fixed;
-    left: 45%;
+    left: 60%;
     background: url("/images/help-add.png") no-repeat;
   }
 
@@ -580,8 +581,8 @@ nav ul li {
   .nag-last {
     width: 287px;
     height: 104px;
-    top: 33%;
-    left: 60%;
+    top: 9%;
+    left: 45%;
     background: url("/images/help-choice.png") no-repeat;
   }
 
@@ -1948,12 +1949,12 @@ div.reverse-skew a img, div.reverse-skew img {
   cursor: pointer;
 }
 
-  #fb{
-   background: url("/images/fb.png") no-repeat;
-   background-size: contain;
- }
+#fb{
+ background: url("/images/fb.png") no-repeat;
+ background-size: contain;
+}
 
- .social-medias {
+.social-medias {
   width: 28px;
   height: 28px;
   z-index: 10000;

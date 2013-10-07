@@ -136,7 +136,7 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
   "/images/mohamed-ali-souissi.png",
   "/images/mohamed-ali-souissi.png",
   "/images/mohamed-ali-souissi.png",
-  "/images/mohamed-ali-souissi.png"
+  "/images/mohamed-ali-souissi.png",
   ];
 
   preloadImages(imageURLs);
