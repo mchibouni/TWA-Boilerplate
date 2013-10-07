@@ -509,7 +509,7 @@
     blockUI = $blockUI.createBlockUI({
 
       // Angular Gurus, I beg for your vehemence.
-      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
+      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div><div class='nag-primary nag-wtf'></div>"
 
     });
     blockUI.blockUI();

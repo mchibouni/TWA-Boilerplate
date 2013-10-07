@@ -553,15 +553,15 @@ nav ul li {
     position: fixed;
     width: 50px;
     height: 50px;
-    background-color: yellow; 
+    background-size: contain !important;    
   }
 
   .nag-first {
     width: 247px;
     height: 104px;
-    top: 33%;
+    top: 11%;
     position: fixed;
-    left: 14%;
+    left: 45%;
     background: url("/images/help-add.png") no-repeat;
   }
 
@@ -569,16 +569,24 @@ nav ul li {
     width: 311px;
     height: 111px;
     top: 76%;
-    left: 40%;
+    left: 45%;
     background: url("/images/help-share.png") no-repeat;
   }
 
   .nag-last {
     width: 287px;
     height: 104px;
-    top: 43%;
+    top: 33%;
     left: 60%;
     background: url("/images/help-choice.png") no-repeat;
+  }
+
+  .nag-wtf {
+    width: 287px;
+    height: 104px;
+    top: 33%;
+    left: 18%;
+    background: url("/images/help-paste.png") no-repeat;
   }
 
   #nag-invoke {
@@ -964,6 +972,7 @@ padding-left: 15%;
   height: 386px;
   position: fixed;
   top: 0;
+  z-index: -1;
   right: 5%;
 }
 
@@ -1023,6 +1032,7 @@ padding-left: 15%;
   top: 0;
   height: 100%;
   width: 34.5%;
+  z-index: -1;
   background-repeat: no-repeat;
 }
 
