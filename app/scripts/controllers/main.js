@@ -184,6 +184,18 @@
     }
   };
 }])
+.directive('twaBgArtists', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      var srcContainer = ["/images/nejib-belkadhi.png","/images/kenza-fourati.png","/images/amine-nouri.png","/images/katybon.png",
+      "/images/taha-nouri.png","/images/zein.png",];
+      $.each($('.dummy-bg'),function(key,value){
+        $(this).css('background-image','url('+srcContainer[key]+')')
+      })
+    }
+  };
+}])
 .directive('ngPrettyPhoto', ['$location', function($location){
   // Runs during compile
   return {
@@ -419,10 +431,10 @@
   {name:"Kenza Fourati",meta:"Model", src:"/images/kenza_f.png"}
   ];
   $scope.juryCollection = [
-  {name:"DJ anonimus", meta: "DJ"},
-  {name: "Bendir man", meta: "Chanteur"},
-  {name: "Si Lemhaf", meta: "Artist"},
-  {name: "Dub mel kabba", meta: "Music band"}
+  {name:"Amine Nouri", meta: "DJ"},
+  {name: "Katybon", meta: "Chanteur"},
+  {name: "Taha Nouri", meta: "Artist"},
+  {name: "Zein", meta: "Music band"}
   ];
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
@@ -643,6 +655,13 @@
       .appendTo($('body')).fadeIn('fast',function(){
         $(this).fadeOut(6000);
       });   
+
+
+      $scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
+      $scope.$apply();
+
+      $("#fake-input,.fake-hashtag-entry").css('opacity','0');
+
       $resource('http://www.kanalabs.com\\:3000/hashtags').save({hashtag:this.suggestHash});
     }
     else {
