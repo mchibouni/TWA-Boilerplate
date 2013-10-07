@@ -24,7 +24,7 @@
   .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope','$window', function($resource,authStrategyService,$http,$rootScope,$window){
     return { 
 
-      submitData : function (url,hashtags, metadata, imgurl, count) {
+      submitData : function (url,hashtags, metadata, imgurl, count, target) {
         $resource("http://www.kanalabs.com\\:8080/twa/check/:url").get({url:url},function(data){
           if ( data.callback === true ) {
             console.warn("in there");
@@ -64,6 +64,7 @@
               'top' : '10%'
             })
             .appendTo($('body')).fadeIn('fast',function(){
+              if (target === "home")
               $(this).fadeOut(8000);
             })
           }
