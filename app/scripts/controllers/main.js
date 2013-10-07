@@ -171,31 +171,6 @@
     });
   };
 })
-.directive('twaBg', [function () {
-  return {
-    restrict: 'A',
-    link: function (scope, iElement, iAttrs) {
-      var srcContainer = ["/images/amel-smaoui.png","/images/fatma-ben-haj-ali.png",
-      "/images/karim-ben-amor.png","/images/mohamed-ali-souissi.png","/images/khaled-koubaa.png",
-      "/images/amina-abdellatif.png"];
-      $.each($('.dummy-bg'),function(key,value){
-        $(this).css('background-image','url('+srcContainer[key]+')')
-      })
-    }
-  };
-}])
-.directive('twaBgArtists', [function () {
-  return {
-    restrict: 'A',
-    link: function (scope, iElement, iAttrs) {
-      var srcContainer = ["/images/nejib-belkadhi.png","/images/kenza-fourati.png","/images/amine-nouri.png","/images/katybon.png",
-      "/images/taha-nouri.png","/images/zein.png",];
-      $.each($('.dummy-bg'),function(key,value){
-        $(this).css('background-image','url('+srcContainer[key]+')')
-      })
-    }
-  };
-}])
 .directive('ngPrettyPhoto', ['$location', function($location){
   // Runs during compile
   return {
@@ -426,25 +401,28 @@
   }
 }])
 .controller('PartyCtrl', ['$scope', function ($scope) {
+
   $scope.presCollection = [
-  {name:"Nejib Belkadhi",meta:"Présentateur", src:"/images/nejib_bel.png"},
-  {name:"Kenza Fourati",meta:"Model", src:"/images/kenza_f.png"}
+  {name:"Nejib Belkadhi",meta:"Présentateur", src:"/images/nejib-belkadhi.png"},
+  {name:"Kenza Fourati",meta:"Model", src:"/images/kenza-fourati.png"}
   ];
   $scope.juryCollection = [
-  {name:"Amine Nouri", meta: "DJ"},
-  {name: "Katybon", meta: "Chanteur"},
-  {name: "Taha Nouri", meta: "Artist"},
-  {name: "Zein", meta: "Music band"}
+  {name:"Amine Nouri", meta: "DJ",src:"/images/amine-nouri.png"},
+  {name: "Katybon", meta: "Chanteur",src:"/images/katybon.png"},
+  {name: "Taha Nouri", meta: "Artist", src:"/images/taha-nouri.png"},
+  {name: "Zein", meta: "Music band", src:"/images/zein.png"}
   ];
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
+
+
   $scope.juryCollection = [
-  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel_smaoui.png"},
-  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana", src:"/images/fatma_belhaj.png"},
-  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim_ben_amor.png"},
-  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/medali_souissi.png"},
-  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled_koubaa.png"},
-  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina_amoniak.png"}
+  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel-smaoui.png"},
+  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana", src:"/images/fatma-ben-haj-ali.png"},
+  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim-ben-amor.png"},
+  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/mohamed-ali-souissi.png"},
+  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled-koubaa.png"},
+  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina-abdellatif.png"}
   ];
 }])
 .controller('ContactCtrl', function ($scope, $resource) {

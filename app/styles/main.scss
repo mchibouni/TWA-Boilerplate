@@ -134,6 +134,9 @@ div > ul > li.hash-elements{
   margin-right: 0.5%;
   margin-bottom: 0.5%;
   width: 13.5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 ul{
@@ -2089,7 +2092,7 @@ and (max-width : 1024px) {
 }
 
 .party-parent {
-  width: 56%;
+  width: 43%;
   margin-left: 20%;
 }
 
