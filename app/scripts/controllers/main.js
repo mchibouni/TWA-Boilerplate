@@ -21,10 +21,10 @@
     }
     ];
   }])
-  .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope', function($resource,authStrategyService,$http,$rootScope){
+  .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope','$window', function($resource,authStrategyService,$http,$rootScope,$window){
     return { 
 
-      submitData : function (url,hashtags, metadata, imgurl, count) {
+      submitData : function (url,hashtags, metadata, imgurl, count, target) {
         $resource("http://www.kanalabs.com\\:8080/twa/check/:url").get({url:url},function(data){
           if ( data.callback === true ) {
             console.warn("in there");
@@ -42,7 +42,10 @@
                 'top' : '10%'
               })
               .appendTo($('body')).fadeIn('fast',function(){
-                $(this).fadeOut(6000);
+                $(this).fadeOut(6000,function(){
+                  console.warn("RELOAD");
+
+                });
               });
               $rootScope.submissionSent = true ; 
               console.log("success");
@@ -61,7 +64,8 @@
               'top' : '10%'
             })
             .appendTo($('body')).fadeIn('fast',function(){
-              $(this).fadeOut(8000);
+              if (target === "home")
+                $(this).fadeOut(8000);
             })
           }
         });
@@ -158,6 +162,16 @@
     ]
   }
 }])
+.directive('ngFocus', [function () {
+  return {
+    restrict: 'A',
+    link: function (scope, iElement, iAttrs) {
+      $("input[type='text'],input[type='url']").on("click", function () {
+       $(this).select();
+     });
+    }
+  };
+}])
 .directive('ngEnter', function () {
   return function (scope, element, attrs) {
     element.bind("keydown keypress", function (event) {
@@ -171,19 +185,6 @@
     });
   };
 })
-.directive('twaBg', [function () {
-  return {
-    restrict: 'A',
-    link: function (scope, iElement, iAttrs) {
-      var srcContainer = ["/images/amel-smaoui.png","/images/fatma-ben-haj-ali.png",
-      "/images/karim-ben-amor.png","/images/mohamed-ali-souissi.png","/images/khaled-koubaa.png",
-      "/images/amina-abdellatif.png"];
-      $.each($('.dummy-bg'),function(key,value){
-        $(this).css('background-image','url('+srcContainer[key]+')')
-      })
-    }
-  };
-}])
 .directive('ngPrettyPhoto', ['$location', function($location){
   // Runs during compile
   return {
@@ -414,28 +415,31 @@
   }
 }])
 .controller('PartyCtrl', ['$scope', function ($scope) {
+
   $scope.presCollection = [
-  {name:"Nejib Belkadhi",meta:"Présentateur", src:"/images/nejib_bel.png"},
-  {name:"Kenza Fourati",meta:"Model", src:"/images/kenza_f.png"}
+  {name:"Nejib Belkadhi",meta:"Réalisateur", src:"/images/nejib-belkadhi.png"},
+  {name:"Kenza Fourati",meta:"Top Model", src:"/images/kenza-fourati.png"}
   ];
   $scope.juryCollection = [
-  {name:"DJ anonimus", meta: "DJ"},
-  {name: "Bendir man", meta: "Chanteur"},
-  {name: "Si Lemhaf", meta: "Artist"},
-  {name: "Dub mel kabba", meta: "Music band"}
+  {name:"Amine Nouri", meta: "Artiste",src:"/images/amine-nouri.png"},
+  {name: "Katybon", meta: "Chanteur Hip-hop",src:"/images/katybon.png"},
+  {name: "Taha Nouri", meta: "Artiste", src:"/images/taha-nouri.png"},
+  {name: "Zein Hayej", meta: "DJ", src:"/images/zein.png"}
   ];
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
+
+
   $scope.juryCollection = [
-  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel_smaoui.png"},
-  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable Relations Presse chez Tunisiana", src:"/images/fatma_belhaj.png"},
-  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim_ben_amor.png"},
-  {name: "Mohamed Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/medali_souissi.png"},
-  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled_koubaa.png"},
-  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina_amoniak.png"}
+  {name:"Amel Smaoui", meta: "Journaliste", desc:"Journaliste et animatrice chez RTCI", src:"/images/amel-smaoui.png"},
+  {name: "Fatma Ben Hadj Ali", meta: "RRP", desc:"Responsable des Relations Presse chez Tunisiana", src:"/images/fatma-ben-haj-ali.png"},
+  {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim-ben-amor.png"},
+  {name: "Med Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/mohamed-ali-souissi.png"},
+  {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled-koubaa.png"},
+  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina-abdellatif.png"}
   ];
 }])
-.controller('ContactCtrl', function ($scope, $resource) {
+.controller('ContactCtrl', function ($scope, $resource, $location) {
 
   $scope.senderName = "";
   $scope.email= ""; 
@@ -467,7 +471,8 @@
       'top' : '10%'
     })
     .appendTo($('body')).fadeIn('fast',function(){
-      $(this).fadeOut(6000);
+      $(this).fadeOut(6000,function(){
+      });
     });   
   }
 
@@ -497,7 +502,7 @@
     blockUI = $blockUI.createBlockUI({
 
       // Angular Gurus, I beg for your vehemence.
-      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div>"
+      innerHTML: "<div class='nag-primary nag-first'></div><div class='nag-primary nag-second'></div><div class='nag-primary nag-last'></div><div class='nag-primary nag-wtf'></div>"
 
     });
     blockUI.blockUI();
@@ -562,6 +567,13 @@
     }
     else {
       this.viewIndex = which ; 
+      angular.forEach(this.navHash, function(v,k){
+        if (k === $scope.viewIndex - 1)
+          v.state = true ; 
+        else 
+          v.state = false ;
+      });
+
     }
 
     if (view === 'home') view = '/'; //RouteChange Hack
@@ -610,6 +622,13 @@
        })
 .controller('TWASubmitCtrl', ['$scope', '$window','twaHashTagService','twaRestAPI', 'submitDataService', '$resource', function ($scope,$window,twaHashTagService,twaRestAPI, submitDataService, $resource) {
 
+  $scope.showLoad = function () {
+    $(".submit-result").fadeOut('fast',function(){
+      $(this).html("Envoi en cours..").css('background-image','none').addClass('blink').fadeIn();
+    })
+    return true;  
+  }
+
 
   $scope.hashFilter = {
     hashtags : []
@@ -643,6 +662,13 @@
       .appendTo($('body')).fadeIn('fast',function(){
         $(this).fadeOut(6000);
       });   
+
+
+      $scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
+      $scope.$apply();
+
+      $("#fake-input,.fake-hashtag-entry").css('opacity','0');
+
       $resource('http://www.kanalabs.com\\:3000/hashtags').save({hashtag:this.suggestHash});
     }
     else {
@@ -751,6 +777,25 @@
 var ModalCtrl = function ($scope, $modal, $log, twaHashTagService,$window) {
 
 
+  $scope.shareModal = function () {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'share-modal.html',
+      controller: ModalInstanceCtrl,
+      windowClass: 'twa-gallery-modal',
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
 
 
   $scope.openGallery = function () {

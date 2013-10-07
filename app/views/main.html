@@ -24,7 +24,7 @@
 				<a class="only-here" ng-click="enableHashInput = true" ng-hide="enableHashInput===true">
 					+Proposez un Hashtag
 				</a>
-				<input type="text" ng-init="suggestHash='#SaissezVotreHashtag'" ng-model="suggestHash" ng-enter="sendHashtag()" name="hash-input" ng-show="enableHashInput=== true" id="fake-input" ng-hide="enableHashInput === false" />
+				<input type="text" ng-focus="isFocused" ng-init="suggestHash='#SaissezVotreHashtag'" ng-model="suggestHash" ng-enter="sendHashtag()" name="hash-input" ng-show="enableHashInput=== true" id="fake-input" ng-hide="enableHashInput === false" />
 			</li>
 		</ul>
 	</div>
@@ -39,7 +39,7 @@
 		<div class="submission-incentive"></div>
 		<div class="well submission-container main-submission-container">
 			<p><i class="icon-paperclip"></i>Copier coller l'URL de votre candidat :</p>
-			<input  id="fillform"  name="fillform" type="url" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
+			<input  ng-focus id="fillform"  name="fillform" type="url" data-trigger="focus" data-unique="1" bs-tooltip="tooltip.title" ng-model="keyword" ng-change="notify()" ng-pattern= "/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/" />
 
 			<ul class="selected-container">
 				<li class="horizontal-li" ng-repeat="validElement in twaHashTags | filter : validHashTagFilter"><a href="#">{{validElement.name}}</a></li>
@@ -50,8 +50,8 @@
 				<a ng-click="submitData(item.url,item.hashtags)" class="no-decoration" href="" ng-fade ng-repeat="item in (lazyLoadCandidates | filter: hashFilter).splice(0,3)" >
 					<div data-index = {{$index}} class="result-wrapper" ng-switch on="selection_{{$index}}">
 						<img ng-candidate ng-fade ng-switch-default  class="modal-result-circular-image modal-result-entry-override"  ng-faulty src={{item.imguri}} />
-						<div  ng-reverse-candidate ng-switch-when="meta" class="modal-result-circular-image sample-result-meta modal-result-entry-override" ng-fade ng-faulty>
-							<p class="name-meta">{{item.name}}
+						<div  ng-reverse-candidate ng-switch-when="meta" class="modal-result-circular-image sample-result-meta modal-result-entry-override" popover={{item.name}} popover-trigger="mouseenter" ng-fade ng-faulty>
+							<p class="name-meta">
 							</p>
 							<p class="meta-submit"><i class="icon-heart icon-white"></i>Soumettre </p>
 						</div>
@@ -63,7 +63,7 @@
 		</div>
 	</div>
 	<div ng-submit-done loaded="submissionSent"></div>
-	<div  class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || (!submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
+	<div  class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || ( !showLoad() || !submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
 	<div id="share-area">
 		<ul>
 			<li ng-click="!prompt.fillform.$valid || (invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>

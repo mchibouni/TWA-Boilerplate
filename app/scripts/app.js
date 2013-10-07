@@ -87,7 +87,7 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
   }
 
   var imageURLs = [
-  /*"/images/1.jpg",
+  "/images/1.jpg",
   "/images/2.jpg",
   "/images/3.jpg",
   "/images/4.jpg",
@@ -131,7 +131,12 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
   "/images/fatma-ben-haj-ali.png",
   "/images/karim-ben-amor.png",
   "/images/khaled-koubaa.png",
-  "/images/mohamed-ali-souissi.png"*/
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
   ];
 
   preloadImages(imageURLs);

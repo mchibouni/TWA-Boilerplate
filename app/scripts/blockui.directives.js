@@ -42,7 +42,7 @@ angular.module('BlockUI', []).provider("$blockUI", function() {
           messageBoxCss = {
             'z-index': 10002,
             position: 'fixed',
-            opacity: 0.5,
+            opacity: 1,
           };
           this.messageEl = angular.element('<div>').css(messageBoxCss).html(options.innerHTML);
         }

@@ -14,16 +14,19 @@ $(document).ready(function(){
 <div class="fancy altered" id="tr-black-party" style="top: 55%;z-index: 5;right: 7%;" />
 <div class="fancy" id="partial-motive" plax/>
 <div id="media-descriptor">
-	<label class="meta-prompt full-font">Les beaux moments de Tunisiana Web Awards</label>
-	<label class="prompt mid-font" for="submission-fill">Consultez la galerie TWA en photos & vidéos !</label>
+	<label class="meta-prompt mid-font">Les beaux moments de Tunisiana Web Awards</label>
+	<label class="prompt full-font" for="submission-fill">Consultez la galerie TWA en photos & vidéos !</label>
 </div>
 
 <div class="fancy" id="tr-header-4" class="tr-motives"></div>
 <div ng-controller="ModalCtrl" class="media-container">
+	<div class="jury-skew party-parent">
+		<div class="jury-centered jury-unskew party-child">Album<span class="bold">photos</span></div>
+	</div>
 	<div id="media-pic-container">
 		<ul class="media-list-override pic-first-row">
 
-			<li id="pic-first-hack" class="child-skew">
+			<li class="child-skew">
 				<div class="reverse-skew">
 					<a  ng-pretty-photo data-pp="/images/1.jpg" target="_self" > <img src="/images/1.jpg"></a>
 				</div>
@@ -45,15 +48,10 @@ $(document).ready(function(){
 					<a  ng-pretty-photo data-pp="/images/3.jpg"><img src="/images/3.jpg"></a>
 				</div>
 			</li>
-			<li id="pic-responsive-hack" class="child-skew">
-				<div class="reverse-skew">
-					<a  ng-pretty-photo data-pp="/images/4.jpg"><div></div></a>
-				</div>
-			</li>
 		</ul>
 	</div>
 	<!--	<span id="pic-list"></span> -->
-	<ul id="media-responsive-hack" class="media-list-override">
+	<ul class="media-list-override">
 		<li class="child-skew">
 			<div class="reverse-skew">
 				<a  ng-pretty-photo data-pp="/images/5.jpg"><img src="/images/5.jpg"></a>
@@ -76,13 +74,12 @@ $(document).ready(function(){
 		</li>
 	</ul> 
 	<!--	<span id="video-list"></span> -->
+
+	<div class="jury-skew party-parent media-last">
+		<div class="jury-centered jury-unskew party-child media-last-child">Album <span class="bold">vidéos</span></div>
+	</div>
 	<div id="video-pic-container">
 		<ul class="media-list-override video-first-row">
-			<li id="video-first-hack" class="child-skew">
-				<div class="reverse-skew">
-					<a  ng-pretty-photo data-pp="/images/video-list.png"><img src="/images/video-list.png"></a>
-				</div>
-			</li>
 
 			<li class="child-skew">
 				<div class="reverse-skew">
@@ -107,8 +104,8 @@ $(document).ready(function(){
 				</div>
 			</li>
 		</ul>
-		<ul id="video-box-overhaul" class="media-list-override">
-			<li id="video-hack-trigger" class="child-skew">
+		<ul class="media-list-override">
+			<li class="child-skew">
 				<div class="reverse-skew">
 					<a  ng-pretty-photo data-pp="http://www.youtube.com/watch?v=ctEDOQMHqy0&list=PLJcSp1TFrM-dVlOwVhpSdM5CbOow67Khq&index=6"><img src="http://img.youtube.com/vi/gkHkELtmKFY/3.jpg"></a>
 				</div>
@@ -133,5 +130,5 @@ $(document).ready(function(){
 </div>
 
 <script type="text/ng-template" id="gallery.html">
-<div></div>
+	<div></div>
 </script>

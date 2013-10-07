@@ -24,7 +24,7 @@
       <ul ng-repeat="menuElem in navHash">
         <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
-      <div id="nag-invoke" ng-click="invokeNag()"/>
+      <div id="nag-invoke" ng-show="$location.path() === '/'" ng-click="invokeNag()"/>
     </nav>
 
     <span ng-cloak ng-show="viewIndex !== 6" ng-class="{'twa-next' : viewIndex !== 6 }" ng-click="deferTransition(getNextViewByName(),'next')">{{routeList[viewIndex % routeList.length]}}</span>
@@ -48,18 +48,22 @@
     </div>
 
     <div id="step-area" ng-controller="ModalCtrl">
-      <a href="" ng-click="open()"><span class="soumiss main-btn"></span></a>
+      <a href="" ng-click="open()"><span popover="La soumission" popover-trigger="mouseenter" class="soumiss main-btn"></span></a>
       <a href=""><span class="seperator main-btn"></span></a>
-      <a href=""><span class="vote main-btn"></span></a>
+      <a href=""><span popover="Voter pour le candidat" popover-trigger="mouseenter" class="vote main-btn"></span></a>
       <a href=""><span class="seperator main-btn"></span></a>
-      <a href=""><span class="party main-btn"></span></a>
+      <a href=""><span popover="Remise des prix" popover-trigger="mouseenter" class="party main-btn"></span></a>
 
+
+      <script type="text/ng-template">
+          <div></div>
+      </script>
 
       <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
           <div class="modal-close" ng-click="cancel()"></div>
-          <h3>La liste des soumissions</h3>
-          <h4>Lorem ipsum dolor siet amet, consectetur adipiscing ellit. Nulla pretium eros ut risos fringilla, non tristique urna feugiat. Sed massa massa, consectetur non vulputate eu. <a href="">Nominer une personne</a></h1>
+          <h3 id="tutorial-title">La liste des soumissions</h3>
+          <h4 id="sub-tutorial">Ci-dessous, la liste des soumissions. Vous pouvez encore soumettre, voir les profils des candidats et par la suite voter.</h1>
           </div>
           <div>
             <h2 class="modal-result-descriptor">{{(items | filter : hashfilter | filter: candidateName).length}} Résultats</h2>
@@ -111,7 +115,7 @@
       <footer>
         <div><a class="social-medias" id="fb" target="_blank" href="https://www.facebook.com/Tunisiana">_</a></div>
         <div><a class="social-medias" id="tw" target="_blank" href="https://www.twitter.com/Tunisiana">_</a></div>
-        <div><a class="social-medias" id="li" href="www.linkedin.com/company/tunisiana‎">_</a></div>
+        <div><a class="social-medias" id="li" target="_blank" href="http://www.linkedin.com/company/tunisiana">_</a></div>
         <div><a class="social-medias" id="ml" href="fb">_</a></div>
       </footer>
 

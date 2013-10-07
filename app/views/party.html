@@ -14,11 +14,11 @@
 		</div>		
 		<ul class="media-list-override">
 			<li class="jury-elem" ng-repeat="pres in presCollection">	
-				<div class="jury-meta-container" twa-bg>	
+				<div class="jury-meta-container">	
 					<span class="jury-meta black">{{pres.name}}</span>
 					<span class="jury-meta white">{{pres.meta}}</span>
 				</div>
-				<div class="dummy-bg grayscale" data-src={{pres.src}}>
+				<div class="dummy-bg grayscale" ng-style="{'background-image':'url({{pres.src}})'}">
 				</div>
 				<div class="jury-adden"><p>{{pres.desc}}</p></div>
 			</li>
@@ -30,11 +30,11 @@
 
 		<ul class="media-list-override">
 			<li class="jury-elem" ng-repeat="pres in juryCollection">	
-				<div class="jury-meta-container" twa-bg>	
+				<div class="jury-meta-container" twa-bg-artists>	
 					<span class="jury-meta black">{{pres.name}}</span>
 					<span class="jury-meta white">{{pres.meta}}</span>
 				</div>
-				<div class="dummy-bg grayscale" data-src={{pres.src}}>
+				<div class="dummy-bg grayscale" ng-style="{'background-image':'url({{pres.src}})'}">
 				</div>
 				<div class="jury-adden"><p>{{pres.desc}}</p></div>
 			</li>
