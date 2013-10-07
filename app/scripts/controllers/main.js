@@ -273,7 +273,8 @@
         console.warn("ISOLATESCOPE");
         if (newValue === true ){
           $(".submit-result").fadeOut('fast',function(){
-            $("#share-area").hide().fadeIn();
+            $(this).scope().shareModal();
+            $(this).scope().$apply();
           })          
         }
       })
@@ -782,7 +783,7 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService,$window) {
     var modalInstance = $modal.open({
       templateUrl: 'share-modal.html',
       controller: ModalInstanceCtrl,
-      windowClass: 'twa-gallery-modal',
+      windowClass: 'twa-share-modal',
       resolve: {
         items: function () {
           return $scope.items;

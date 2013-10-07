@@ -63,22 +63,31 @@
 		</div>
 	</div>
 	<div ng-submit-done loaded="submissionSent"></div>
-	<div  class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || ( !showLoad() || !submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
-	<div id="share-area">
+	<div ng-controller="ModalCtrl" class="center submit-result" ng-class="{'grayscale' : keyword === '' || !prompt.fillform.$valid}" ng-click="!prompt.fillform.$valid || !assertZeroLength(sendSelectedHashes(twaHashTags)) || ( !showLoad() || !submitData(keyword,sendSelectedHashes(twaHashTags)))" ng-hide="submitDone" validate-blank-hashes></div>
+<!--	<div id="share-area">
 		<ul>
 			<li ng-click="!prompt.fillform.$valid || (invokeDialog(keyword))"  class="share-fb" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover="Lorem Ipsum Dolor" popover-trigger="mouseenter"></li>
 			<li ng-click="!prompt.fillform.$valid" class="share-tw" popover="Lorem Ipsum Dolor" ng-class="{'grayscale' : !prompt.fillform.$valid}" popover-trigger="mouseenter"><a ng-disabled="disabled" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
 		</ul>
-	</div>
+	</div> -->
 </div>
 
 
 
 </form>
 
-<script type="text/ng-template" id="hashtag.html">
-	<div class="center">
-		<label for="hashprompt">Saisissez votre Hashtag</label>
-		<input type="text" id="hashprompt"></textarea>
+<script type="text/ng-template" id="share-modal.html">
+	<div ng-controller="TWASubmitCtrl" class="center share-modal">
+		<div>
+			<p id="margin-congratz" class="center share-desc"><span id="congratz" class="bold">Félicitations,</span> le candidat a été bien ajouté,</p>
+			<p class="center share-desc">voulez-vous promouvoir son profil sur</p>
+		</div>
+		<div id="share-area">
+			<ul>
+				<li ng-click="(invokeDialog(keyword))"  class="fb-modal-share"></li>
+				<li class="tw-modal-share"><a ng-click="!prompt.fillform.$valid" ng-disabled="disabled" class="tw-core" href={{twitterShare(keyword,twaHashTags)}} data-lang="en" data-related="jasoncosta"></a></li>
+			</ul>
+		</div>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	</div>
 </script>
