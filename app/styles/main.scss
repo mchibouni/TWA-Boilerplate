@@ -390,6 +390,7 @@ nav ul li {
   $cat-next:"/images/cat-next.png"; 
 
   .main-btn {
+    cursor: default;
     background-repeat: no-repeat;
     background-size: 100%;
     display: inline-block;
@@ -1885,6 +1886,7 @@ padding-left: 15%;
     position: relative;
 //    top: -30%;
 font-weight: bold;
+font-size: 85%;
 }
 
 .result-wrapper {

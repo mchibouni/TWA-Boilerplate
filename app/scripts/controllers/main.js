@@ -21,7 +21,7 @@
     }
     ];
   }])
-  .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope', function($resource,authStrategyService,$http,$rootScope){
+  .service('processURLService', ['$resource','authStrategyService', '$http', '$rootScope','$window', function($resource,authStrategyService,$http,$rootScope,$window){
     return { 
 
       submitData : function (url,hashtags, metadata, imgurl, count) {
@@ -42,7 +42,10 @@
                 'top' : '10%'
               })
               .appendTo($('body')).fadeIn('fast',function(){
-                $(this).fadeOut(6000);
+                $(this).fadeOut(6000,function(){
+                  console.warn("RELOAD");
+                  $window.location.href = '/'; $scope.$apply();
+                });
               });
               $rootScope.submissionSent = true ; 
               console.log("success");
@@ -435,7 +438,7 @@
   {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina-abdellatif.png"}
   ];
 }])
-.controller('ContactCtrl', function ($scope, $resource) {
+.controller('ContactCtrl', function ($scope, $resource, $location) {
 
   $scope.senderName = "";
   $scope.email= ""; 
@@ -467,7 +470,8 @@
       'top' : '10%'
     })
     .appendTo($('body')).fadeIn('fast',function(){
-      $(this).fadeOut(6000);
+      $(this).fadeOut(6000,function(){
+      });
     });   
   }
 
