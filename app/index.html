@@ -55,11 +55,15 @@
       <a href=""><span class="party main-btn"></span></a>
 
 
+      <script type="text/ng-template">
+          <div></div>
+      </script>
+
       <script type="text/ng-template" id="myModalContent.html">
         <div class="modal-header">
           <div class="modal-close" ng-click="cancel()"></div>
-          <h3>La liste des soumissions</h3>
-          <h4>Lorem ipsum dolor siet amet, consectetur adipiscing ellit. Nulla pretium eros ut risos fringilla, non tristique urna feugiat. Sed massa massa, consectetur non vulputate eu. <a href="">Nominer une personne</a></h1>
+          <h3 id="tutorial-title">La liste des soumissions</h3>
+          <h4 id="sub-tutorial">Ci-dessous, la liste des soumissions. Vous pouvez encore soumettre, voir les profils des candidats et par la suite voter.</h1>
           </div>
           <div>
             <h2 class="modal-result-descriptor">{{(items | filter : hashfilter | filter: candidateName).length}} Résultats</h2>

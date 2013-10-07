@@ -1940,20 +1940,20 @@ div.reverse-skew a img, div.reverse-skew img {
 }
 
 .modal-close {
- background: url("/images/modal-close.jpg") no-repeat;
- background-size: cover;
- float: right;
- width: 41px;
- height: 41px;
- cursor: pointer;
+  background: url("/images/modal-close.png") no-repeat;
+  background-size: contain;
+  float: right;
+  width: 41px;
+  height: 41px;
+  cursor: pointer;
 }
 
-#fb{
- background: url("/images/fb.png") no-repeat;
- background-size: contain;
-}
+  #fb{
+   background: url("/images/fb.png") no-repeat;
+   background-size: contain;
+ }
 
-.social-medias {
+ .social-medias {
   width: 28px;
   height: 28px;
   z-index: 10000;
@@ -2130,31 +2130,40 @@ and (max-width : 1024px) {
 }
 
 .blink {
-    animation-name: blinker;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 
-    -webkit-animation-name: blinker;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
 }
 
 @-moz-keyframes blinker {  /* Decimal not necessary, 0 and 1 is enough */
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
 }
 
 @-webkit-keyframes blinker {  
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
 }
 
 @keyframes blinker {  
-    0% { opacity: 1.0; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1.0; }
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+#sub-tutorial {
+  font-size: 16px;
+  color: #b2b2b2;
+}
+
+#tutorial-title {
+  color: red; 
 }

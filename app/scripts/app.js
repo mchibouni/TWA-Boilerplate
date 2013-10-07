@@ -131,6 +131,11 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
   "/images/fatma-ben-haj-ali.png",
   "/images/karim-ben-amor.png",
   "/images/khaled-koubaa.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
+  "/images/mohamed-ali-souissi.png",
   "/images/mohamed-ali-souissi.png"
   ];
 
