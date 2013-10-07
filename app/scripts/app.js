@@ -73,11 +73,85 @@ angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui
        }]).
 run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
+
+
+  function preloadImages(array) {
+    if (!preloadImages.list) {
+      preloadImages.list = [];
+    }
+    for (var i = 0; i < array.length; i++) {
+      var img = new Image();
+      img.src = array[i];
+      preloadImages.list.push(img);
+    }
+  }
+
+  var imageURLs = [
+  "/images/1.jpg",
+  "/images/2.jpg",
+  "/images/3.jpg",
+  "/images/4.jpg",
+  "/images/5.jpg",
+  "/images/6.jpg",
+  "/images/7.jpg",
+  "/images/8.jpg",
+  "/images/tr-red-footer.png",
+  "/images/tr-red-3.png",
+  "/images/tr-red-1.png",
+  "/images/tr-plax-red.png",
+  "/images/tr-plax-green.png",
+  "/images/tr-party-header.png",
+  "/images/tr-middle-contact.png",
+  "/images/tr-middle-3.png",
+  "/images/tr-middle-2.png",
+  "/images/tr-middle-1.png",
+  "/images/tr-media-footer.png",
+  "/images/tr-header-end.png",
+  "/images/tr-header-9.png",
+  "/images/tr-header-8.png",
+  "/images/tr-header-4.png",
+  "/images/tr-header-3.png",
+  "/images/tr-header-2.png",
+  "/images/tr-header-1.png",
+  "/images/tr-footer-about.png",
+  "/images/tr-footer-7.png",
+  "/images/tr-footer-6.png",
+  "/images/tr-footer-5.png",
+  "/images/tr-footer-4.png",
+  "/images/tr-footer-3.png",
+  "/images/tr-footer-2.png",
+  "/images/tr-footer-1.png",
+  "/images/tr-end.png",
+  "/images/tr-black-party.png",
+  "/images/tr-black-header.png",
+  "/images/tr-black-footer.png",
+  "/images/tr-black-2.png",
+  "/images/amel-smaoui.png",
+  "/images/amina-abdellatif.png",
+  "/images/fatma-ben-haj-ali.png",
+  "/images/karim-ben-amor.png",
+  "/images/khaled-koubaa.png",
+  "/images/mohamed-ali-souissi.png"
+  ];
+
+  preloadImages(imageURLs);
+
+
+
   $rootScope.routeList = ['Home','About','Media','Jury','Soirée','Contact'];
 
   $rootScope.$on('$locationChangeStart', function (nextLocation, currentLocation) {
 
   });
+
+
+  // It is 3PM now, who you read this, behold of this fucked up Anti-pattern. Do this only when you have to work on saturdays.
+
+  $('.hash-elements').last().click(function(){
+    console.warn('YOO');
+  })
+
+
 
   $rootScope.$on('$routeChangeSuccess', function(newRoute, oldRoute) {
 

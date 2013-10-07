@@ -65,6 +65,7 @@ footer {
   height: 26px;
   bottom: 2%;
   right: 2%;
+  z-index: 1;
  /* background-image: url("/images/share-sprite.png");
  background-repeat: no-repeat;*/
 }
@@ -210,7 +211,7 @@ nav {
   font-size: 50%;
   background-position-x: -10%;
   line-height: 10px;
-  margin-left: 20%;
+  margin-left: 27%;
 }
 
 
@@ -427,11 +428,12 @@ nav ul li {
     -moz-border-radius: 30px;
     background: url(/images/main-logo.png) no-repeat;
     background-size: contain;
-    box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
-    -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+    box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+    -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
+    -moz-box-shadow: 0 0 2px rgba(0, 0, 0, .8);
     margin-right: 15px;
     margin-bottom: 30px;
+    border: 2px solid white;
   }
 
   .result-entry {
@@ -509,7 +511,10 @@ nav ul li {
     display: block;
     box-shadow: none;
     border: none;
-    width: 103%;
+    width: 85%;
+    resize: none;
+    background-size: 100%;
+    min-height: 20px;
   }
 
   #contact-form-body {
@@ -536,7 +541,7 @@ nav ul li {
 
   #contact-label { 
     color: white;
-    margin-left: 16%;
+    margin-left: 9%;
     background-size: contain;
     width: 90%;
     text-indent: 3%;
@@ -615,24 +620,24 @@ nav ul li {
   }
   .media-list-override {
     display: block;
-    width: 500px;
+    width: 80%;
   }
   .media-list-override > li:hover {
     opacity: 0.8;
   }
   .media-list-override > li {
     opacity: 1;
-    width: 100px;
+    width: 15%;
     height: 60px;
     position: relative; 
     list-style-type: none;  
     display: inline-block;
-    margin-bottom: 8px;
-    margin-right: 8px;
+    margin-bottom: 1%;
+    margin-right: 1%;
   }
 
   .pic-first-row {
-    margin-right: 19px; 
+    margin-right: 5%; 
   }
 
   .video-first-row {
@@ -641,27 +646,24 @@ nav ul li {
   }
 
   #pic-list {
+    float: right;
+    margin-top: -8.8%;
     display: inline-block;
     background-image: url("/images/photo-list.png");
     width: 175px;
-    height: 176px;
-    margin-right: 0px;
-    position: absolute;
-    left: 78%;
-    top: 83%;
-    background-size: 100%;
+    height: 126px;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 
   #video-list {
+    float: left;
     display: inline-block;
     background-image: url("/images/video-list.png");
-    width: 153px;
-    height: 129px;
-    position: relative;
-    left: -6%;
-    bottom: 134px;
-    background-size: contain;
+    width: 10%;
+    height: 165px;
+    margin-left: -6%;
+    background-size: cover;
     background-repeat: no-repeat;
   }
 
@@ -683,18 +685,21 @@ nav ul li {
 
   .share-fb {
     position: relative;
-    top: -35px;
+    float: left;
+    left: 17%;
+    bottom: 2px;
     background: url("/images/fb-btn.png") no-repeat;
-    width: 206px;
+    width: 33%;
     height: 26px;
-    cursor: pointer; 
+    cursor: pointer;
   }
 
   .share-tw {
     background: url("/images/twt-btn.png") no-repeat;
     position: relative;
-    top: -35px;
-    width: 191px;
+    right: 12%;
+    float: right;
+    width: 33%;
     height: 26px;
     cursor: pointer;
   }
@@ -833,7 +838,7 @@ div.modal-entry-metadata > button > i {
 
 li.jury-elem {
   opacity: 1;
-  width: 240px;
+  width: 45%;
 }
 
 .jury-centered {
@@ -911,7 +916,9 @@ p.about-last {
 
 .contact-submit {
   background: url("/images/contact-submit.png") no-repeat;
+  background-size: contain;
   content: none;
+  border: none;
   width: 177px;
   height:46px;
   cursor: pointer;
@@ -923,8 +930,10 @@ p.about-last {
   background: url("/images/contact-message.png") no-repeat !important;
   width: 619px;
   height: 107px;
-  text-indent: 17%;
-  margin-left: -8.9%;
+//  text-indent: 17%;
+background-size: contain !important;
+margin-left: -10.9%;
+padding-left: 15%;
 }
 
 #tr-header-1 {
@@ -1342,14 +1351,14 @@ p.about-last {
   #contact-email {
     background: url("/images/contact-input.png") no-repeat;
     height: 10%;
-    margin-left: -8%;
+    margin-left: -10%;
     text-indent: 20%;
   }
 
   #contact-name {
     background: url("/images/contact-input.png") no-repeat;
-    margin-left: -4.5%;
-    height: 10%;
+    margin-left: -7.5%;
+    height: 29px;
     text-indent: 20%;
   }
 
@@ -1722,8 +1731,9 @@ p.about-last {
   }
 
   .submission-container {
-    height: 125px;
-    width: 40%;
+    margin-left: -4%;
+    height: 140px;
+    width: 50%;
     display: inline-block;
     float: left;
     background-color: white;
@@ -1791,25 +1801,31 @@ p.about-last {
     background-size: cover !important;
   }
 
+  .fake-hashtag-entry a:hover {
+    color: red;
+  }
+
   .main-submission-container {
     position: relative;
     left: 1%;
-    width: 43%;
-    margin-left: 7%;
+    width: 47%;
+    margin-left: 6%;
   }
 
   .inlined {
+    margin-left: -4%;
+    width: 115%;
     margin: auto;
   }
 
   .submission-incentive { 
     background: url("/images/submission-incentive.png") no-repeat;
-    background-size: contain;
-    width: 135%;
-    height: 55px;
+    background-size: 100%;
+    width: 88%;
+    height: 5em;
     position: relative;
-    top: 15px;
-    left: 7.2%;
+    top: 20px;
+    left: 8.2%;
     z-index: 10;
   }
 
@@ -1823,9 +1839,9 @@ p.about-last {
   span.view-candidates {
     cursor: pointer;
     color: black;
-    position: relative;
-    bottom: 27px;
-    left: 4%;
+    position: absolute;
+    top: 270%;
+    right: 3%;
   }
 
   span.view-candidates:hover{
@@ -1848,12 +1864,12 @@ p.about-last {
     overflow: hidden;
     font-weight: bold;
     vertical-align: middle;
-    border: 0;
+    border: 2px solid white;
   }
 
   .meta-submit {
     position: relative;
-    top: -30%;
+//    top: -30%;
     font-weight: bold;
   }
 
@@ -1871,11 +1887,11 @@ p.about-last {
   }
 
   .modal-result-entry-override {
-    height: 80px;
-    width: 80px;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
+    height: 76px;
+    width: 76px;
+    -webkit-border-radius: 38px;
+    -moz-border-radius: 38px;
+    border-radius: 38px;
   }
 
   .name-meta {
@@ -1930,8 +1946,7 @@ p.about-last {
 }
 
 a.social-medias:hover {
-  background: url("/images/fb_hover.png") no-repeat;
-  background-size: contain;
+  background-color: black;
 }
 
 #tw{
@@ -1967,4 +1982,98 @@ a.social-medias:hover {
 
 .mid-font {
   font-size: 100%;
+}
+
+#media-responsive-hack {
+  position: relative;
+  top: -68px;
+}
+
+.jury-first {
+  margin-left: 7%;
+}
+
+.jury-last {
+  margin-left: -7%;
+}
+
+#fake-input {
+  opacity: 0.5;
+  width: 91%;
+  display: block;
+  height: 100%;
+  background: none;
+}
+
+.no-text {
+  color: transparent;
+}
+
+#contact-chrome-reset {
+  width: 20%;
+}
+
+#pic-responsive-hack {
+  height: 127px;
+  vertical-align: top;
+}
+
+#pic-first-hack {
+//  margin-left: 5%;
+}
+
+#video-pic-container {
+  margin-top: -8%;
+}
+
+#video-first-hack {
+  height: 127px;
+  vertical-align: top;
+  margin-left: -9%;
+  margin-right: 5%;
+}
+
+#video-box-overhaul {
+  position: relative;
+  top: -68px;
+  left: -5%;
+}
+
+#video-hack-trigger {
+  margin-left: 15%;
+}
+
+
+div.reverse-skew > a > div {
+  height: 134px;
+  width: 121%;
+  margin-left: -25%;
+  margin-top: 12%;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/images/photo-list.png");
+}
+
+#video-first-hack div a img {
+  width: 215px;
+  margin-top: 13%;
+  margin-left: -18%;
+  height: 130px;
+}
+
+
+@media 
+(min-width : 768px)
+and (max-width : 1024px) {
+  div.reverse-skew > a > div {
+    height: 161px;
+    width: 140%;
+    margin-left: -34%;
+    margin-top: 0%;
+    background-position: center center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url("/images/photo-list.png");
+  }
 }
