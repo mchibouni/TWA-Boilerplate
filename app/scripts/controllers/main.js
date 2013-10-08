@@ -67,6 +67,7 @@
               if (target === "home")
                 $(this).fadeOut(8000);
             })
+            $('body').scope().$emit('myCustomEvent',[])
           }
         });
 } 
@@ -93,7 +94,9 @@
           })
           .appendTo($('body')).fadeIn('fast',function(){
             $(this).fadeOut(6000);
-          });          console.warn("ERROR!");
+          });          
+          $('body').scope().$emit('revokeSubmit',[])
+          console.warn("ERROR!");
         })
         .then(function(response){
           console.warn("ACCESSING PROVIDER FIRST TIME");
@@ -625,7 +628,7 @@
 
   $scope.showLoad = function () {
     $(".submit-result").fadeOut('fast',function(){
-      $(this).html("Envoi en cours..").css('background-image','none').addClass('blink').fadeIn();
+      $(this).html("Envoi en cours..").removeClass("submit-result").addClass('blink').fadeIn();
     })
     return true;  
   }

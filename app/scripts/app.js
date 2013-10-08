@@ -145,6 +145,11 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
   $rootScope.routeList = ['Home','About','Media','Jury','Soirée','Contact'];
 
+  $rootScope.$on('revokeSubmit', function(event, data){
+    console.warn("EVENT DISPATCHED");
+    $(".event-hack").html("").removeClass("blink").addClass("submit-result");
+  })
+
   $rootScope.$on('$locationChangeStart', function (nextLocation, currentLocation) {
 
   });
