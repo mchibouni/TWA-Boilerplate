@@ -64,7 +64,6 @@
               'top' : '10%'
             })
             .appendTo($('body')).fadeIn('fast',function(){
-              if (target === "home")
                 $(this).fadeOut(8000);
             })
             $('body').scope().$emit('myCustomEvent',[])
