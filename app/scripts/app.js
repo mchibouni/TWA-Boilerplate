@@ -192,7 +192,7 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
     $rootScope.twitterShare = function(kw,json){
       console.warn(this.sendSelectedHashes(json).join(',').replace(/#/g,''));
-      return "https://twitter.com/intent/tweet?url="+kw+"&text=J'ai+Soumis&hashtags="+this.sendSelectedHashes(json).join(',').replace(/#/g,'')+',TWA';
+      return "https://twitter.com/intent/tweet?url="+kw+"&text=Moi+J'ai+Soumis&hashtags="+this.sendSelectedHashes(json).join(',').replace(/#/g,'')+',TWA';
     }
 
     $rootScope.invokeDialog = function(item){

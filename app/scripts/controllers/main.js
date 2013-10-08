@@ -64,9 +64,9 @@
               'top' : '10%'
             })
             .appendTo($('body')).fadeIn('fast',function(){
-                $(this).fadeOut(8000);
+              $(this).fadeOut(8000);
             })
-            $('body').scope().$emit('myCustomEvent',[])
+            $('body').scope().$emit('revokeSubmit',[])
           }
         });
 } 
@@ -106,6 +106,23 @@
         $resource("http://www.kanalabs.com\\:8080/meta/:url").get({url:url},function(response){
           console.warn("ACCESSING PROVIDER SECOND TIME");
           processURLService.submitData(url,hashes,response.profile,response.image);
+        }, function(error){
+          $('<div/>',{class:"alert"}).addClass('alert-danger').html("Votre URL semble invalide, veuillez revérifier.")
+          .css({
+            'z-index' : '9999',
+            'text-align' : 'center',
+            'opacity' : '1',
+            'position' : 'fixed',
+            'display' : 'none',
+            'width' : '60%',
+            'right' : '20%',
+            'top' : '10%'
+          })
+          .appendTo($('body')).fadeIn('fast',function(){
+            $(this).fadeOut(6000);
+          });          
+          $('body').scope().$emit('revokeSubmit',[])
+          console.warn("DAFUQISTHAT");
         })
       }
     });
@@ -670,89 +687,90 @@
 //      $('.share-modal').fadeIn();
 //      $('body').scope().$emit("revokeEvent",[]);
 
-      $scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
-      $scope.$apply();
+$scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
+$scope.$apply();
 
-      $("#fake-input,.fake-hashtag-entry").css('opacity','0');
+$("#fake-input,.fake-hashtag-entry").css('opacity','0');
 
-      $resource('http://www.kanalabs.com\\:3000/hashtags').save({hashtag:this.suggestHash});
-    }
-    else {
-      $('<div/>',{class:"alert"}).addClass('alert-danger').html("Hashtag Invalide, veuillez revérifier.")
-      .css({
-        'z-index' : '9999',
-        'text-align' : 'center',
-        'opacity' : '1',
-        'position' : 'fixed',
-        'display' : 'none',
-        'width' : '60%',
-        'right' : '20%',
-        'top' : '10%'
-      })
-      .appendTo($('body')).fadeIn('fast',function(){
-        $(this).fadeOut(6000);
-      });                        
-    }
-    $scope.enableHashInput = false ;                
-  }
-
-
-  $scope.assertZeroLength = function(collection){
-    if (collection.length) return true ; 
-    $('<div/>',{class:"alert"}).addClass('alert-warning').html("Veuillez associer au moins un HashTag à votre candidat")
-    .css({
-      'z-index' : '9999',
-      'text-align' : 'center',
-      'opacity' : '1',
-      'position' : 'fixed',
-      'display' : 'none',
-      'width' : '60%',
-      'right' : '20%',
-      'top' : '10%'
-    })
-    .appendTo($('body')).fadeIn('fast',function(){
-      $(this).fadeOut(6000);
-    });                  
-    return false;  
-  }
-
-  $scope.toggleFilter = function(hashElement){
-    console.warn(hashElement);
-    (hashElement.state === true) ? (this.hashFilter.hashtags.push(hashElement.name)) : this.hashFilter.hashtags = (_.reject(this.hashFilter.hashtags, function(elt){
-      return elt === hashElement.name;
-    })) ;
-  };
-
-  $scope.$window = $window;
-  $scope.clicked = false;  
+$resource('http://www.kanalabs.com\\:3000/hashtags').save({hashtag:this.suggestHash});
+}
+else {
+  $('<div/>',{class:"alert"}).addClass('alert-danger').html("Hashtag Invalide, veuillez revérifier.")
+  .css({
+    'z-index' : '9999',
+    'text-align' : 'center',
+    'opacity' : '1',
+    'position' : 'fixed',
+    'display' : 'none',
+    'width' : '60%',
+    'right' : '20%',
+    'top' : '10%'
+  })
+  .appendTo($('body')).fadeIn('fast',function(){
+    $(this).fadeOut(6000);
+  });                        
+}
+$scope.enableHashInput = false ;                
+}
 
 
-  $scope.lazyLoadCandidates = twaRestAPI.retrieveAll().query(null,function(response){
-    console.log(response); 
+$scope.assertZeroLength = function(collection){
+  if (collection.length) return true ; 
+  $('<div/>',{class:"alert"}).addClass('alert-warning').html("Veuillez associer au moins un HashTag à votre candidat")
+  .css({
+    'z-index' : '9999',
+    'text-align' : 'center',
+    'opacity' : '1',
+    'position' : 'fixed',
+    'display' : 'none',
+    'width' : '60%',
+    'right' : '20%',
+    'top' : '10%'
+  })
+  .appendTo($('body')).fadeIn('fast',function(){
+    $(this).fadeOut(6000);
+  });                  
+  return false;  
+}
+
+$scope.toggleFilter = function(hashElement){
+  console.warn(hashElement);
+  (hashElement.state === true) ? (this.hashFilter.hashtags.push(hashElement.name)) : this.hashFilter.hashtags = (_.reject(this.hashFilter.hashtags, function(elt){
+    return elt === hashElement.name;
+  })) ;
+};
+
+$scope.$window = $window;
+$scope.clicked = false;  
+
+
+$scope.lazyLoadCandidates = twaRestAPI.retrieveAll().query(null,function(response){
+  console.log(response); 
+});
+
+
+$scope.validHashTagFilter = {state:true};
+
+
+$scope.submitData = submitDataService.processURL ; 
+
+
+
+
+
+
+
+$scope.postEntry = function () {
+  twaRestAPI.postEntry().save(null,function(response){
   });
-
-
-  $scope.validHashTagFilter = {state:true};
-
-
-  $scope.submitData = submitDataService.processURL ; 
+}
+$scope.keyword = "http://www.facebook.com/OfficialChuckNorris" || "";
 
 
 
-
-
-
-
-  $scope.postEntry = function () {
-    twaRestAPI.postEntry().save(null,function(response){
-    });
-  }
-  $scope.keyword = "http://www.facebook.com/OfficialChuckNorris";
-
-
-  $scope.assertHash = function(kw){
-    return $scope.keyword.indexOf(kw.replace('#','')) !== -1 ; 
-  }
+$scope.assertHash = function(kw){
+  return $scope.keyword.indexOf(kw.replace('#','')) !== -1 ; 
+}
 
 
   // Hashtags are hence a Singelton, for general purpose queries ; 
@@ -760,8 +778,13 @@
 
   $scope.twaHashTags = twaHashTagService.getHashList();
   $scope.notify = function (){
-    console.log("You typed : " + $scope.keyword);
+    //console.log("You typed : " + $scope.keyword);
     var validHash ; 
+
+    if ($scope.keyword !== undefined && $scope.keyword.indexOf('www.') !== -1 && $scope.keyword.indexOf('http://') === -1) {
+      console.warn("HOOK");
+      $scope.keyword = 'http://' + $scope.keyword ; 
+    }
     if ($scope.keyword !== undefined) { 
      validHash = _.find(this.twaHashTags,function(element){
       return $scope.keyword.indexOf(element.name.replace('#','')) !== -1;
@@ -781,6 +804,8 @@
 
 }])
 var ModalCtrl = function ($scope, $modal, $log, twaHashTagService,$window) {
+
+  $scope.lazyLoadCount = 5 ; 
 
 
   $scope.shareModal = function () {
@@ -872,6 +897,11 @@ var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTa
 
   $scope.submitData = submitDataService.processURL;
   console.warn($scope.submitData);
+
+
+  $scope.expandCollection = function (){
+    this.lazyLoadCount += 5 ; 
+  }
 
   $scope.$log = $log;  
 
