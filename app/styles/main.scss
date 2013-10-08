@@ -2393,4 +2393,215 @@ label.prompt {
   width: 70px;
   background-repeat: no-repeat;
 }
+div > ul > li > a.only-here {
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  padding: 5px 10px;
+  font-size: 40%;
+  text-align: center;
+  color: #000;
+  text-indent: -4px;
+  top: -2px;
+  line-height: 2px;
+  right: 4px;
+  position: relative;
+  color: black;
+}
+div > ul > li.hash-elements {
+  line-height: 100%;
+  display: inline-block;
+  text-align: center;
+  float: left;
+  margin-right: 0.5%;
+  margin-bottom: 0.5%;
+  width: 13.5%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.incentive-wrapper {
+  left: -52%;
+  width: 197%;
+  position: relative;
+  bottom: 84px;
+  height: 14px;
+}
+
+.choice-container {
+  width: 274px;
+  height: 54px;
+  margin-left: -48px;
+}
+.jury-sep {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  line-height: 125%;
+  font-size: 50%;
+  text-align: center;
+}
+.media-list-override {
+  display: block;
+  width: 153px;
+  font-size: 50%;
+  margin-left: -28px;
+  margin-top: -20px;
+}
+.about-meta {
+  margin-top: 11px;
+  margin-bottom: 15px;
+  background: url("/images/generic-trapezoid.png") no-repeat;
+  width: 190px;
+  height: 20px;
+  font-size: 8px;
+  background-size: contain;
+  font-weight: bold;
+}
+label.prompt {
+  width: 115%;
+  margin: auto;
+  margin-left: -5%;
+  font-size: 50%;
+}
+label.meta-prompt {
+  text-align: center;
+  font-size: 50%;
+  line-height: 150%;
+}
+.result-wrapper {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+.modal-result-entry-override {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+p {
+  font-size: 50%;
+}
+#fillform {
+  width: 100%;
+  height: 21px;
+  line-height: 10%;
+  border: 1px solid #dadada;
+  color: #c3c3c3;
+  border-radius: none !important;
+  font-size: 50%;
+  font-weight: bold;
+}
+#step-area {
+  width: 240px;
+  position: fixed;
+  top: 87%;
+  left: 15%;
+}
+.main-btn {
+  cursor: default;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+.submit-result {
+  cursor: pointer;
+  background-image: url("/images/first-step-submit.png");
+  width: 100px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  font-size: bold;
+  position: fixed;
+  bottom: 12%;
+  right: 34%;
+}
+span.view-candidates {
+  cursor: pointer;
+  color: black;
+  position: absolute;
+  top: 123px;
+  right: 15px;
+  font-size: 55%;
+  width: 100px;
+  height: 19px;
+}
+.mobile-hack {
+  font-size: 50%;
+  width: 123px;
+  margin-left: -18px;
+  float: left;
+  display: block;
+}
+.submission-container {
+  margin-left: 4%;
+  height: 111px;
+  margin-top: -14px;
+  width: 130px;
+  display: inline-block;
+  float: left;
+  background-color: white;
+}
+div[id^='tr-'] {
+  display: none;  
+}
+.about-text {
+  color: white;
+  font-weight: bold;
+  line-height: 93%;
+  width: 174px;
+}
+#contact-logo-holder {
+  margin: auto;
+  width: 158px;
+  margin-top: 17%;
+  margin-right: 7%;
+}
+.twa-modal {
+  margin-left: -95px;
+  width: 285px;
+}
+.modal-result-descriptor {
+  color: #fecb00;
+  display: inline-block;
+  width: 10px;
+  font-size: 22px;
+  text-indent: 30px;
+  line-height: 29px;
+}
+#tutorial-title {
+  color: red;
+  font-size: 16px;
+}
+#sub-tutorial {
+  font-size: 11px;
+  line-height: 100%;
+  color: #b2b2b2;
+}
+#modal-result-filter {
+  display: inline-block;
+  text-indent: 20px;
+  margin-left: 29%;
+  font-size: 12px;
+  width: 180px;
+  height: 5%;
+  margin-top: -13%;
+}
+div.modal-entry-metadata > button {
+  font-weight: bold;
+  width: 90px;
+  height: 21px;
+  margin-top: 3px;
+}
+.grayed-vote{
+  display: none;
+}
+.result-entry {
+  width: 97%;
+  height: 42%;
+  margin-left: 3%;
+}
 }
