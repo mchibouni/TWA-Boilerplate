@@ -1,8 +1,14 @@
 'use strict';
 //SPLASH INIT
+String.prototype.endsWith = function (s) {
+  return this.length >= s.length && this.substr(this.length - s.length) == s;
+}
+
 function endSplash(){
-  $('#splash').fadeOut('fast');
-  $('#wrapper').fadeIn();
+  if (window.location.href.endsWith('/#/')) {
+    $('#splash').fadeOut('fast');
+    $('#wrapper').fadeIn();
+  }
 }
 
 angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui.bootstrap','BlockUI','stellar.directives','timer'])
