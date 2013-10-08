@@ -22,7 +22,7 @@
   <div id="wrapper">
     <nav>
       <ul ng-repeat="menuElem in navHash">
-        <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
+        <li ng-cloak data-index ="{{$index}}"><a ng-cloak class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>
       </ul>
       <div id="nag-invoke" ng-show="$location.path() === '/'" ng-click="invokeNag()"/>
     </nav>

@@ -209,7 +209,7 @@ nav {
   background: url("/images/shadowmenu.png") no-repeat;
   height: 85px;
   margin: auto;
-  width: 80%;
+  width: 70%;
   background-size: contain;
   font-size: 50%;
   background-position-x: -10%;
@@ -347,6 +347,15 @@ nav ul li {
     text-indent: -35px;
     text-transform:capitalize;
     z-index: 30;
+  }
+
+  .twa-prev:hover,.twa-next:hover {
+    opacity: 0.5;
+    -webkit-transition: 500ms all linear; 
+    -moz-transition: 500ms all linear; 
+    -ms-transition: 500ms all linear; 
+    -o-transition: 500ms all linear; 
+    transition: 500ms all linear; 
   }
 
   #share-area {
@@ -1951,6 +1960,19 @@ div.reverse-skew a img, div.reverse-skew img {
 #fb{
  background: url("/images/fb.png") no-repeat;
  background-size: contain;
+}
+
+#fb:hover {
+ background: url("/images/fb_hover.png") no-repeat;
+}
+#li:hover {
+  background: url("/images/in_hover.png") no-repeat;
+}
+#ml:hover {
+ background: url("/images/mail_hover.png") no-repeat;
+}
+#tw:hover {
+ background: url("/images/tw_hover.png") no-repeat;
 }
 
 .social-medias {
