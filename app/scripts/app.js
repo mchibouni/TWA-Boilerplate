@@ -213,7 +213,7 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
       link: 'https://tunisiana.web.awards:9000', // link back to the product or content you are sharing
       picture: 'http://kanalabs.com:9000/images/main-logo.png', // path to an image you would like to share with this content
       caption: 'Phase de soumission : ', // caption
-      description: "Moi j'ai soumis le candidat " +  "#TWA2013" + item  // description of your product or content
+      description: "Moi j'ai soumis le candidat aux #TWA2013 " + item  // description of your product or content
     },
     function(response) {
       if (response && response.post_id) {

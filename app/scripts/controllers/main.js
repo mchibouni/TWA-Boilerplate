@@ -440,7 +440,7 @@
 
   $scope.presCollection = [
   {name:"Nejib Belkadhi",meta:"Réalisateur", src:"/images/nejib-belkadhi.png", desc:"Réalisateur/Acteur Tunisien, Co-fondateur de Propaganda Production"},
-  {name:"Kenza Fourati",meta:"Top Model", src:"/images/kenza-fourati.png", desc:"Top Model, diplômée en littérature et beaux-arts de l'Université de la Sorbonne à Paris"}
+  {name:"Kenza Fourati",meta:"Top Model", src:"/images/kenza-fourati.png", desc:"Top Model, diplômée en littérature et beaux-arts"}
   ];
   $scope.juryCollection = [
   {name:"Amine Nouri", meta: "Artiste",src:"/images/amine-nouri.png", desc:"TBA"},
