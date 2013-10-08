@@ -421,14 +421,14 @@
 .controller('PartyCtrl', ['$scope', function ($scope) {
 
   $scope.presCollection = [
-  {name:"Nejib Belkadhi",meta:"Réalisateur", src:"/images/nejib-belkadhi.png"},
-  {name:"Kenza Fourati",meta:"Top Model", src:"/images/kenza-fourati.png"}
+  {name:"Nejib Belkadhi",meta:"Réalisateur", src:"/images/nejib-belkadhi.png", desc:"Réalisateur/Acteur Tunisien, Co-fondateur de Propaganda Production"},
+  {name:"Kenza Fourati",meta:"Top Model", src:"/images/kenza-fourati.png", desc:"Top Model, diplômée en littérature et beaux-arts de l'Université de la Sorbonne à Paris"}
   ];
   $scope.juryCollection = [
-  {name:"Amine Nouri", meta: "Artiste",src:"/images/amine-nouri.png"},
-  {name: "Katybon", meta: "Chanteur Hip-hop",src:"/images/katybon.png"},
-  {name: "Taha Nouri", meta: "Artiste", src:"/images/taha-nouri.png"},
-  {name: "Zein Hayej", meta: "DJ", src:"/images/zein.png"}
+  {name:"Amine Nouri", meta: "Artiste",src:"/images/amine-nouri.png", desc:"TBA"},
+  {name: "Katybon", meta: "Chanteur Hip-hop",src:"/images/katybon.png", desc:"Artiste Tunisien et chanteur Hip Hop Underground"},
+  {name: "Taha Nouri", meta: "Artiste", src:"/images/taha-nouri.png", desc:"TBA"},
+  {name: "Zein Hayej", meta: "DJ", src:"/images/zein.png", desc:"TBA"}
   ];
 }])
 .controller('JuryCtrl', ['$scope', function ($scope) {
@@ -440,7 +440,7 @@
   {name: "Karim Ben Amor", meta: "Entrepreneur", desc:"Co-fondateur d'Alternative Production Communication Conseil", src:"/images/karim-ben-amor.png"},
   {name: "Med Ali Souissi", meta: "Animateur", desc:"Journaliste-Animateur chez Mosaique-FM", src:"/images/mohamed-ali-souissi.png"},
   {name: "Khaled Koubaa", meta: "Manager", desc:"Public Policy & Gov't Relations Manager chez Google" ,src:"/images/khaled-koubaa.png"},
-  {name: "Amina Abdellatif", meta: "Graphic Designer", desc:"Freelance Graphic Designer", src:"/images/amina-abdellatif.png"}
+  {name: "Amina Abdellatif", meta: "Graphics Designer", desc:"Freelance Graphic Designer", src:"/images/amina-abdellatif.png"}
   ];
 }])
 .controller('ContactCtrl', function ($scope, $resource, $location) {
