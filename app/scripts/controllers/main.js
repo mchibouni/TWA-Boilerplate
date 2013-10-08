@@ -221,7 +221,12 @@
     // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
     link: function($scope, iElm, iAttrs, controller) {
       iElm.on('click',function(){
-        $.prettyPhoto.open("http://"+$location.host()+":"+$location.port()+iElm.data('pp'));
+        var galleryImg = [] ;
+        for (var i = 1 ; i < 9 ; i++){
+          galleryImg.push("http://"+$location.host()+":"+$location.port()+"/images/"+i+".jpg");
+        }
+        console.warn(galleryImg);
+        $.prettyPhoto.open(galleryImg);
       });
     }
   };
