@@ -2078,7 +2078,6 @@ div.reverse-skew > a > div {
   height: 130px;
 }
 
-
 @media 
 (min-width : 768px)
 and (max-width : 1024px) {
@@ -2095,14 +2094,14 @@ and (max-width : 1024px) {
 }
 
 .party-parent {
-  width: 43%;
+  width: 200px;
   margin-left: 15%;
 }
 
 .party-child {
   font-size: 100%;
   position: relative;
-  right: -53%;
+  right: -45%;
   width: 56%;
 }
 
