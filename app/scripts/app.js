@@ -147,7 +147,7 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
   $rootScope.$on('revokeSubmit', function(event, data){
     console.warn("EVENT DISPATCHED");
-    $(".event-hack").html("").removeClass("blink").addClass("submit-result");
+    $(".event-hack").html("").removeClass("submit-progress-hack").removeClass("blink").addClass("submit-result");
   })
 
   $rootScope.$on('$locationChangeStart', function (nextLocation, currentLocation) {

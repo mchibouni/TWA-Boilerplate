@@ -628,7 +628,7 @@
 
   $scope.showLoad = function () {
     $(".submit-result").fadeOut('fast',function(){
-      $(this).html("Envoi en cours..").removeClass("submit-result").addClass('blink').fadeIn();
+      $(this).html("Envoi en cours..").addClass("submit-progress-hack").addClass('blink').fadeIn();
     })
     return true;  
   }
