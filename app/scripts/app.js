@@ -208,9 +208,9 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
     },
     function(response) {
       if (response && response.post_id) {
-        alert('Post was published.');
+
       } else {
-        alert('Post was not published.');
+
       }
 
     }
