@@ -278,6 +278,7 @@
           $(".event-hack").fadeOut('fast',function(){
             $(this).scope().shareModal();
             $(this).scope().$apply();
+            $('#hack-wrapper').appendTo($("#dummy")).children().fadeIn();
           })          
         }
       })
@@ -667,6 +668,7 @@
         $(this).fadeOut(6000);
       });   
 
+      $('.share-modal').fadeIn();
       $('body').scope().$emit("revokeEvent",[]);
 
       $scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
@@ -875,7 +877,6 @@ var ModalInstanceCtrl = function ($scope, $log, $modalInstance, items, twaHashTa
   $scope.$log = $log;  
 
   $scope.SUBMIT_STRING = "J'ai soumis";
-
 
   $scope.hashfilter = {}; 
 
