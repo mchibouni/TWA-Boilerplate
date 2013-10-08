@@ -18,8 +18,8 @@
   <link rel="stylesheet" type="text/css" href="bower_components/prettyphoto/css/prettyPhoto.css">
   <!-- endbuild -->
 </head>
-<body ng-app="twaAutocompletionApp" ng-smooth ng-controller="MainCtrl" ng-class="{'overlay': viewIndex % 2 === 0}">
-  <div id="wrapper" >
+<body onload="endSplash()" ng-app="twaAutocompletionApp" ng-smooth ng-controller="MainCtrl" ng-class="{'overlay': viewIndex % 2 === 0}">
+  <div id="wrapper">
     <nav>
       <ul ng-repeat="menuElem in navHash">
         <li ng-cloak data-index ="{{$index}}"><a class="nav-element" ng-class="{'parentnav-active' : viewIndex - 1 === $index}" ng-click="deferTransition(lowercase(menuElem.name),($index+1)) "><span ng-class="{'childnav-active': viewIndex - 1 === $index }">{{(menuElem.name)}}</span></a></li>

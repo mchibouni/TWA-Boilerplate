@@ -1,4 +1,9 @@
 'use strict';
+//SPLASH INIT
+function endSplash(){
+  $('#splash').fadeOut('fast');
+  $('#wrapper').fadeIn();
+}
 
 angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui.bootstrap','BlockUI','stellar.directives','timer'])
 .config(function ($routeProvider) {
@@ -74,6 +79,9 @@ angular.module('twaAutocompletionApp', ['ui','ezfb','ngCookies','ngResource','ui
 run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
 
+  !function(){
+    $('<h1/>',{id:"splash"}).html('Loading..').addClass('blink center').appendTo('body');
+  }();
 
   function preloadImages(array) {
     if (!preloadImages.list) {
