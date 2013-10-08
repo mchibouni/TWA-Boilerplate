@@ -24,26 +24,32 @@ html, body {
 }
 
 
-@-webkit-keyframes slide
-{
-  100%   {background-position:-255px 0;}
-  0% {background-position: 500px 0;}
-}
 
-@-moz-keyframes slide
-{
-  0%   {background-position: 0 0;}
-  100% {background-position: -255px 0;}
-}
 
-@keyframes slide
-{
-  100% {background-position: -255px 0;}
-  0%   {background-position: 500px 0;}
-}
+@media all {
+  /* Styles */
 
-body {
-  height: 100%;
+
+  @-webkit-keyframes slide
+  {
+    100%   {background-position:-255px 0;}
+    0% {background-position: 500px 0;}
+  }
+
+  @-moz-keyframes slide
+  {
+    0%   {background-position: 0 0;}
+    100% {background-position: -255px 0;}
+  }
+
+  @keyframes slide
+  {
+    100% {background-position: -255px 0;}
+    0%   {background-position: 500px 0;}
+  }
+
+  body {
+    height: 100%;
   //background: #fafafa;
 
   //background-image: url("http://www.tunisianawebawards.com/img/bg_body.png");
@@ -2317,3 +2323,74 @@ and (max-width : 1024px) {
 }
 
 
+}
+
+@media only screen 
+and (max-width : 320px) {
+  nav {
+   background: url("/images/shadowmenu.png") no-repeat;
+   height: 85px;
+   margin: auto;
+   width: 100%;
+   background-size: contain;
+   font-size: 50%;
+   background-position-x: -10%;
+   line-height: 10px;
+   margin-left: 4%;
+ }
+ nav ul li {
+  position: relative;
+  float: left;
+  display: inline-block;
+  zoom: 1;
+  position: relative;
+  width: 39px;
+  font-size: 75%;
+}
+nav ul li a {
+  display: block;
+  text-decoration: none;
+  background: #fdca00 !important;
+  font-size: 67%;
+  white-space: nowrap;
+  height: 27px;
+  width: 43px;
+  text-align: center;
+  -ms-transform: skew(-30deg);
+  transform: skew(-30deg);
+  -webkit-transform: skew(-30deg);
+  color: black;
+}
+
+label.prompt {
+  width: 115%;
+  margin: auto;
+  margin-left: -5%;
+}
+
+.parent-incentive {
+  width: 170%;
+  margin-left: -33%;
+  margin: auto; 
+  background-color: red;
+  transform: skew(-30deg);
+  -o-transform: skew(-30deg);
+  -moz-transform: skew(-30deg);
+  -webkit-transform: skew(-30deg);
+}
+
+.twa-prev,.twa-next{
+  display: none;
+}
+
+#tr-plax-green{
+  display: none;
+}
+
+.about-logo {
+  height: 35px;
+  background-size: contain;
+  width: 70px;
+  background-repeat: no-repeat;
+}
+}
