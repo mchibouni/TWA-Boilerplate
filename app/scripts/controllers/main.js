@@ -275,7 +275,7 @@
       scope.$watch('loaded',function(newValue,oldValue){
         console.warn("ISOLATESCOPE");
         if (newValue === true ){
-          $(".submit-result").fadeOut('fast',function(){
+          $(".event-hack").fadeOut('fast',function(){
             $(this).scope().shareModal();
             $(this).scope().$apply();
           })          
@@ -667,6 +667,7 @@
         $(this).fadeOut(6000);
       });   
 
+      $('body').scope().$emit("revokeEvent",[]);
 
       $scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
       $scope.$apply();
