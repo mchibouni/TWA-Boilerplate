@@ -80,7 +80,8 @@ run(function($window, $FB, $rootScope, $location, $anchorScroll, $routeParams) {
 
 
   !function(){
-    $('<h1/>',{id:"splash"}).html('Loading..').addClass('blink center').appendTo('body');
+    if  ($location.path() === '/')
+      $('<h1/>',{id:"splash"}).html('Loading..').addClass('blink center').appendTo('body');
   }();
 
   function preloadImages(array) {
