@@ -293,6 +293,7 @@
         if (newValue === true ){
           $(".event-hack").fadeOut('fast',function(){
             $(this).scope().shareModal();
+            $(this).scope().$emit('revokeSubmit',[]);            
             $(this).scope().$apply();
             $('#hack-wrapper').appendTo($("#dummy")).children().fadeIn();
           })          
@@ -825,6 +826,7 @@ var ModalCtrl = function ($scope, $modal, $log, twaHashTagService,$window) {
       $scope.selected = selectedItem;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
+      $('.event-hack').fadeIn();
     });
   };
 
