@@ -667,8 +667,8 @@
         $(this).fadeOut(6000);
       });   
 
-      $('.share-modal').fadeIn();
-      $('body').scope().$emit("revokeEvent",[]);
+//      $('.share-modal').fadeIn();
+//      $('body').scope().$emit("revokeEvent",[]);
 
       $scope.twaHashTags.push({name:this.suggestHash,state:"false"}); 
       $scope.$apply();
