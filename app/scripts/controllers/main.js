@@ -407,9 +407,16 @@
   return {
     restrict: 'A',
     link: function (scope, iElement, iAttrs) {
-      var plaxifyOptions = (iElement.data('reverse') === "1") ? {"invert":true} : {};
-      iElement.plaxify(plaxifyOptions).fadeIn();
-      $.plax.enable();
+      if ($window.document.width > 700)
+      {
+        var plaxifyOptions = (iElement.data('reverse') === "1") ? {"invert":true} : {};
+        iElement.plaxify(plaxifyOptions).fadeIn();
+        $.plax.enable();
+      }
+      else {
+        iElement.hide();
+      }
+
     }
   };
 }])
@@ -417,8 +424,14 @@
   return {
     restrict: 'A',
     link: function (scope, iElement, iAttrs) {
-      iElement.plaxify({"invert":true}).fadeIn();
-      $.plax.enable();
+      if ($window.document.width > 700)
+      {
+        iElement.plaxify({"invert":true}).fadeIn();
+        $.plax.enable();
+      }
+      else {
+        iElement.hide();
+      }
     }
   };
 }])

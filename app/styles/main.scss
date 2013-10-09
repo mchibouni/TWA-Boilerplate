@@ -1864,6 +1864,7 @@ padding-left: 15%;
     width: 135%;
     position: relative;
     bottom: 30px;
+    z-index: -1;
   }
 
   span.view-candidates {
@@ -2464,6 +2465,7 @@ label.prompt {
   margin: auto;
   margin-left: -5%;
   font-size: 50%;
+  margin-bottom: 15px;
 }
 label.meta-prompt {
   text-align: center;
@@ -2530,6 +2532,7 @@ span.view-candidates {
   height: 19px;
 }
 .mobile-hack {
+  text-align: center;
   font-size: 50%;
   width: 123px;
   margin-left: -18px;
@@ -2603,5 +2606,77 @@ div.modal-entry-metadata > button {
   width: 97%;
   height: 42%;
   margin-left: 3%;
+}
+.black {
+  margin-left: 7%;
+  font-size: 65%;
+  line-height: -13px;
+}
+footer {
+  position: fixed;
+  width: 152px;
+  height: 26px;
+  bottom: -1%;
+  right: -19%;
+  z-index: 1;
+}
+footer > div {
+  display: inline-block;
+  width: 19px;
+  cursor: pointer;
+}
+.social-medias {
+  width: 18px;
+  height: 18px;
+  z-index: 10000;
+  display: block;
+  cursor: pointer;
+}
+.logo-footer {
+  background-image: url("/images/logo-footer.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+  background-size: contain;
+  width: 152px;
+  font-size: 10px;
+  height: 17px;
+  text-indent: -8px;
+}
+.footer-slogan {
+  display: inline-block;
+  margin-left: 55px;
+  font-weight: bold;
+  font-size: 7px;
+}
+.fake-hashtag-entry {
+  background: url("/images/dummy-hash.png");
+  background-size: contain;
+  width: 29% !important;
+  background-repeat: no-repeat;
+  height: 24px;
+}
+.fake-hashtag-entry:hover {
+  background: url("/images/dummy-hash.png") no-repeat !important;
+  background-size: contain !important;
+}
+
+.nav-invoke {
+  display: none ; 
+}
+
+.incentive {
+  margin-bottom: 15px;
+}
+
+.parent-incentive {
+width: 153px;
+margin-left: 10px;
+margin: auto;
+background-color: red;
+-ms-transform: skew(-30deg);
+transform: skew(-30deg);
+-webkit-transform: skew(-30deg);
 }
 }
